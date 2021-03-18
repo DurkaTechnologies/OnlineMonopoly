@@ -1,0 +1,39 @@
+﻿<Page x:Class="WPFUI.Pages.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
+      MinHeight="550" MinWidth="900" Loaded="Page_Loaded">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+       
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="MainFrame" Grid.RowSpan="6" Grid.ColumnSpan="3"
+               Background="{StaticResource DefPageBackground}"/>
+
+        <uc:RoundButton Grid.Row="1" Content="Sign in" Command="{Binding GoSignInCommand}" RenderTransform="{StaticResource RightTransform}"/>
+        <uc:RoundButton Grid.Row="2" Content="Sign up" Command="{Binding GoSignUpCommand}" RenderTransform="{StaticResource LeftTransform}"/>
+        <uc:RoundButton IsEnabled="False" Grid.Row="3" Content="Rating" RenderTransform="{StaticResource RightTransform}"/>
+        <uc:RoundButton IsEnabled="False" Grid.Row="4" Content="About this" RenderTransform="{StaticResource LeftTransform}"/>
+    </Grid>
+</Page>

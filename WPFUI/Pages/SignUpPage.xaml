@@ -1,0 +1,101 @@
+﻿<Page x:Class="WPFUI.Pages.SignUpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" 
+      MinHeight="550" MinWidth="900" Loaded="Page_Loaded">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="StackPanel" BasedOn="{StaticResource DefStackPanel}"/>
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="{StaticResource DefPageBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" Text="Login" Style="{StaticResource DefTextBlockStyle}"/>
+
+        <uc:CustomTextBox Grid.Row="2"  RenderTransform="{StaticResource RightTransform}" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}">
+
+            <TextBox.Style>
+                <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoginCorrect}" Value="False">
+                            <Setter Property="SecondBorderBrush" Value="{StaticResource MainDarkRed}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </uc:CustomTextBox>
+
+        <TextBlock Grid.Row="3" Text="Password" Style="{StaticResource DefTextBlockStyle}"/>
+        <uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.Style>
+                <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPasswordCorrect}" Value="False">
+                            <Setter Property="SecondBorderBrush" Value="{StaticResource MainDarkRed}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </uc:CustomTextBox>
+
+        <TextBlock Grid.Row="5" Text="Phone Number" Style="{StaticResource DefTextBlockStyle}"/>
+        <uc:CustomTextBox Grid.Row="6"  RenderTransform="{StaticResource RightTransform}" 
+                              Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.Style>
+                <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPhoneNumberCorrect}" Value="False">
+                            <Setter Property="SecondBorderBrush" Value="{StaticResource MainDarkRed}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </uc:CustomTextBox>
+
+        <UniformGrid Grid.Column="1" Grid.Row="7" Columns="2">
+            <uc:RoundButton Content="Sign Up" RenderTransform="{StaticResource LeftTransform}" Command="{Binding SignUpCommand}"/>
+            <uc:RoundButton Content="To main menu" RenderTransform="{StaticResource RightTransform}" Command="{Binding GoMainMenuCommand}"/>
+        </UniformGrid>
+
+        <!--<uc:RegisteredPage Grid.ColumnSpan="3" Grid.RowSpan="9">
+            <uc:RegisteredPage.Style>
+                <Style TargetType="{x:Type uc:RegisteredPage}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=RegisterDone}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Path=RegisterDone}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </uc:RegisteredPage.Style>
+        </uc:RegisteredPage>-->
+    </Grid>
+</Page>
