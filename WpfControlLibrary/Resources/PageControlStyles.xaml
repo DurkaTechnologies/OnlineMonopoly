@@ -1,0 +1,155 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Dictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <TranslateTransform x:Key="RightTransform" X="100"></TranslateTransform>
+    <TranslateTransform x:Key="LeftTransform" X="-100"></TranslateTransform>
+    <TranslateTransform x:Key="UpTransform" Y="20"></TranslateTransform>
+    <TranslateTransform x:Key="DownTransform" Y="-20"></TranslateTransform>
+
+    <sys:Int32 x:Key="StartPositionLeft" >-100</sys:Int32>
+    <sys:Int32 x:Key="StartPositionRight" >100</sys:Int32>
+    <sys:Double x:Key="StartPositionUp" >20</sys:Double>
+    <sys:Double x:Key="StartPositionDown" >-20</sys:Double>
+    <sys:Double x:Key="StrokeThicknessDef" >6</sys:Double>
+
+    <sys:Double x:Key="EndPositionUp" >0</sys:Double>
+    <sys:Double x:Key="EndPositionDown" >0</sys:Double>
+    <Duration x:Key="AnimDuration">0:0:0.4</Duration>
+    <sys:TimeSpan x:Key="AnimBeginTime">0:0:0.1</sys:TimeSpan>
+
+    <LinearGradientBrush x:Key="GreenGradient">
+        <GradientStop Color="#0014B022"/>
+        <GradientStop Color="#FF6F9E37" Offset="0.4"></GradientStop>
+        <GradientStop Color="#FF6F9E37" Offset="0.5"></GradientStop>
+        <GradientStop Color="#FF6F9E37" Offset="0.6"></GradientStop>
+        <GradientStop Color="#0014B022" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MagentaGradient">
+        <GradientStop Color="#00A426D9"/>
+        <GradientStop Color="#EB9C13D6" Offset="0.4"></GradientStop>
+        <GradientStop Color="#EB9C13D6" Offset="0.5"></GradientStop>
+        <GradientStop Color="#EB9C13D6" Offset="0.6"></GradientStop>
+        <GradientStop Color="#00A426D9" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GreenBackground" Color="#FF94D34A"/>
+    <SolidColorBrush x:Key="GreenBorderBrush" Color="#FF6F9E37"/>
+
+    <SolidColorBrush x:Key="MagentaBackground" Color="#FFD854AE"/>
+    <SolidColorBrush x:Key="MagentaBorderBrush" Color="#EB9C13D6"/>
+
+    <Storyboard x:Key="ToYNullTransform">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="(Line.RenderTransform).(TranslateTransform.Y)" 
+            To="{StaticResource EndPositionUp}"
+            BeginTime="{StaticResource AnimBeginTime}"
+            Duration="{StaticResource AnimDuration}"/>
+    </Storyboard>
+
+    <Storyboard x:Key="ToYUpTransform">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="(Line.RenderTransform).(TranslateTransform.Y)" 
+            To="{StaticResource StartPositionUp}"
+            BeginTime="{StaticResource AnimBeginTime}"
+            Duration="{StaticResource AnimDuration}"/>
+    </Storyboard>
+    
+    <Storyboard x:Key="ToYDownTransform">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="(Line.RenderTransform).(TranslateTransform.Y)" 
+            To="{StaticResource StartPositionDown}"
+            BeginTime="{StaticResource AnimBeginTime}"
+            Duration="{StaticResource AnimDuration}"/>
+    </Storyboard>
+    
+    <Storyboard x:Key="MinusLenght">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="X2" 
+            To="0" 
+            BeginTime="0:0:0.5"
+            Duration="{StaticResource AnimDuration}"/>
+    </Storyboard>
+
+    <Storyboard x:Key="PlusLenght">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="X2" 
+            To="600" 
+            BeginTime="0:0:0.5"
+            Duration="{StaticResource AnimDuration}"/>
+    </Storyboard>
+
+    <Style x:Key="DefLineStyle" TargetType="Line" >
+        <Setter Property="X1" Value="0"/>
+        <Setter Property="Y1" Value="0"/>
+        <Setter Property="Y2" Value="0"/>
+        <Setter Property="StrokeThickness" Value="{StaticResource StrokeThicknessDef}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TriggerLineStyle" TargetType="Line" BasedOn="{StaticResource DefLineStyle}">
+        <Setter Property="RenderTransform" Value="{StaticResource DownTransform}"/>
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="False">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource ToYNullTransform}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard Storyboard="{StaticResource ToYUpTransform}"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DefTextBlock" TargetType="TextBlock">
+        <Setter Property="RenderTransform" Value="{StaticResource DownTransform}"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="50"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="60"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="False">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource ToYNullTransform}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard Storyboard="{StaticResource ToYUpTransform}"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DefTextBlockUp" TargetType="TextBlock">
+        <Setter Property="RenderTransform" Value="{StaticResource UpTransform}"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="50"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="60"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="False">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource ToYNullTransform}"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard Storyboard="{StaticResource ToYDownTransform}"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
