@@ -1,1 +1,5 @@
 .vs
+WPFUI/bin/
+WPFUI/obj/
+DAL/bin/
+DAL/obj/
