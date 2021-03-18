@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    xmlns:local="clr-namespace:UIWPF.UserControls"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Dictionary.xaml"/>
     </ResourceDictionary.MergedDictionaries>
@@ -152,4 +153,59 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="DefTextBoxStyle" TargetType="local:CustomTextBox" BasedOn="{StaticResource DefCustomTextBox}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+        <Setter Property="Margin" Value="10,8"/>
+        <Setter Property="Grid.Column" Value="1"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Page.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                    Storyboard.TargetProperty="(local:CustomTextBox.RenderTransform).(TranslateTransform.X)" 
+                                    To="0" 
+                                    BeginTime="0:0:0.1"
+                                    Duration="0:0:0.4"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="DefTextBlockStyle">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Setter Property="Grid.Column" Value="1"/>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="DefStackPanel">
+        <Setter Property="Grid.Column" Value="1"/>
+    </Style>
+
+    <Style TargetType="{x:Type local:RoundButton}" BasedOn="{StaticResource roundBtnStyle}">
+        <Setter Property="Margin" Value="10, 8"/>
+        <Setter Property="Grid.Column" Value="1"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Page.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                    Storyboard.TargetProperty="(local:RoundButton.RenderTransform).(TranslateTransform.X)" 
+                                    To="0" 
+                                    BeginTime="0:0:0.1"
+                                    Duration="0:0:0.4"  />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

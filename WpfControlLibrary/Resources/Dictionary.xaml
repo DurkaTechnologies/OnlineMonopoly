@@ -17,20 +17,26 @@
         <Setter Property="TextBlock.Foreground" Value="Black"/>
     </Style>
 
-    <SolidColorBrush x:Key="DefBackground" Color="#FFD854AE"/>
-    <SolidColorBrush x:Key="DefBorderBrush" Color="DarkViolet"/>
-    <SolidColorBrush x:Key="DefSecondBackground" Color="#FF682C55"/>
-    <SolidColorBrush x:Key="DefSecondBorderBrush" Color="#FF461E39"/>
+    <SolidColorBrush x:Key="DefBackground" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="DefBorderBrush" Color="#FFB0B0B0"/>
+    <SolidColorBrush x:Key="DefSecondBackground" Color="#FFACACAC"/>
+    <SolidColorBrush x:Key="DefSecondBorderBrush" Color="Gray"/>
     <SolidColorBrush x:Key="MainDarkRed" Color="Firebrick"/>
     
-    <RadialGradientBrush x:Key="DefPageBackground">
-        <GradientStop Color="#FF872E6A" Offset="0.178"/>
-        <GradientStop Color="#FF99387A" Offset="1"/>
-    </RadialGradientBrush>
+    <LinearGradientBrush x:Key="DefPageBackground">
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <RotateTransform Angle="-45" CenterY="0.5" CenterX="0.5"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="#FF65C363"/>
+        <GradientStop Color="#FF64D9E3" Offset="1"/>
+    </LinearGradientBrush>
 
     <Style x:Key="roundBtnStyle" TargetType="local:RoundButton" >
         <Setter Property="Margin" Value="10,5"/>
-        <Setter Property="ButtonRadius" Value="0"/>
+        <Setter Property="ButtonRadius" Value="8"/>
         <Setter Property="Background" Value="{StaticResource DefBackground}"/>
         <Setter Property="BorderBrush" Value="{StaticResource DefBorderBrush}"/>
         <Setter Property="BorderStyle" Value="{StaticResource baseStyle}"/>
@@ -185,7 +191,4 @@
                        Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center"/>
         </Grid>
     </DataTemplate>
-
-        
-        
 </ResourceDictionary>

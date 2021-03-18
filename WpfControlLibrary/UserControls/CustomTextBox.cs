@@ -9,6 +9,7 @@ namespace UIWPF.UserControls
 	{
 		public static DependencyProperty SecondBackgroundProperty;
 		public static DependencyProperty SecondBorderBrushProperty;
+		public static DependencyProperty CornerRadiusProperty;
 
 		static CustomTextBox()
 		{
@@ -17,6 +18,9 @@ namespace UIWPF.UserControls
 
 			SecondBorderBrushProperty = DependencyProperty.Register("SecondBorderBrush", typeof(Brush), typeof(CustomTextBox),
 				new FrameworkPropertyMetadata(null));
+
+			CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(CustomTextBox),
+				new FrameworkPropertyMetadata(new CornerRadius(8)));
 
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomTextBox), new FrameworkPropertyMetadata(typeof(CustomTextBox)));
 		}
@@ -31,6 +35,12 @@ namespace UIWPF.UserControls
 		{
 			get => (Brush)GetValue(SecondBorderBrushProperty);
 			set => SetValue(SecondBorderBrushProperty, value);
+		}
+
+		public CornerRadius CornerRadius
+		{
+			get => (CornerRadius)GetValue(CornerRadiusProperty);
+			set => SetValue(CornerRadiusProperty, value);
 		}
 	}
 }

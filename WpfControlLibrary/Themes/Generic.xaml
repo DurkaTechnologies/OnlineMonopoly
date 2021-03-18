@@ -53,6 +53,7 @@
                             Padding="{TemplateBinding Padding}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ScrollViewer Margin="0"
                                        x:Name="PART_ContentHost"/>
