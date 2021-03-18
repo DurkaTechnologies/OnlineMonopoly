@@ -51,3 +51,4 @@ C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csproj.CoreCompileInputs.cache
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.dll
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.pdb
+C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csprojAssemblyReference.cache
