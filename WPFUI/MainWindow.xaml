@@ -32,7 +32,6 @@
             <RowDefinition Height="9*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-
        
         <Border Grid.Column="1" Grid.Row="1" Background="#334B0082" Width="Auto"
                 BorderBrush="Black" BorderThickness="4"
@@ -82,7 +81,7 @@
                 <Border Background="AliceBlue" Grid.Column="1"/> 
 
                 <!--Random-->
-                <Border Background="Blue" Grid.Column="2"/> 
+                <Border Background="Blue" Grid.Column="2"/>
 
                 <!--Clothes-->
                 <Border Background="AliceBlue" Grid.Column="3"/>
@@ -193,7 +192,6 @@
                 <Border Background="Chartreuse" Grid.Row="1"/>
             </Grid>
         </Border>
-
 
     </Grid>
 </Window>
