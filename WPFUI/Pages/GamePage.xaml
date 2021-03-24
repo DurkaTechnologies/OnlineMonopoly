@@ -4,8 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
-      xmlns:local="clr-namespace:WPFUI.Pages"
-      mc:Ignorable="d" 
+      xmlns:local="clr-namespace:WPFUI.Pages" xmlns:usercontrols="clr-namespace:WPFUI.UserControls"
+	  mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GamePage">
     <Page.Resources>
@@ -345,6 +345,10 @@
                 <Border Background="White" Grid.Row="1" Margin="{StaticResource MarginLeft}">
                     <Image Source="pack://application:,,,/Resources/Delivers/oregano.png"/>
                 </Border>
+
+				<Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2">
+					<usercontrols:GameDice></usercontrols:GameDice>
+				</Grid>
             </Grid>
         </Border>
     </Grid>

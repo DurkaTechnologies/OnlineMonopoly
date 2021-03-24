@@ -2,6 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B321094E-A212-455D-9D23-3E4708B325DE}</ProjectGuid>
@@ -37,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,6 +59,9 @@
     </ApplicationDefinition>
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GameDice.xaml.cs">
+      <DependentUpon>GameDice.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
@@ -87,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SignUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GameDice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,6 +184,14 @@
       <Project>{f17c2a83-6027-4c1f-a028-57bf75ee1bcf}</Project>
       <Name>WpfControlLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Materials\DiceTextures\1.png" />
+    <Resource Include="Resources\Materials\DiceTextures\2.png" />
+    <Resource Include="Resources\Materials\DiceTextures\3.png" />
+    <Resource Include="Resources\Materials\DiceTextures\4.png" />
+    <Resource Include="Resources\Materials\DiceTextures\5.png" />
+    <Resource Include="Resources\Materials\DiceTextures\6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
