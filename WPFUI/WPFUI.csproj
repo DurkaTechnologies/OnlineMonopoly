@@ -60,6 +60,11 @@
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Materials\DiceTextures\DiceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiceResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GameDice.xaml.cs">
       <DependentUpon>GameDice.xaml</DependentUpon>
     </Compile>
@@ -130,6 +135,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Resources\Materials\DiceTextures\DiceResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiceResources.Designer.cs</LastGenOutput>
+    </Resource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

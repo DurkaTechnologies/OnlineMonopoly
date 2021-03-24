@@ -3,23 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-//using WPFUI.Resources.Materials.DiceTextures;
+using WPFUI.Resources.Materials.DiceTextures;
 
 namespace WPFUI.UserControls
 {
@@ -45,10 +37,10 @@ namespace WPFUI.UserControls
 		{
 			InitializeComponent();
 
-			//ResourceSet resourceSet = DiceResource.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+			ResourceSet resourceSet = DiceResources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
 			
-			//foreach (var item in resourceSet)
-			//	images.Add(GetImageSource(item as Bitmap));
+			foreach (var item in resourceSet)
+				images.Add(GetImageSource(item as Bitmap));
 		}
 
 		public void Play(int number) 
