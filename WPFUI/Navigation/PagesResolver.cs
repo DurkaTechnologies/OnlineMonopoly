@@ -13,7 +13,7 @@ namespace WPFUI.Navigation
 		public PagesResolver()
 		{
 			pagesResolvers.Add(Navigation.MainMenuAlias, () => new MainMenu());
-			//pagesResolvers.Add(Navigation.GamePageAlias, () => new GamePage());
+			pagesResolvers.Add(Navigation.GamePageAlias, () => new GamePage());
 			pagesResolvers.Add(Navigation.SignInPageAlias, () => new SignInPage());
 			pagesResolvers.Add(Navigation.SignUpPageAlias, () => new SignUpPage());
 		}
