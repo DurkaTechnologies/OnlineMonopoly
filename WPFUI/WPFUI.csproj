@@ -135,10 +135,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Resources\Materials\DiceTextures\DiceResources.resx">
+    <EmbeddedResource Include="Resources\Materials\DiceTextures\DiceResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DiceResources.Designer.cs</LastGenOutput>
-    </Resource>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -10,10 +11,17 @@ namespace WPFUI.Pages
 	/// </summary>
 	public partial class GamePage : Page
 	{
+		Random rand;
+
 		public GamePage()
 		{
 			InitializeComponent();
+			rand = new Random();
 		}
-		
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			dice.Play(rand.Next(1, 6));
+		}
 	}
 }

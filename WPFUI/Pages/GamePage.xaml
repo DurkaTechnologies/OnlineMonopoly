@@ -347,9 +347,13 @@
                 </Border>
 
 				<Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2">
-					<usercontrols:GameDice></usercontrols:GameDice>
+					<usercontrols:GameDice x:Name="dice"></usercontrols:GameDice>
 				</Grid>
-            </Grid>
+
+				<Grid Grid.Column="2" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2">
+					<Button Click="Button_Click"></Button>
+				</Grid>
+			</Grid>
         </Border>
     </Grid>
 </Page>
