@@ -2,7 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 MinHeight="64" MinWidth="64">
-    <Grid>
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="https://image.freepik.com/free-photo/natural-black-marble-texture-for-skin-tile-wallpaper-luxurious-background_24076-426.jpg"/>
+		</Grid.Background>
 		<Image x:Name="DiceImage"/>
 	</Grid>
 </UserControl>

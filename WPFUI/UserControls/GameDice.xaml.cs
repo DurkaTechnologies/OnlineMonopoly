@@ -24,38 +24,45 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class GameDice : UserControl, INotifyPropertyChanged
 	{
-		private List<ImageSource> images;
-		private int diceValue;
+		public static DependencyProperty DiceValueProperty;
 
-		public int DiceValue 
+		public int DiceValue
 		{
-			get => diceValue;
-			set 
+			get => (int)GetValue(DiceValueProperty);
+			set
 			{
-				diceValue = value;
+				SetValue(DiceValueProperty, value);
 				OnPropertyChanged();
 			}
 		}
 
+		private List<ImageSource> images;
+
+		static GameDice()
+		{
+			DiceValueProperty = DependencyProperty.Register("DiceValue", typeof(int), typeof(GameDice),
+					new FrameworkPropertyMetadata(0));
+		}
 		public GameDice()
 		{
 			InitializeComponent();
+			InitializePropertyChanged();
 
+			DiceValue = 0;
 			images = new List<ImageSource>();
 			ResourceSet resourceSet = DiceResources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
 
-			var zalypa = resourceSet
+			var items = resourceSet
 					   .Cast<DictionaryEntry>()
 					   .Where(x => x.Value.GetType() == typeof(Bitmap))
-					   .Select(x => new Kolhoz(){ Name = x.Key.ToString(), Image = x.Value as Bitmap}).ToList().OrderBy(x => x.Name);
+					   .Select(x => new Kolhoz() { Name = x.Key.ToString(), Image = x.Value as Bitmap }).ToList().OrderBy(x => x.Name);
 
-			resourceSet.Close();
-
-			foreach (var item in zalypa)
+			foreach (var item in items)
 				images.Add(GetImageSource(item.Image));
+
 		}
 
-		public void Play(int number)
+		public void Play()
 		{
 			Task.Run(() =>
 			{
@@ -77,7 +84,7 @@ namespace WPFUI.UserControls
 				Task.Delay(2000);
 
 				Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background,
-								   new Action(() => DiceImage.Source = images[number - 1]));
+								   new Action(() => DiceImage.Source = images[DiceValue]));
 			});
 		}
 
@@ -87,7 +94,7 @@ namespace WPFUI.UserControls
 			{
 				if (args.PropertyName.Equals(nameof(DiceValue)))
 				{
-					
+					Play();
 				}
 			};
 		}

@@ -54,7 +54,6 @@ C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csprojAssemblyReference.cache
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\bin\Debug\WpfControlLibrary.dll
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\bin\Debug\WpfControlLibrary.pdb
-C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csprojAssemblyReference.cache
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\Resources\ComboBoxTemplate.baml
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary_MarkupCompile.cache
