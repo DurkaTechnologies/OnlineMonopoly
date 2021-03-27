@@ -42,8 +42,9 @@
 
 
             <UniformGrid Columns="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="15,5,15,15">
-                <uc:RoundButton Margin="0,0,8,0" Background="#FF64D9E3" BorderBrush="#FF4E9197">
-                    <TextBlock Style="{StaticResource DefTextBlockStyle}" Text="Roll the dice"
+                <uc:RoundButton Margin="0,0,8,0" Background="{StaticResource DefSelBackground}" 
+                                BorderBrush="{StaticResource DefSelBorderBrush}">
+                    <TextBlock Style="{StaticResource DefTextBlockStyle}"
                            Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20">
                         <Run Text="Buy for "/>
                         <Run Text="{Binding }"/>

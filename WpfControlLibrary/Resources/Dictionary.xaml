@@ -18,9 +18,9 @@
         <Setter Property="TextBlock.Foreground" Value="Black"/>
     </Style>
 
-    <SolidColorBrush x:Key="DefSelBackground" Color="AliceBlue"/>
-    <SolidColorBrush x:Key="DefBorderBrush" Color="#FFB0B0B0"/>
-
+    <SolidColorBrush x:Key="DefSelBackground" Color="#FF64D9E3"/>
+    <SolidColorBrush x:Key="DefSelBorderBrush" Color="#FF4E9197"/>
+        
     <SolidColorBrush x:Key="DefBackground" Color="AliceBlue"/>
     <SolidColorBrush x:Key="DefBorderBrush" Color="#FFB0B0B0"/>
     <SolidColorBrush x:Key="DefSecondBackground" Color="#FFACACAC"/>

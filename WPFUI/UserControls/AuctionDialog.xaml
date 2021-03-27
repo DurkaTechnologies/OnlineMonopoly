@@ -41,7 +41,7 @@
                        Grid.Column="0" Margin="15,5" TextAlignment="Left"
                        TextWrapping="WrapWithOverflow"
                        VerticalAlignment="Top" Foreground="{StaticResource DefFontColor}"
-                       Text="You can raise your bid by 100 liters, or leave the auction."
+                       Text="You can either raise your bid by 100k or leave the auction."
                        Style="{StaticResource DefTextBlockStyle}"/>
 
 
