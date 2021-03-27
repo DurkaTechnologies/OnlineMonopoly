@@ -69,3 +69,4 @@ C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csproj.G
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csproj.CoreCompileInputs.cache
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.dll
 C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.pdb
+C:\Desktop\OnlineMonopoly\WpfControlLibrary\obj\Debug\WpfControlLibrary.csprojAssemblyReference.cache
