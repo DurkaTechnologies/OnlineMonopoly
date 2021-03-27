@@ -58,6 +58,9 @@
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PayRentDialog.xaml.cs">
+      <DependentUpon>PayRentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
@@ -87,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SignUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PayRentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,6 +182,11 @@
       <Project>{f17c2a83-6027-4c1f-a028-57bf75ee1bcf}</Project>
       <Name>WpfControlLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\UAH.png" />
+    <Resource Include="Resources\UserControlsImg\UAHblack.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
