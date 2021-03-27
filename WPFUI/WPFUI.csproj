@@ -68,6 +68,9 @@
     <Compile Include="UserControls\GameDice.xaml.cs">
       <DependentUpon>GameDice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\GameDices.xaml.cs">
+      <DependentUpon>GameDices.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
@@ -101,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\GameDice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GameDices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,12 +202,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Materials\DiceTextures\1.png" />
-    <Resource Include="Resources\Materials\DiceTextures\2.png" />
-    <Resource Include="Resources\Materials\DiceTextures\3.png" />
-    <Resource Include="Resources\Materials\DiceTextures\4.png" />
-    <Resource Include="Resources\Materials\DiceTextures\5.png" />
-    <Resource Include="Resources\Materials\DiceTextures\6.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice1.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice2.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice3.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

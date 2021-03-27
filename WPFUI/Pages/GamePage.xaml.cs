@@ -21,7 +21,8 @@ namespace WPFUI.Pages
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			dice.Play(rand.Next(1, 6));
+			dice.FirstValue = rand.Next(0, 6);
+			dice.SecondValue = rand.Next(0, 6);
 		}
 	}
 }
