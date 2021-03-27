@@ -12,7 +12,6 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="StackPanel" BasedOn="{StaticResource DefStackPanel}"/>
-
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
@@ -40,15 +39,12 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-
-
 
         <TextBlock Grid.Row="3" Text="{Binding Text}" Style="{StaticResource DefTextBlockStyle}"/>
 
