@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\SecondRecoverPage.xaml.cs">
+      <DependentUpon>SecondRecoverPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RecoverPasswordPage.xaml.cs">
       <DependentUpon>RecoverPasswordPage.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
     <Page Include="Pages\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SecondRecoverPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\SignInPage.xaml">
       <SubType>Designer</SubType>

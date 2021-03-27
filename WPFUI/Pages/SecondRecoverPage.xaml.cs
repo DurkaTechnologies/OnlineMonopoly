@@ -18,18 +18,16 @@ namespace WPFUI.Pages
     /// <summary>
     /// Interaction logic for RecoverPasswordPage.xaml
     /// </summary>
-    public partial class RecoverPasswordPage : Page
+    public partial class SecondRecoverPage : Page
     {
-        public RecoverPasswordPage()
+        public SecondRecoverPage()
         {
             InitializeComponent();
-
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Navigation.Navigation.Service = NavigationService.GetNavigationService(this);
             this.DataContext = RecoverViewModel.GetInstance();
         }
-
     }
 }

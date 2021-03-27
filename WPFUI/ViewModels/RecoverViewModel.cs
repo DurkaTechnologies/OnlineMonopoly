@@ -20,6 +20,14 @@ namespace WPFUI.ViewModels
         private string mail;
         private Command recoverCommand;
         private Command checkCommand;
+        private static RecoverViewModel instance;
+
+        public static RecoverViewModel GetInstance()
+        {
+            if (instance == null)
+                instance = new RecoverViewModel();
+            return instance;
+        }
 
         string server = "smtp.gmail.com"; // sets the server address
         int port = 587; //sets the server port
@@ -35,7 +43,6 @@ namespace WPFUI.ViewModels
             }
         }
         private string text= "E-Mail";
-        private int counter;
         public string Text
         {
             get => text;
@@ -45,13 +52,13 @@ namespace WPFUI.ViewModels
                 OnPropertyChanged();
             }
         }
-
         private void InitializeCommands()
         {
             recoverCommand = new DelegateCommand(Recover, ()=>true);
-
+            checkCommand = new DelegateCommand(Check, () => true);
         }
         public ICommand RecoverCommand => recoverCommand;
+        public ICommand CheckCommand => checkCommand;
 
         private void Recover()
         {
@@ -60,7 +67,7 @@ namespace WPFUI.ViewModels
             {
                 key += (Char)random.Next(33, 100);
             }
-            MailMessage message = new MailMessage("prodoq@gmail.com", mail, "recover Password", "Hello, u can recover your password, entered your key - "+key);
+            MailMessage message = new MailMessage("prodoq@gmail.com", mail, "recover Password", "Hello, u can recover your password, entered your key: "+key);
             message.Priority = MailPriority.High;
             // create a send object
             SmtpClient client = new SmtpClient(server, port);
@@ -70,11 +77,16 @@ namespace WPFUI.ViewModels
             client.Credentials = new NetworkCredential("prodoq@gmail.com", "r4e3w2q1");
             // call asynchronous message sending
             client.SendAsync(message, "blabla");
+            Navigation.Navigation.Navigate(Navigation.Navigation.SecondRecoverPageAlies, null);
             Text = "Enter key";
             Mail = "";
-
         }
-       
-        
+        private void Check()
+        {
+            if (key == Mail)
+                Text = "Complited";
+            else
+                Text = "False";
+        }
     }
 }
