@@ -14,7 +14,6 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="{TemplateBinding ButtonRadius}"
                             BorderThickness="{TemplateBinding ButtonThickness}"
-                            Margin="{TemplateBinding BorderMargin}"
                             Padding="{TemplateBinding Padding}">
                         <ContentPresenter 
                             VerticalAlignment="Center"  
@@ -28,8 +27,8 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ThicknessAnimation To="0,4,0,0"
-                                                    Storyboard.TargetProperty="BorderMargin"
+                                        <ThicknessAnimation To="2,4,2,2"
+                                                    Storyboard.TargetProperty="ButtonThickness"
                                                     Duration="0:0:0.15"/>
                                         <ThicknessAnimation To="2,2,2,4"
                                                     Storyboard.TargetProperty="ButtonThickness"

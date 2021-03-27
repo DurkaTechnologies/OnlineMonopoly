@@ -17,6 +17,8 @@ namespace WPFUI.ViewModels
 
 		private Command signInCommand;
 		private Command goMainMenuCommand;
+		private Command goRecoverCommand;
+
 
 		public SignInViewModel()
 		{
@@ -30,6 +32,8 @@ namespace WPFUI.ViewModels
 		{
 			signInCommand = new DelegateCommand(SignIn, SignInCanExecute);
 			goMainMenuCommand = new DelegateCommand(GoToMainPage, () => true);
+			goRecoverCommand = new DelegateCommand(GoToRecoverPage, () => true);
+
 		}
 
 		private void InitializePropertyChanged()
@@ -63,6 +67,8 @@ namespace WPFUI.ViewModels
 
 		public ICommand SignInCommand => signInCommand;
 		public ICommand GoMainMenuCommand => goMainMenuCommand;
+		public ICommand GoRecoverCommand => goRecoverCommand;
+
 
 		public string Login
 		{
@@ -103,6 +109,10 @@ namespace WPFUI.ViewModels
 		public void GoToMainPage()
 		{
 			Navigation.Navigation.Navigate(Navigation.Navigation.MainMenuAlias, null);
+		}
+		public void GoToRecoverPage()
+		{
+			Navigation.Navigation.Navigate(Navigation.Navigation.RecoverPageAlies, null);
 		}
 
 		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
