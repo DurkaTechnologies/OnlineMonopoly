@@ -53,8 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Initializer.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Entities\Branch.cs" />
+    <Compile Include="Entities\BranchType.cs" />
+    <Compile Include="Entities\RentSetting.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="DbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
