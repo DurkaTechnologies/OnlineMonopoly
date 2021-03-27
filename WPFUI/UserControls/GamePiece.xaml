@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="WPFUI.UserControls.GamePiece"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             MaxHeight="12" MaxWidth="12">
+    <Border BorderThickness="1" Background="{Binding PieceBackground}"
+            BorderBrush="{Binding PieceBorderBrush}"
+            CornerRadius="30">
+        <Border.Effect>
+            <DropShadowEffect Direction="270" ShadowDepth="1" BlurRadius="10" />
+        </Border.Effect>
+    </Border>
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="60"  ShadowDepth="1"/>
+    </UserControl.Effect>
+</UserControl>

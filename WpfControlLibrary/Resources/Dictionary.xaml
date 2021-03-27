@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="BlueBackground" Color="#FF6898CB"/>
     <SolidColorBrush x:Key="YellowBackground" Color="#FFF0C02D"/>
     <SolidColorBrush x:Key="RedBackground" Color="#FFE1526E"/>
+    <SolidColorBrush x:Key="DefFontColor" Color="#262626"/>
 
 
     <Style x:Key="baseStyle" TargetType="{x:Type Border}">
@@ -17,6 +18,9 @@
         <Setter Property="TextBlock.Foreground" Value="Black"/>
     </Style>
 
+    <SolidColorBrush x:Key="DefSelBackground" Color="#FF64D9E3"/>
+    <SolidColorBrush x:Key="DefSelBorderBrush" Color="#FF4E9197"/>
+        
     <SolidColorBrush x:Key="DefBackground" Color="AliceBlue"/>
     <SolidColorBrush x:Key="DefBorderBrush" Color="#FFB0B0B0"/>
     <SolidColorBrush x:Key="DefSecondBackground" Color="#FFACACAC"/>
