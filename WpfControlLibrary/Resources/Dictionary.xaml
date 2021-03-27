@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="BlueBackground" Color="#FF6898CB"/>
     <SolidColorBrush x:Key="YellowBackground" Color="#FFF0C02D"/>
     <SolidColorBrush x:Key="RedBackground" Color="#FFE1526E"/>
+    <SolidColorBrush x:Key="DefFontColor" Color="#262626"/>
 
 
     <Style x:Key="baseStyle" TargetType="{x:Type Border}">
