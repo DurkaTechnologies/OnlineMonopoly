@@ -10,19 +10,12 @@
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="VerticalContentAlignment" Value="Center" />
 		</Style>
-		<Style x:Key="ShortInfoStyle" TargetType="Grid">
-			<Setter Property="Margin" Value="8"/>
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding CurrentUser}" Value="True">
-					<DataTrigger.Setters>
-						<Setter Property="Margin" Value="0" />
-					</DataTrigger.Setters>
-				</DataTrigger>
-			</Style.Triggers>
-		</Style>
 	</UserControl.Resources>
 
-	<Grid Width="225" Height="180" Background="{Binding CurrentBackground}" Style="{StaticResource ShortInfoStyle}">
+	<!--Width="225" Height="180"-->
+
+	<Grid
+		  Background="{Binding CurrentBackground}" >
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
@@ -41,7 +34,8 @@
 				Height="70"
 				CornerRadius="35"
 				BorderThickness="4"
-				BorderBrush="{Binding PlayerColor}">
+				BorderBrush="{Binding PlayerColor}"
+				Margin="0,16,0,0">
 			
 			<Border Grid.Column="1"
 				Width="60"
@@ -62,7 +56,7 @@
 		<Border Grid.Column="0" 
 				Grid.Row="0" 
 				Background="{Binding TimerBackground}"
-				Width="40" Height="40" CornerRadius="30" Margin="8,0,0,0"
+				Width="40" Height="40" CornerRadius="30" Margin="8,16,0,0"
 				Visibility="{Binding ShowTimer}">
 
 			<Label Content="{Binding UserTime}" FontSize="20"/>

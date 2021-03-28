@@ -244,12 +244,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Materials\DiceTextures\dice1.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice2.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice3.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
-    <Resource Include="Resources\Materials\DiceTextures\dice6.png" />
     <Resource Include="Resources\UserControlsImg\diceblue.png" />
   </ItemGroup>
   <ItemGroup>
@@ -264,10 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Materials\DiceTextures\dice1.png" />
-    <Resource Include="Resources\Materials\DiceTextures\dice2.png" />
-    <Resource Include="Resources\Materials\DiceTextures\dice3.png" />
-    <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
-    <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
