@@ -33,7 +33,7 @@
 
         <uc:RoundButton Grid.Row="1" Content="Sign in" Command="{Binding GoSignInCommand}" RenderTransform="{StaticResource RightTransform}"/>
         <uc:RoundButton Grid.Row="2" Content="Sign up" Command="{Binding GoSignUpCommand}" RenderTransform="{StaticResource LeftTransform}"/>
-        <uc:RoundButton IsEnabled="False" Grid.Row="3" Content="Rating" RenderTransform="{StaticResource RightTransform}"/>
+		<uc:RoundButton Grid.Row="3" Content="Rating" RenderTransform="{StaticResource RightTransform}" Command="{Binding GoMainPageCommand}"/>
         <uc:RoundButton IsEnabled="False" Grid.Row="4" Content="About this" RenderTransform="{StaticResource LeftTransform}"/>
     </Grid>
 </Page>
