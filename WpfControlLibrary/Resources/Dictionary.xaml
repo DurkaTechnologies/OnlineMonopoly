@@ -3,6 +3,14 @@
                     xmlns:local="clr-namespace:UIWPF.UserControls">
     <SolidColorBrush x:Key="PageBackground" Color="#4CFFFFFF"/>
 
+		
+	<!--Player Colors-->	
+	<SolidColorBrush x:Key="PlayerRed" Color="#cd3847" />
+	<SolidColorBrush x:Key="PlayerBlue" Color="#2494e2" />
+	<SolidColorBrush x:Key="PlayerGreen" Color="#8bcb5a" />
+	<SolidColorBrush x:Key="PlayerPurple" Color="#8f59b5" />
+	<SolidColorBrush x:Key="PlayerBonus" Color="#bf84e8" />
+		
     <SolidColorBrush x:Key="WhiteBackground" Color="WhiteSmoke"/>
     <SolidColorBrush x:Key="GreenBackground" Color="#FF94D34A"/>
     <SolidColorBrush x:Key="MagentaBackground" Color="#FFBD80F6"/>
@@ -11,8 +19,7 @@
     <SolidColorBrush x:Key="RedBackground" Color="#FFE1526E"/>
     <SolidColorBrush x:Key="DefFontColor" Color="#262626"/>
 
-
-    <Style x:Key="baseStyle" TargetType="{x:Type Border}">
+	<Style x:Key="baseStyle" TargetType="{x:Type Border}">
         <Setter Property="TextBlock.FontSize" Value="35"/>
         <Setter Property="TextBlock.FontWeight" Value="Bold"/>
         <Setter Property="TextBlock.Foreground" Value="Black"/>

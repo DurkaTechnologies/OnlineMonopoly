@@ -33,6 +33,7 @@ namespace WPFUI.UserControls
 			set
 			{
 				SetValue(FirstValueProperty, value);
+				first.DiceValue = value;
 				OnPropertyChanged();
 			}
 		}
@@ -43,6 +44,7 @@ namespace WPFUI.UserControls
 			set
 			{
 				SetValue(SecondValueProperty, value);
+				second.DiceValue = value;
 				OnPropertyChanged();
 			}
 		}
