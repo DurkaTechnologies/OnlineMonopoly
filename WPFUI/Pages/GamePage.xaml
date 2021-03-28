@@ -28,6 +28,16 @@
 
 			<Thickness x:Key="MarginBottom" Bottom="0" Right="{StaticResource DefMargin}" 
                    Top="{StaticResource DefMargin}" Left="{StaticResource DefMargin}"/>
+
+			<Style x:Key="ShortInfoStyle" TargetType="uc:ShortInfo">
+				<Setter Property="Margin" Value="-8,0" />
+
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding CurrentUser}" Value="False">
+						<Setter Property="Margin" Value="8" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
 		</ResourceDictionary>
 	</Page.Resources>
 	<Grid Background="DimGray">
@@ -363,11 +373,18 @@
 			</Grid>
 		</Border>
 
-		<StackPanel Grid.Column="0" Grid.Row="1">
-			<uc:ShortInfo PlayerColor="{StaticResource PlayerRed}" />
-			<uc:ShortInfo PlayerColor="{StaticResource PlayerGreen}" CurrentUser="True"/>
-			<uc:ShortInfo PlayerColor="{StaticResource PlayerPurple}"/>
-			<uc:ShortInfo PlayerColor="{StaticResource PlayerBlue}" />
-		</StackPanel>
+		<Grid Grid.Column="0" Grid.Row="1" Width="257" VerticalAlignment="Top">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<uc:ShortInfo Grid.Row="0"  PlayerColor="{StaticResource PlayerRed}" CurrentUser="False" Style="{StaticResource ShortInfoStyle}"/>
+			<uc:ShortInfo Grid.Row="1"  PlayerColor="{StaticResource PlayerGreen}" CurrentUser="True" Style="{StaticResource ShortInfoStyle}"/>
+			<uc:ShortInfo Grid.Row="2"  PlayerColor="{StaticResource PlayerPurple}" CurrentUser="False" Style="{StaticResource ShortInfoStyle}"/>
+			<uc:ShortInfo Grid.Row="3"  PlayerColor="{StaticResource PlayerBlue}" CurrentUser="False" Style="{StaticResource ShortInfoStyle}"/>
+		</Grid>
 	</Grid>
 </Page>

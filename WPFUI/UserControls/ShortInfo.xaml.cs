@@ -23,6 +23,15 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class ShortInfo : UserControl, INotifyPropertyChanged
 	{
+		public ShortInfo()
+		{
+			InitializeComponent();
+			InitializePropertyChanged();
+
+			defBackground = ColorGradientGenerator.GenerateGradient(Color.FromArgb(255, 10, 10, 10), -45);
+			CurrentUser = false;
+		}
+
 		/*Color Logic*/
 
 		private SolidColorBrush playerColor;
@@ -104,15 +113,6 @@ namespace WPFUI.UserControls
 				timerBackground = value;
 				OnPropertyChanged();
 			}
-		}
-
-		public ShortInfo()
-		{
-			InitializeComponent();
-			InitializePropertyChanged();
-
-			defBackground = ColorGradientGenerator.GenerateGradient(Color.FromArgb(255, 10, 10, 10), -45);
-			CurrentUser = false;
 		}
 
 		public object Value { get; set; }

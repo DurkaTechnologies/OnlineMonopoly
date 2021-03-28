@@ -36,8 +36,6 @@ namespace WPFUI.Views
 			Color firstColor = color;
 			Color secondColor = new Color();
 
-			//color first - 205 56 71, second - 240 104 96, third - 36, 148, 226, timer - 52, 150, 199
-
 			secondColor.A = (byte)(255);
 			secondColor.R = (byte)(color.R + 35);
 			secondColor.G = (byte)(color.G + 48);
