@@ -8,22 +8,22 @@ namespace WPFUI
 {
     public class GameDiceLogic
     {
-        Random rand;
-
-        public int FirstValue { get; private set; }
-        public int SecondValue { get; private set; }
-        const int MIN = 0;
-        const int MAX = 6;
+		private const int MIN = 0;
+		private const int MAX = 6;
+		private Random random;
 
 		public GameDiceLogic()
 		{
-            rand = new Random(DateTime.Now.Millisecond);
-        }
+			random = new Random(DateTime.Now.Millisecond);
+		}
+
+        public int FirstValue { get; private set; }
+        public int SecondValue { get; private set; }
 
         public void Action()
         {
-            this.FirstValue = rand.Next(MIN, MAX);
-            this.SecondValue = rand.Next(MIN, MAX);
+            FirstValue = random.Next(MIN, MAX);
+            SecondValue = random.Next(MIN, MAX);
         }
     }
 }

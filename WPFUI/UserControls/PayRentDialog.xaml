@@ -9,13 +9,9 @@
                 <ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
                 <ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <Style TargetType="StackPanel" BasedOn="{StaticResource DefStackPanel}"/>
-
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border Background="{StaticResource DefPageBackground}"
-            CornerRadius="16" >
+    <Border Background="{StaticResource DefPageBackground}" CornerRadius="16">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -51,8 +47,8 @@
                     <Run Text="K"/>
                 </TextBlock>
             </uc:RoundButton>
-
         </Grid>
+        
         <Border.Effect>
             <DropShadowEffect Direction="270" BlurRadius="10" />
         </Border.Effect>

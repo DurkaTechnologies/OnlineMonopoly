@@ -23,6 +23,24 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class ShortInfo : UserControl, INotifyPropertyChanged
 	{
+		#region Fields
+		// Color logic
+
+		private SolidColorBrush playerColor;
+		private LinearGradientBrush currentBackground;
+		private LinearGradientBrush userBackground;
+		private LinearGradientBrush defBackground;
+		private SolidColorBrush timerBackground;
+
+		// User information
+
+		private bool currentUser;
+		private string userName;
+		private int userMoney;
+		private int userTime;
+
+		#endregion
+
 		public ShortInfo()
 		{
 			InitializeComponent();
@@ -32,48 +50,7 @@ namespace WPFUI.UserControls
 			CurrentUser = false;
 		}
 
-		/*Color Logic*/
-
-		private SolidColorBrush playerColor;
-		private LinearGradientBrush currentBackground;
-		private LinearGradientBrush userBackground;
-		private LinearGradientBrush defBackground;
-		private SolidColorBrush timerBackground;
-		private bool currentUser;
-
-		public bool CurrentUser
-		{
-			get => currentUser;
-			set
-			{
-				currentUser = value;
-				OnPropertyChanged();
-				OnPropertyChanged(nameof(ShowTimer));
-			}
-		}
-
-		public string ShowTimer
-		{
-			get 
-			{
-				if (CurrentUser)
-					return "Visible";
-				else
-					return "Hidden";
-			}
-		}
-
-		public LinearGradientBrush CurrentBackground
-		{
-
-			get => currentBackground;
-			set
-			{
-				currentBackground = value;
-				OnPropertyChanged();
-			}
-		}
-
+		#region Methods
 		private void UpdateCurrentUser()
 		{
 			if (CurrentUser)
@@ -82,40 +59,7 @@ namespace WPFUI.UserControls
 				CurrentBackground = defBackground;
 		}
 
-		public SolidColorBrush PlayerColor
-		{
-			get => playerColor;
-			set
-			{
-				playerColor = value;
-				OnPropertyChanged();
-
-				UserBackground = ColorGradientGenerator.GenerateGradient(value.Color, -45);
-				TimerBackground = ColorGradientGenerator.GenerateDarkerColor(value.Color);
-			}
-		}
-
-		public LinearGradientBrush UserBackground
-		{
-			get => userBackground;
-			set
-			{
-				userBackground = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public SolidColorBrush TimerBackground
-		{
-			get => timerBackground;
-			set
-			{
-				timerBackground = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public object Value { get; set; }
+		//public object Value { get; set; }
 
 		private void InitializePropertyChanged()
 		{
@@ -124,17 +68,31 @@ namespace WPFUI.UserControls
 				if (args.PropertyName.Equals(nameof(CurrentUser)))
 				{
 					UpdateCurrentUser();
+					OnPropertyChanged(nameof(ShowTimer));
+				}
+
+				if (args.PropertyName.Equals(nameof(PlayerColor)))
+				{
+					UserBackground = ColorGradientGenerator.GenerateGradient(PlayerColor.Color, -45);
+					TimerBackground = ColorGradientGenerator.GenerateDarkerColor(PlayerColor.Color);
 				}
 			};
 		}
+		#endregion
 
-		/*USER INFORMATION*/
+		#region Properties
 
-		private string userName;
-		private int userMoney;
-		private int userTime;
+		// User Properties
 
-		/*USER INF PROPORTIES*/
+		public bool CurrentUser
+		{
+			get => currentUser;
+			set
+			{
+				currentUser = value;
+				OnPropertyChanged();
+			}
+		}
 
 		public string UserName
 		{
@@ -166,11 +124,60 @@ namespace WPFUI.UserControls
 			}
 		}
 
+		// Color Properties
+
+		public SolidColorBrush PlayerColor
+		{
+			get => playerColor;
+			set
+			{
+				playerColor = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public LinearGradientBrush UserBackground
+		{
+			get => userBackground;
+			set
+			{
+				userBackground = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public SolidColorBrush TimerBackground
+		{
+			get => timerBackground;
+			set
+			{
+				timerBackground = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public LinearGradientBrush CurrentBackground
+		{
+
+			get => currentBackground;
+			set
+			{
+				currentBackground = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public Visibility ShowTimer => CurrentUser ? Visibility.Visible : Visibility.Hidden;
+
+		#endregion
+
+		#region INotify
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected void OnPropertyChanged([CallerMemberName] string name = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
+		#endregion
 	}
 }

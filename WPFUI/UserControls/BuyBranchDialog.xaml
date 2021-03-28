@@ -56,10 +56,9 @@
                     <TextBlock Style="{StaticResource DefTextBlockStyle}" Text="For auction"
                            Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20"/>
                 </uc:RoundButton>
-
             </UniformGrid>
-           
         </Grid>
+        
         <Border.Effect>
             <DropShadowEffect Direction="270" BlurRadius="10"/>
         </Border.Effect>
