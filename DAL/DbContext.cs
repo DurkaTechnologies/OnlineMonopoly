@@ -10,7 +10,7 @@ namespace DAL
         public MonopolyDbContext()
             : base("name=MonopolyDb")
         {
-            Database.SetInitializer(new Initializer());
+            //Database.SetInitializer(new Initializer());
         }
 
         public virtual DbSet<User> Users { get; set; }
