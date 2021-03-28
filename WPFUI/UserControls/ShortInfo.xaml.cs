@@ -28,7 +28,7 @@ namespace WPFUI.UserControls
 			InitializeComponent();
 			InitializePropertyChanged();
 
-			defBackground = ColorGradientGenerator.GenerateGradient(Color.FromArgb(255, 10, 10, 10), -45);
+			defBackground = ColorGradientGenerator.GenerateGradient(Color.FromArgb(255, 15, 2, 25), -45);
 			CurrentUser = false;
 		}
 
