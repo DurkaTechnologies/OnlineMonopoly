@@ -1,7 +1,7 @@
-.vs
+.vs/
+WpfControlLibrary/obj/
+WpfControlLibrary/bin/
 WPFUI/bin/
 WPFUI/obj/
 DAL/bin/
 DAL/obj/
-WpfControlLibrary/obj/
-WpfControlLibrary/bin/

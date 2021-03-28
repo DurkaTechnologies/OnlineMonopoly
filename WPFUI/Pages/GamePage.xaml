@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
-      xmlns:local="clr-namespace:WPFUI.Pages" xmlns:uc="clr-namespace:WPFUI.UserControls"
+      xmlns:local="clr-namespace:WPFUI.Pages"
+      xmlns:uc="clr-namespace:WPFUI.UserControls"
 	  mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GamePage">
@@ -342,8 +343,6 @@
 				<!--Technoligies-->
 				<Border Background="White" Grid.Row="3" Margin="{StaticResource MarginLeft}">
 					<Image Source="pack://application:,,,/Resources/Delivers/glovo.png"/>
-
-
 				</Border>
 
 				<!--Random-->

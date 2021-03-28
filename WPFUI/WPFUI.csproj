@@ -60,6 +60,21 @@
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AuctionDialog.xaml.cs">
+      <DependentUpon>AuctionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BuyBranchDialog.xaml.cs">
+      <DependentUpon>BuyBranchDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DropGameDiceDialog.xaml.cs">
+      <DependentUpon>DropGameDiceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GamePiece.xaml.cs">
+      <DependentUpon>GamePiece.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PayRentDialog.xaml.cs">
+      <DependentUpon>PayRentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Materials\DiceTextures\DiceResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +122,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\AuctionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BuyBranchDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DropGameDiceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GamePiece.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PayRentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\GameDice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,7 +156,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Navigation\IPageResolver.cs" />
     <Compile Include="Navigation\Navigation.cs" />
     <Compile Include="Navigation\PagesResolver.cs" />
     <Compile Include="Pages\MainMenu.xaml.cs">
@@ -208,6 +242,25 @@
       <Project>{f17c2a83-6027-4c1f-a028-57bf75ee1bcf}</Project>
       <Name>WpfControlLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Materials\DiceTextures\dice1.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice2.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice3.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice6.png" />
+    <Resource Include="Resources\UserControlsImg\diceblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\UAH.png" />
+    <Resource Include="Resources\UserControlsImg\UAHblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\dicewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\cart.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Materials\DiceTextures\dice1.png" />

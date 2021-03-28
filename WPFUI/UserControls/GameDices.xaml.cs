@@ -24,6 +24,8 @@ namespace WPFUI.UserControls
 	{
 		public static DependencyProperty FirstValueProperty;
 		public static DependencyProperty SecondValueProperty;
+		private int firstValue;
+		private int secondValue;
 
 		public int FirstValue
 		{
