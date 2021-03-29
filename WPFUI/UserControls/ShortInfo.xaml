@@ -2,33 +2,35 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 DataContext="{Binding RelativeSource={RelativeSource Self}}">
-	<UserControl.Resources>
-		<Style TargetType="Label">
-			<Setter Property="FontFamily" Value="Open Sans" />
-			<Setter Property="Foreground" Value="White" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="HorizontalContentAlignment" Value="Center" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-		</Style>
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Open Sans" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{Binding CurrentBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-	<!--Width="225" Height="180"-->
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
 
-	<Grid
-		  Background="{Binding CurrentBackground}" >
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-
-		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition Height="30"/>
-			<RowDefinition Height="60"/>
-		</Grid.RowDefinitions>
-
-		<Border Grid.Column="1"
+        <Border Grid.Column="1"
 				Grid.Row="0"
 				Width="70"
 				Height="70"
@@ -36,47 +38,40 @@
 				BorderThickness="4"
 				BorderBrush="{Binding PlayerColor}"
 				Margin="0,16,0,0">
-			
-			<Border Grid.Column="1"
-				Width="60"
-				Height="60"
-				CornerRadius="30"
-			    Background="#262626">
-				
-				<Ellipse Width="60" Height="60">
-					<Ellipse.Fill>
-						<ImageBrush ImageSource="https://pdacdn.com/photo/1570603604764.jpg"></ImageBrush>
-					</Ellipse.Fill>
-				</Ellipse>
-				
-			</Border>
-		</Border>
-		
 
-		<Border Grid.Column="0" 
-				Grid.Row="0" 
-				Background="{Binding TimerBackground}"
-				Width="40" Height="40" CornerRadius="30" Margin="8,16,0,0"
-				Visibility="{Binding ShowTimer}">
+            <Border Grid.Column="1" MaxWidth="60" MaxHeight="60"
+				CornerRadius="30" Background="{StaticResource DefFontColor}">
+                <Ellipse MaxWidth="60" MaxHeight="60">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="https://pdacdn.com/photo/1570603604764.jpg"></ImageBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
 
-			<Label Content="{Binding UserTime}" FontSize="20"/>
-		</Border>
-		
-		<Label Grid.Column="0"
+            </Border>
+        </Border>
+
+
+        <Border Background="{Binding TimerBackground}" Width="Auto" MinWidth="40"
+                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
+                CornerRadius="30" Margin="8,16,0,16" Visibility="{Binding ShowTimer}">
+            <Label Content="{Binding UserTime}" FontSize="20"/>
+        </Border>
+
+        <Label Grid.Column="0"
 			   Grid.ColumnSpan="3"
 			   Grid.Row="1" 
 			   Content="{Binding UserName}"
 			   FontSize="16"/>
 
-		<StackPanel Grid.Column="0"
+        <StackPanel Grid.Column="0"
 					Grid.ColumnSpan="3"
 					Grid.Row="2"
 					HorizontalAlignment="Center"
 					Orientation="Horizontal">
 
-			<Label FontSize="24" Content="₴" FontWeight="Light"/>
-			<Label FontSize="30" Content="{Binding UserMoney}" />
-			<Label FontSize="24" Content="K" FontWeight="Light"/>
-		</StackPanel>
-	</Grid>
+            <Label FontSize="24" Content="₴" FontWeight="Light"/>
+            <Label FontSize="30" Content="{Binding UserMoney}" />
+            <Label FontSize="24" Content="K" FontWeight="Light"/>
+        </StackPanel>
+    </Grid>
 </UserControl>

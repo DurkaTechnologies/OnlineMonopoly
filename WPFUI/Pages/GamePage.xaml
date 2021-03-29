@@ -1,13 +1,10 @@
 ﻿<Page x:Class="WPFUI.Pages.GamePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:WPFUI.Pages"
       xmlns:uc="clr-namespace:WPFUI.UserControls"
-	  mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      MinHeight="550" MinWidth="900" Height="1280" Width="1920"
       Title="GamePage">
 	<Page.Resources>
 		<ResourceDictionary>
@@ -53,8 +50,7 @@
 			<RowDefinition Height="0.4*"/>
 		</Grid.RowDefinitions>
 
-		<Border Grid.Column="1" Grid.Row="1"  Width="Auto"
-                
+		<Border Grid.Column="1" Grid.Row="1" MaxWidth="1920"
                 Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
                 HorizontalAlignment="Stretch">
 			<Grid>
@@ -140,7 +136,7 @@
 				<Border Background="White" Grid.Column="6" Margin="{StaticResource MarginTop}">
 					<Image Source="pack://application:,,,/Resources/Clothes/econom.png"/>
 				</Border>
-
+                
 				<!--Random-->
 				<Border Background="White" Grid.Column="7" Margin="{StaticResource MarginTop}">
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
@@ -169,25 +165,22 @@
 
 				<!--IT-->
 				<Border Background="White" Grid.Column="10" Grid.Row="1" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/IT/step.png" RenderTransformOrigin="0.5,0.5" >
-
-					</Image>
-				</Border>
+                    <Image Source="pack://application:,,,/Resources/IT/step.png"/>
+                </Border>
 
 				<!--Games-->
 				<Border Background="White" Grid.Column="10" Grid.Row="2" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Studios/Shiza.png" />
+					<Image Source="pack://application:,,,/Resources/Studios/Shiza.png"/>
 				</Border>
 
 				<!--IT-->
 				<Border Background="White" Grid.Column="10" Grid.Row="3" Margin="{StaticResource MarginRight}">
 					<Image Source="pack://application:,,,/Resources/IT/Softserve.png"/>
 				</Border>
+                
 				<!--IT-->
 				<Border Background="White" Grid.Column="10" Grid.Row="4" Margin="{StaticResource MarginRight}">
 					<Image Source="pack://application:,,,/Resources/IT/softgroup.png"/>
-
-
 				</Border>
 
 				<!--Auto-->
@@ -198,8 +191,6 @@
 				<!--Eat-->
 				<Border Background="White" Grid.Column="10" Grid.Row="6" Margin="{StaticResource MarginRight}">
 					<Image Source="pack://application:,,,/Resources/Drinks/pepsi.png"/>
-
-
 				</Border>
 
 				<!--Random-->
@@ -216,9 +207,8 @@
 				<!--Eat-->
 				<Border Background="White" Grid.Column="10" Grid.Row="8" Margin="{StaticResource MarginRight}">
 					<Image Source="pack://application:,,,/Resources/Drinks/riven.png"/>
-
-
 				</Border>
+                
 				<!--Eat-->
 				<Border Background="White" Grid.Column="10" Grid.Row="9" Margin="{StaticResource MarginRight}">
 					<Image Source="pack://application:,,,/Resources/Drinks/kaluna.png"/>
@@ -249,6 +239,7 @@
 				<Border Background="White" Grid.Column="7" Grid.Row="10" Margin="{StaticResource MarginBottom}">
 					<Image Source="pack://application:,,,/Resources/Builders/stograd.png"/>
 				</Border>
+                
 				<!--Builds-->
 				<Border Background="White" Grid.Column="6" Grid.Row="10" Margin="{StaticResource MarginBottom}">
 					<Image Source="pack://application:,,,/Resources/Builders/smartgroup.png"/>
@@ -284,7 +275,6 @@
 				<Border Background="White" Grid.Column="1" Grid.Row="10" Margin="{StaticResource MarginBottom}">
 					<Image Source="pack://application:,,,/Resources/Eat/father.png"/>
 				</Border>
-
 
 				<!--Police-->
 				<Border Background="White" Grid.Row="10" Margin="0,1,1,0">
@@ -361,29 +351,7 @@
 				<Border Background="White" Grid.Row="1" Margin="{StaticResource MarginLeft}">
 					<Image Source="pack://application:,,,/Resources/Delivers/oregano.png"/>
 				</Border>
-
-				<Grid Grid.Column="4" Grid.Row="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
-					<uc:GameDices x:Name="dice"></uc:GameDices>
-				</Grid>
-
-				<Grid Grid.Column="4" Grid.Row="8" Grid.RowSpan="1" Grid.ColumnSpan="2">
-					<Button Click="Button_Click"></Button>
-				</Grid>
 			</Grid>
 		</Border>
-
-		<Grid Grid.Column="0" Grid.Row="1" Width="257" VerticalAlignment="Top">
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-
-			<uc:ShortInfo Grid.Row="0"  PlayerColor="{StaticResource PlayerRed}" CurrentUser="False" Style="{StaticResource ShortInfoStyle}"/>
-			<uc:ShortInfo Grid.Row="1"  PlayerColor="{StaticResource PlayerGreen}" CurrentUser="True" Style="{StaticResource ShortInfoStyle}"/>
-			<uc:ShortInfo Grid.Row="2"  PlayerColor="{StaticResource PlayerPurple}" CurrentUser="False" Style="{StaticResource ShortInfoStyle}"/>
-			<uc:ShortInfo Grid.Row="3"  PlayerColor="{StaticResource PlayerBlue}" CurrentUser="False" Style="{StaticResource ShortInfoStyle}"/>
-		</Grid>
 	</Grid>
 </Page>
