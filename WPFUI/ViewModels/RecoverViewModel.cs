@@ -35,16 +35,16 @@ namespace WPFUI.ViewModels
         {
             get => mail;
             set
-            { 
+            {
                 mail = value;
                 OnPropertyChanged();
             }
         }
-        private string text= "E-Mail";
+        private string text = "E-Mail";
         public string Text
         {
             get => text;
-            set 
+            set
             {
                 text = value;
                 OnPropertyChanged();
@@ -52,7 +52,7 @@ namespace WPFUI.ViewModels
         }
         private void InitializeCommands()
         {
-            recoverCommand = new DelegateCommand(Recover, ()=>true);
+            recoverCommand = new DelegateCommand(Recover, () => true);
             checkCommand = new DelegateCommand(Check, () => true);
         }
         public ICommand RecoverCommand => recoverCommand;
@@ -63,7 +63,19 @@ namespace WPFUI.ViewModels
             Random random = new Random();
             for (int i = 0; i < 10; i++)
                 key += (Char)random.Next(33, 100);
-            MailMessage message = new MailMessage("prodoq@gmail.com", mail, "recover Password", "Hello, u can recover your password, entered your key: "+key);
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("prodoq@gmail.com");
+            message.To.Add(new MailAddress(Mail));
+            message.IsBodyHtml = true;
+            message.Body = "<html><body><br><img src=\"https://media.discordapp.net/attachments/821379755743903764/826827498842488912/Doctor_v2.png\"" +
+                         " alt =\"Super Game!\" height=\"256\" width=\"256\">" + @" 
+                        <br>Здравствуйте уважаемый(я)  <b>СОБАКА ВЛАДА !</b> 
+                        <br>Вы получили это письмо, потому что вы зарегистрировались в Durka Monopoly или сменили e-mail в профиле.
+                        <br>Высылаем Вам секретный код для активации вашего профиля.
+                        <br>                                                                                              
+                        <br>Код активации:       <b>" + key + @"</b>
+                        <br>
+                        <br>Мы будем рады видеть Вас на нашем сайте и желаем Вам приятой игры!</body></html>";
             message.Priority = MailPriority.High;
             SmtpClient client = new SmtpClient(server, port);
             client.EnableSsl = true;
