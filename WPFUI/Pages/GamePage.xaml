@@ -4,7 +4,7 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:WPFUI.Pages"
       xmlns:uc="clr-namespace:WPFUI.UserControls"
-      MinHeight="550" MinWidth="900" Height="1280" Width="1920"
+      MinHeight="550" MinWidth="900" 
       Title="GamePage">
 	<Page.Resources>
 		<ResourceDictionary>
