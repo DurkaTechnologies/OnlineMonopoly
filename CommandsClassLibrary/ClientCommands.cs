@@ -92,7 +92,6 @@ namespace CommandsClassLibrary
 		public int MoveValue { get; set; }
 	}
 
-
 	[Serializable]
 	public class ClientOpenAuctionCommand : ClientGameCommand
 	{
