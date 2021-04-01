@@ -62,9 +62,11 @@
 					   Text="1000 $" Margin="10,2,10,5"/>
 
 				<DockPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" LastChildFill="False">
-					<uc:RoundButton DockPanel.Dock="Right" MinWidth="128" Margin="0,16,16,16" 
+					<uc:RoundButton Style="{StaticResource roundBtnStyle}" 
+									DockPanel.Dock="Right" MinWidth="128" Margin="0,16,16,16" 
 									Content="Settings"/>
-					<uc:RoundButton DockPanel.Dock="Right" MinWidth="128" Margin="0,16,16,16" 
+					<uc:RoundButton Style="{StaticResource roundBtnStyle}"
+									DockPanel.Dock="Right" MinWidth="128" Margin="0,16,16,16"
 									Content="Shop"/>
 				</DockPanel>
 			</Grid>
@@ -73,9 +75,15 @@
 		<!--Chat Panel-->
 
 		<Border Grid.Column="1" Grid.Row="1" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
-			
+			<Label Style="{StaticResource InfoLabelStyle}">Chat</Label>
 		</Border>
 		
+		<!--Events Panel-->
+
+		<Border Grid.Column="0" Grid.Row="1" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
+			<Label Style="{StaticResource InfoLabelStyle}">Events</Label>
+		</Border>
+
 		<!--Game Panel-->
 
 		<Grid Grid.Column="1" Grid.Row="2">
@@ -91,25 +99,42 @@
 					<luc:LobbyInfo Margin="0,0,0,16"></luc:LobbyInfo>
 					<luc:LobbyInfo Margin="0,0,0,16"></luc:LobbyInfo>
 					<luc:LobbyInfo Margin="0,0,0,16"></luc:LobbyInfo>
-					<luc:LobbyInfo Margin="0,0,0,16"></luc:LobbyInfo>
-					<luc:LobbyInfo Margin="0,0,0,16"></luc:LobbyInfo>
-					<luc:LobbyInfo Margin="0,0,0,16"></luc:LobbyInfo>
 				</StackPanel>
 			</ScrollViewer>
-			
+
 			<!--Create Game Panel-->
-			
+
 			<UniformGrid Margin="16,0" Columns="2">
 				<Label Style="{StaticResource InfoLabelStyle}" Content="Waiting for Game" FontSize="20" HorizontalAlignment="Left"/>
-				<uc:RoundButton>Create Game</uc:RoundButton>
+				<uc:RoundButton Style="{StaticResource roundBtnStyle}">Create Game</uc:RoundButton>
 			</UniformGrid>
 		</Grid>
 
-		<Grid Grid.Column="1" Grid.Row="1">
+		<!--Friends Panel-->
+
+		<Grid Grid.Column="0" Grid.Row="2">
 			<Grid.RowDefinitions>
-				<RowDefinition />
+				<RowDefinition Height="64" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
+
+			<Label Style="{StaticResource InfoLabelStyle}" Content="Friends Online" FontSize="20"/>
+
+			<Border Grid.Row="1"  Background="{StaticResource TransBlackBack}" Margin="16" CornerRadius="8" Padding="16">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden">
+					<WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+						<luc:PlayerIcon Margin="8"/>
+					</WrapPanel>
+				</ScrollViewer>
+			</Border>
 		</Grid>
 	</Grid>
 </Page>

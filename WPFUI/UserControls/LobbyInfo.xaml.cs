@@ -79,6 +79,7 @@ namespace WPFUI.UserControls
 			AddUser(new PlayerIcon("Valntuna", "https://cdn.discordapp.com/attachments/821379755743903764/827188066694463529/unknown.png"));
 			AddUser(new PlayerIcon("Vlad", "https://cdn.discordapp.com/attachments/821379755743903764/827188443335098398/unknown.png"));
 			AddUser(new PlayerIcon("Sobaka Vlada", "https://cdn.discordapp.com/attachments/821379755743903764/827188612172218388/unknown.png"));
+			AddUser(new PlayerIcon("kot Vlada", "https://cdn.discordapp.com/attachments/689145103582888033/827213236600176701/unknown.png"));
 		}
 
 		#region Methods
