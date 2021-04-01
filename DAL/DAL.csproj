@@ -58,7 +58,9 @@
     <Compile Include="Entities\RentSetting.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="DbContext.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
