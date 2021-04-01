@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WPFUI.UserControls.LobbyInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" xmlns:luc="clr-namespace:WPFUI.UserControls"
+			 DataContext="{Binding RelativeSource={RelativeSource Self}}">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<Border Background="#3F000000" CornerRadius="8" MaxWidth="2048">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<ItemsControl ItemsSource="{Binding Users}" Margin="16,16,16,0">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<UniformGrid Columns="{Binding CurrentUsers}"></UniformGrid>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+
+			<UniformGrid Grid.Row="1" Columns="3">
+				<Label Grid.Column="0" Style="{StaticResource InfoLabelStyle}" Content="game type: " FontSize="20" Margin="8,0,0,0" HorizontalAlignment="Left"/>
+				<Image Width="32" Height="32" HorizontalAlignment="Left" Source="{Binding Image}"/>
+
+				<StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal">
+					<Label Style="{StaticResource InfoLabelStyle}" FontSize="20" Content="{Binding CurrentUsers}" />
+					<Label Style="{StaticResource InfoLabelStyle}" FontSize="20" Content="/" />
+					<Label Style="{StaticResource InfoLabelStyle}" FontSize="20" Content="{Binding MaxUsers}" />
+				</StackPanel>
+				
+			</UniformGrid>
+		</Grid>
+	</Border>
+</UserControl>
