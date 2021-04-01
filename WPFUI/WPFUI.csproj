@@ -60,6 +60,9 @@
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GeneralPage.xaml.cs">
+      <DependentUpon>GeneralPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AuctionDialog.xaml.cs">
       <DependentUpon>AuctionDialog.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,9 @@
     </Compile>
     <Compile Include="UserControls\GamePiece.xaml.cs">
       <DependentUpon>GamePiece.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LobbyInfo.xaml.cs">
+      <DependentUpon>LobbyInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PayRentDialog.xaml.cs">
       <DependentUpon>PayRentDialog.xaml</DependentUpon>
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="UserControls\GameDices.xaml.cs">
       <DependentUpon>GameDices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerIcon.xaml.cs">
+      <DependentUpon>PlayerIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ShortInfo.xaml.cs">
       <DependentUpon>ShortInfo.xaml</DependentUpon>
@@ -109,6 +118,10 @@
     <Page Include="Pages\GamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Pages\GeneralPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainMenu.xaml">
       <SubType>Designer</SubType>
@@ -138,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\LobbyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\PayRentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\GameDices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
