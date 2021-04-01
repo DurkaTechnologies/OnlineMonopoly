@@ -4,6 +4,11 @@
 			 DataContext="{Binding RelativeSource={RelativeSource Self}}" MinWidth="32" MinHeight="32" MaxWidth="128" MaxHeight="128" MouseLeftButtonDown="BurgerClick">
 	<UserControl.Resources>
 		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+
 			<Style x:Key="TopStyle" TargetType="Border">
 				<Setter Property="Margin" Value="0, 0, 0, 0" />
 
@@ -51,36 +56,38 @@
 			</Style>
 		</ResourceDictionary>
 	</UserControl.Resources>
-	<Grid>
-		<Border Grid.Column="0" Grid.Row="0"
+	<Border Width="64" Height="64" CornerRadius="8" Background="{StaticResource TransGrayBack}">
+		<Grid Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Border Grid.Column="0" Grid.Row="0"
 					Background="White" 
 					Width="32" Height="6" CornerRadius="2" 
 					Style="{StaticResource TopStyle}" 
 					Margin="0,-20,0,0">
-			<Border.RenderTransform>
-				<TransformGroup>
-					<ScaleTransform/>
-					<SkewTransform/>
-					<RotateTransform CenterX="16.0" CenterY="3.0" Angle="{Binding TopAngle}"/>
-					<TranslateTransform/>
-				</TransformGroup>
-			</Border.RenderTransform>
-		</Border>
-		<Border Background="White" 
+				<Border.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform CenterX="16.0" CenterY="3.0" Angle="{Binding TopAngle}"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Border.RenderTransform>
+			</Border>
+			<Border Background="White" 
 					Width="32" Height="6" CornerRadius="2" 
 					Visibility="{Binding MiddleVisible}" />
-		<Border Background="White" 
+			<Border Background="White" 
 					Width="32" Height="6" CornerRadius="2" 
 					Style="{StaticResource DownStyle}" 
 					Margin="0,20,0,0">
-			<Border.RenderTransform>
-				<TransformGroup>
-					<ScaleTransform/>
-					<SkewTransform/>
-					<RotateTransform CenterX="16.0" CenterY="3.0" Angle="{Binding DownAngle}"/>
-					<TranslateTransform/>
-				</TransformGroup>
-			</Border.RenderTransform>
-		</Border>
-	</Grid>
+				<Border.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform CenterX="16.0" CenterY="3.0" Angle="{Binding DownAngle}"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Border.RenderTransform>
+			</Border>
+		</Grid>
+	</Border>
 </UserControl>

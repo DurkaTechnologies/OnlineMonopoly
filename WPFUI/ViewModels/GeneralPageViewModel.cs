@@ -6,6 +6,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
+using UIWPF.Commands;
 using UIWPF.ViewModels;
 using WPFUI.UserControls;
 
@@ -20,18 +23,12 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
-		#region Proporties
-
-		public IEnumerable<PlayerIcon> Friends => friends;
-		public IEnumerable<LobbyInfo> Lobbies => lobbies;
-
-		#endregion
-
 		public GeneralPageViewModel()
 		{
+			InitializePropertyChanged();
+
 			friends = new ObservableCollection<PlayerIcon>();
 			lobbies = new ObservableCollection<LobbyInfo>();
-			InitializePropertyChanged();
 
 			for (int i = 0; i < 5; i++)
 			{
@@ -45,6 +42,15 @@ namespace WPFUI.ViewModels
 				lobbies.Add(new LobbyInfo());
 		}
 
+		#region Proporties
+
+		public IEnumerable<PlayerIcon> Friends => friends;
+		public IEnumerable<LobbyInfo> Lobbies => lobbies;
+
+		#endregion
+
+		#region Notify
+
 		private void InitializePropertyChanged()
 		{
 			PropertyChanged += (sender, args) =>
@@ -52,5 +58,7 @@ namespace WPFUI.ViewModels
 
 			};
 		}
+
+		#endregion
 	}
 }

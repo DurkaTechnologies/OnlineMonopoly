@@ -66,6 +66,9 @@
     <Compile Include="UserControls\AuctionDialog.xaml.cs">
       <DependentUpon>AuctionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\BurgerButton.xaml.cs">
+      <DependentUpon>BurgerButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\BuyBranchDialog.xaml.cs">
       <DependentUpon>BuyBranchDialog.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AuctionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BurgerButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

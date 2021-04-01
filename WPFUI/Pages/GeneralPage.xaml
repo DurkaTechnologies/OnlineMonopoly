@@ -19,6 +19,30 @@
 				<Setter Property="Foreground" Value="White"/>
 				<Setter Property="FontSize" Value="24"/>
 			</Style>
+
+			<Style x:Key="ShopaStyle" TargetType="Border">
+				<Setter Property="Margin" Value="0, -90, 0, 0" />
+
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding Activated, ElementName=BurgerButton}" Value="True">
+						<DataTrigger.EnterActions>
+							<BeginStoryboard>
+								<Storyboard>
+									<ThicknessAnimation Duration="0:0:0.200" To="0,0,0,0" Storyboard.TargetProperty="Margin" />
+								</Storyboard>
+							</BeginStoryboard>
+						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<BeginStoryboard>
+								<Storyboard>
+									<ThicknessAnimation Duration="0:0:0.200" To="0,-90,0,0" Storyboard.TargetProperty="Margin" />
+								</Storyboard>
+							</BeginStoryboard>
+						</DataTrigger.ExitActions>
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+
 		</ResourceDictionary>
 	</Page.Resources>
 
@@ -29,16 +53,23 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
-			<RowDefinition Height="90"/>
 			<RowDefinition Height="2*"/>
 			<RowDefinition Height="3*"/>
 		</Grid.RowDefinitions>
 
+		<!--Burger Button-->
+
+		<luc:BurgerButton Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="16" 
+				          HorizontalAlignment="Right"
+				          Panel.ZIndex="2" x:Name="BurgerButton"/>
+
 		<!--Top Panel-->
 
-		<Border Grid.ColumnSpan="2" Background="{StaticResource TransGrayBack}" MinHeight="50">
+		<Border Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource TransGrayBack}" 
+				Style="{StaticResource ShopaStyle}" Height="90" Panel.ZIndex="1" VerticalAlignment="Top">
 			<Grid>
 				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="96"/>
 					<ColumnDefinition Width="128"/>
 					<ColumnDefinition />
 					<ColumnDefinition />
@@ -50,20 +81,20 @@
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
-				<Ellipse Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" MaxWidth="80" MaxHeight="80">
+				<Ellipse Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" MaxWidth="80" MaxHeight="80">
 					<Ellipse.Fill>
 						<ImageBrush ImageSource="https://pdacdn.com/photo/1570603604764.jpg"></ImageBrush>
 					</Ellipse.Fill>
 				</Ellipse>
 
-				<TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource InfoTextBlockStyle}" 
+				<TextBlock Grid.Column="2" Grid.Row="0" Style="{StaticResource InfoTextBlockStyle}" 
 					   Text="UserName" VerticalAlignment="Bottom" Margin="10,5,10,2" FontWeight="Bold"/>
-				<TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource InfoTextBlockStyle}" 
+				<TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource InfoTextBlockStyle}" 
 					   Text="1000 $" Margin="10,2,10,5"/>
 
-				<DockPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" LastChildFill="False">
+				<DockPanel Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" LastChildFill="False">
 					<uc:RoundButton Style="{StaticResource roundBtnStyle}" 
-									DockPanel.Dock="Right" MinWidth="128" Margin="0,16,16,16" 
+									DockPanel.Dock="Right" MinWidth="128" Margin="0,16,96,16" 
 									Content="Settings"/>
 					<uc:RoundButton Style="{StaticResource roundBtnStyle}"
 									DockPanel.Dock="Right" MinWidth="128" Margin="0,16,16,16"
@@ -74,19 +105,19 @@
 
 		<!--Chat Panel-->
 
-		<Border Grid.Column="1" Grid.Row="1" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
+		<Border Grid.Column="1" Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
 			<Label Style="{StaticResource InfoLabelStyle}">Chat</Label>
 		</Border>
 
 		<!--Events Panel-->
 
-		<Border Grid.Column="0" Grid.Row="1" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
+		<Border Grid.Column="0" Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
 			<Label Style="{StaticResource InfoLabelStyle}">Events</Label>
 		</Border>
 
 		<!--Game Panel-->
 
-		<Grid Grid.Column="1" Grid.Row="2">
+		<Grid Grid.Column="1" Grid.Row="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="64" />
 				<RowDefinition />
