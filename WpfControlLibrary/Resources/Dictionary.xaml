@@ -32,6 +32,9 @@
     <SolidColorBrush x:Key="DefSecondBackground" Color="#FFACACAC"/>
     <SolidColorBrush x:Key="DefSecondBorderBrush" Color="Gray"/>
     <SolidColorBrush x:Key="MainDarkRed" Color="Firebrick"/>
+	
+	<SolidColorBrush x:Key="TransBlackBack" Color="#3F000000"/>
+	<SolidColorBrush x:Key="TransGrayBack" Color="#7F000000"/>
     
     <LinearGradientBrush x:Key="DefPageBackground">
         <LinearGradientBrush.RelativeTransform>
