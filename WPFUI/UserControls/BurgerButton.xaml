@@ -56,10 +56,14 @@
 			</Style>
 		</ResourceDictionary>
 	</UserControl.Resources>
-	<Border Width="64" Height="64" CornerRadius="8" Background="{StaticResource TransGrayBack}">
+	<Border Width="64" Height="64" CornerRadius="8" Background="{StaticResource DefBackground}" BorderThickness="2,2,2,4" BorderBrush="{StaticResource DefBorderBrush}">
+		<Border.Effect>
+			<DropShadowEffect Direction="270" BlurRadius="10" />
+		</Border.Effect>
+		
 		<Grid Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center">
 			<Border Grid.Column="0" Grid.Row="0"
-					Background="White" 
+					Background="{StaticResource DefFontColor}" 
 					Width="32" Height="6" CornerRadius="2" 
 					Style="{StaticResource TopStyle}" 
 					Margin="0,-20,0,0">
@@ -72,10 +76,10 @@
 					</TransformGroup>
 				</Border.RenderTransform>
 			</Border>
-			<Border Background="White" 
+			<Border Background="{StaticResource DefFontColor}" 
 					Width="32" Height="6" CornerRadius="2" 
 					Visibility="{Binding MiddleVisible}" />
-			<Border Background="White" 
+			<Border Background="{StaticResource DefFontColor}"  
 					Width="32" Height="6" CornerRadius="2" 
 					Style="{StaticResource DownStyle}" 
 					Margin="0,20,0,0">

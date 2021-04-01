@@ -21,7 +21,7 @@
 			</Style>
 
 			<Style x:Key="ShopaStyle" TargetType="Border">
-				<Setter Property="Margin" Value="0, -90, 0, 0" />
+				<Setter Property="Margin" Value="0, -96, 0, 0" />
 
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding Activated, ElementName=BurgerButton}" Value="True">
@@ -35,7 +35,7 @@
 						<DataTrigger.ExitActions>
 							<BeginStoryboard>
 								<Storyboard>
-									<ThicknessAnimation Duration="0:0:0.200" To="0,-90,0,0" Storyboard.TargetProperty="Margin" />
+									<ThicknessAnimation Duration="0:0:0.200" To="0,-96,0,0" Storyboard.TargetProperty="Margin" />
 								</Storyboard>
 							</BeginStoryboard>
 						</DataTrigger.ExitActions>
@@ -65,8 +65,8 @@
 
 		<!--Top Panel-->
 
-		<Border Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource TransGrayBack}" 
-				Style="{StaticResource ShopaStyle}" Height="90" Panel.ZIndex="1" VerticalAlignment="Top">
+		<Border Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource DefFontColor}" 
+				Style="{StaticResource ShopaStyle}" Height="96" Panel.ZIndex="1" VerticalAlignment="Top">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="96"/>
@@ -130,7 +130,7 @@
 							<StackPanel Orientation="Vertical">
 								<StackPanel.Resources>
 									<Style TargetType="{x:Type luc:LobbyInfo}">
-										<Setter Property="Margin" Value="0,0,0,16" />
+										<Setter Property="Margin" Value="0,0,0,8" />
 									</Style>
 								</StackPanel.Resources>
 							</StackPanel>
