@@ -98,6 +98,7 @@
     <Compile Include="UserControls\ShortInfo.xaml.cs">
       <DependentUpon>ShortInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\GeneralPageViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
