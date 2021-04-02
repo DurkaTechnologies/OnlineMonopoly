@@ -11,15 +11,23 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<Border CornerRadius="8" MaxWidth="2048" >
+	<Border BorderThickness="0,0,0,2" 
+            BorderBrush="{StaticResource DefLineGradient}">
 		<Grid>
 			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition Height="1"/>
-				<RowDefinition />
+                <RowDefinition Height="5*"/>
+				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
 
-			<Border Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8,8,0,0">
+            <ItemsControl ItemsSource="{Binding Users}" Margin="16,2,16,0" HorizontalAlignment="Left">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="{Binding CurrentUsers}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <!--<Border Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8,8,0,0">
 				<ItemsControl  ItemsSource="{Binding Users}" Margin="16,16,16,0">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
@@ -27,11 +35,13 @@
 						</ItemsPanelTemplate>
 					</ItemsControl.ItemsPanel>
 				</ItemsControl>
-			</Border>
+			</Border>-->
 
-			<Border Grid.Row="2" Background="{StaticResource TransBlackBack}" CornerRadius="0,0,8,8">
+			<Border Grid.Row="1">
 				<UniformGrid Columns="3">
-					<Label Grid.Column="0" Style="{StaticResource InfoLabelStyle}" Content="GAME TYPE: " FontSize="20" Margin="16,8" HorizontalAlignment="Left"/>
+					<Label Grid.Column="0" Style="{StaticResource InfoLabelStyle}" 
+                           Content="GAME TYPE: " FontSize="18" Margin="16,-8,0,2" 
+                           HorizontalAlignment="Left"/>
 					<Image Width="32" Height="32" HorizontalAlignment="Left" Source="{Binding Image}" Margin="16,8"/>
 
 					<!--<StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,8,8" Orientation="Horizontal">

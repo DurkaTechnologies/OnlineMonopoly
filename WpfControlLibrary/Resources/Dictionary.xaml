@@ -35,7 +35,32 @@
 	
 	<SolidColorBrush x:Key="TransBlackBack" Color="#3F000000"/>
 	<SolidColorBrush x:Key="TransGrayBack" Color="#7F000000"/>
-    
+
+    <DropShadowEffect x:Key="DefShadow" Direction="270" BlurRadius="10" />
+    <DropShadowEffect x:Key="DefRoundShadow" BlurRadius="10"  ShadowDepth="-10" Color="Gray"/>
+
+    <Color x:Key="DefGreenColor">#FF65C363</Color>
+    <SolidColorBrush x:Key="DefGreenBrush" Color="{StaticResource DefGreenColor}"/>
+    <Color x:Key="DefCyanColor">#FF64D9E3</Color>
+    <SolidColorBrush x:Key="DefCyanBrush" Color="{StaticResource DefCyanColor}"/>
+
+
+    <LinearGradientBrush x:Key="DefLineGradient">
+        <GradientStop Color="#00000000"/>
+        <GradientStop Color="#B2000000" Offset="0.4"/>
+        <GradientStop Color="Black" Offset="0.5"/>
+        <GradientStop Color="#B2000000" Offset="0.6"/>
+        <GradientStop Color="#00000000" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DefWhiteLineGradient">
+        <GradientStop Color="#00F0F8FF"/>
+        <GradientStop Color="#B2F0F8FF" Offset="0.4"/>
+        <GradientStop Color="AliceBlue" Offset="0.5"/>
+        <GradientStop Color="#B2F0F8FF" Offset="0.6"/>
+        <GradientStop Color="#00F0F8FF" Offset="1"/>
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="DefPageBackground">
         <LinearGradientBrush.RelativeTransform>
             <TransformGroup>
@@ -43,8 +68,19 @@
                 <TranslateTransform/>
             </TransformGroup>
         </LinearGradientBrush.RelativeTransform>
-        <GradientStop Color="#FF65C363"/>
-        <GradientStop Color="#FF64D9E3" Offset="1"/>
+        <GradientStop Color="{StaticResource DefGreenColor}"/>
+        <GradientStop Color="{StaticResource DefCyanColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="InversePageBackground">
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <RotateTransform Angle="-45" CenterY="0.5" CenterX="0.5"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="{StaticResource DefCyanColor}"/>
+        <GradientStop Color="{StaticResource DefGreenColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="roundBtnStyle" TargetType="local:RoundButton" >
@@ -207,7 +243,7 @@
 
 	<Style x:Key="InfoLabelStyle" TargetType="Label">
 		<Setter Property="FontFamily" Value="Open Sans" />
-		<Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource DefFontColor}"/>
 		<Setter Property="FontWeight" Value="Bold" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />

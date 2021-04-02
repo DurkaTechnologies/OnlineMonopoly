@@ -30,14 +30,11 @@ namespace WPFUI.ViewModels
 			friends = new ObservableCollection<PlayerIcon>();
 			lobbies = new ObservableCollection<LobbyInfo>();
 
-			for (int i = 0; i < 5; i++)
-			{
+			
 				friends.Add(new PlayerIcon("Valntuna", "https://cdn.discordapp.com/attachments/821379755743903764/827188066694463529/unknown.png"));
 				friends.Add(new PlayerIcon("Vlad", "https://cdn.discordapp.com/attachments/821379755743903764/827188443335098398/unknown.png"));
 				friends.Add(new PlayerIcon("Sobaka Vlada", "https://cdn.discordapp.com/attachments/821379755743903764/827188612172218388/unknown.png"));
 				friends.Add(new PlayerIcon("kot Vlada", "https://cdn.discordapp.com/attachments/689145103582888033/827213236600176701/unknown.png"));
-			}
-
 			for (int i = 0; i < 5; i++)
 				lobbies.Add(new LobbyInfo());
 		}
