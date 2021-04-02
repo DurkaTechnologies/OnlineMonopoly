@@ -1,6 +1,5 @@
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\CommandsClassLibrary\bin\Debug\CommandsClassLibrary.dll
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\CommandsClassLibrary\bin\Debug\CommandsClassLibrary.pdb
-C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\CommandsClassLibrary\obj\Debug\CommandsClassLibrary.csprojAssemblyReference.cache
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\CommandsClassLibrary\obj\Debug\CommandsClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\CommandsClassLibrary\obj\Debug\CommandsClassLibrary.dll
 C:\Users\ColdForeign\source\NetworkingProg\OnlineMonopoly\CommandsClassLibrary\obj\Debug\CommandsClassLibrary.pdb

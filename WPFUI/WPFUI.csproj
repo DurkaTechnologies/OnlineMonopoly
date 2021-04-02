@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SecondRecoverPage.xaml.cs">
       <DependentUpon>SecondRecoverPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RecoverPasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\AuctionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,7 +244,25 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Delivers\glovo.png" />
+    <Resource Include="Resources\Delivers\oregano.png" />
+    <Resource Include="Resources\Delivers\raketa.png" />
+    <Resource Include="Resources\Drinks\cocacola.png" />
+    <Resource Include="Resources\Drinks\kaluna.png" />
+    <Resource Include="Resources\Drinks\pepsi.png" />
+    <Resource Include="Resources\Drinks\riven.png" />
+    <Resource Include="Resources\Eat\father.png" />
+    <Resource Include="Resources\Eat\matsuri.png" />
+    <Resource Include="Resources\Eat\mrcat.png" />
+    <Resource Include="Resources\IT\softgroup.png" />
+    <Resource Include="Resources\IT\softserve.png" />
+    <Resource Include="Resources\IT\step.png" />
+    <Resource Include="Resources\Studios\shiza.png" />
+    <Resource Include="Resources\Studios\zagrava.png" />
+    <Resource Include="Resources\Study\gym.png" />
+    <Resource Include="Resources\Study\water.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommandsClassLibrary\CommandsClassLibrary.csproj">
       <Project>{3E6871F1-8900-407E-B350-8C1614A9DBE9}</Project>
@@ -250,6 +274,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Builders\renome.png" />
+    <Resource Include="Resources\Builders\smartgroup.png" />
+    <Resource Include="Resources\Builders\stograd.png" />
+    <Resource Include="Resources\Cars\bmw.png" />
+    <Resource Include="Resources\Cars\bogdan.png" />
+    <Resource Include="Resources\Cars\skoda.png" />
+    <Resource Include="Resources\Cars\tata.png" />
+    <Resource Include="Resources\ChainStores\atb.png" />
+    <Resource Include="Resources\ChainStores\silpo.png" />
+    <Resource Include="Resources\ChainStores\sim.png" />
+    <Resource Include="Resources\Clothes\abibas.png" />
+    <Resource Include="Resources\Clothes\econom.png" />
+    <Resource Include="Resources\Clothes\goldi.png" />
+    <Resource Include="Resources\Clothes\pumba.png" />
+    <Resource Include="Resources\Clothes\waikiki.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice2.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice3.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
@@ -269,6 +308,15 @@
   <ItemGroup>
     <Resource Include="Resources\Materials\DiceTextures\dice1.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Materials\chance.png" />
+    <Resource Include="Resources\Materials\choose.png" />
+    <Resource Include="Resources\Materials\diamond.png" />
+    <Resource Include="Resources\Materials\money.png" />
+    <Resource Include="Resources\Materials\police.png" />
+    <Resource Include="Resources\Materials\relax.png" />
+    <Resource Include="Resources\Materials\revolver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,2 +1,0 @@
-F:\monopoly\OnlineMonopoly\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
-F:\monopoly\OnlineMonopoly\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache

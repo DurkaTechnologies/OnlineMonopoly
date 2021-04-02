@@ -24,12 +24,10 @@ namespace WPFUI.ViewModels
 		private Command signInCommand;
 		private Command goMainMenuCommand;
 		private Command goRecoverCommand;
-
-
 		public SignInViewModel()
 		{
 			ParseConfig();
-			ConnectClient();
+			//ConnectClient();
 
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;

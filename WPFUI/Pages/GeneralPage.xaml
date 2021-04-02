@@ -129,7 +129,7 @@
         </Decorator>
 		
 		<!--Game Panel-->
-        <Decorator Grid.Column="2" Grid.Row="2" Margin="16"
+        <Decorator Grid.Column="2" Grid.Row="2" Margin="16,16,16,32"
                    Effect="{StaticResource DefRoundShadow}">
             <Border Style="{StaticResource DefBorderStyle}">
                 <Grid Grid.Column="2" Grid.Row="2">
@@ -168,7 +168,7 @@
         </Decorator>
 
         <!--Friends Panel-->
-        <Decorator Grid.Column="1" Grid.Row="2" Margin="16"
+        <Decorator Grid.Column="1" Grid.Row="2" Margin="16,16,16,32"
                    Effect="{StaticResource DefRoundShadow}">
             <Border Style="{StaticResource DefBorderStyle}">
                 <Grid >

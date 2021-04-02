@@ -52,7 +52,7 @@
             <TextBox.Style>
                 <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsPasswordCorrect}" Value="False">
+                        <DataTrigger Binding="{Binding IsMailCorrect}" Value="False">
                             <Setter Property="SecondBorderBrush" Value="{StaticResource MainDarkRed}"/>
                             <Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
                         </DataTrigger>

@@ -13,24 +13,60 @@ namespace WPFUI.ViewModels
 {
     class RecoverViewModel : BaseViewModel
     {
-        public RecoverViewModel()
-        {
-            InitializeCommands();
-        }
-        private string mail;
+		#region Fields
+		private string mail;
+		private bool isMailCorrect;
+
+        string server = "smtp.gmail.com";
+        int port = 587;
+        private string key;
+        #endregion
+
         private Command recoverCommand;
         private Command checkCommand;
+
+        public RecoverViewModel()
+        {
+            text = "E-Mail"; 
+            InitializeCommands();
+            InitializePropertyChanged();
+        }
+
         private static RecoverViewModel instance;
 
-        string server = "smtp.gmail.com"; // sets the server address
-        int port = 587; //sets the server port
-        private string key = "";
         public static RecoverViewModel GetInstance()
         {
             if (instance == null)
                 instance = new RecoverViewModel();
             return instance;
         }
+
+        private void InitializeCommands()
+        {
+            recoverCommand = new DelegateCommand(Recover, () => !String.IsNullOrWhiteSpace(Mail));
+            checkCommand = new DelegateCommand(Check, () => !String.IsNullOrWhiteSpace(Mail));
+        }
+
+        private void InitializePropertyChanged()
+        {
+            PropertyChanged += (sender, args) =>
+            {
+                if (args.PropertyName.Equals(nameof(Mail)))
+                {
+                    recoverCommand.RaiseCanExecuteChanged();
+                    checkCommand.RaiseCanExecuteChanged();
+                }
+            };
+        }
+
+		#region ICommands
+
+		public ICommand RecoverCommand => recoverCommand;
+        public ICommand CheckCommand => checkCommand;
+        #endregion
+
+        #region Properties
+
         public string Mail
         {
             get => mail;
@@ -40,7 +76,9 @@ namespace WPFUI.ViewModels
                 OnPropertyChanged();
             }
         }
-        private string text = "E-Mail";
+
+        private string text;
+
         public string Text
         {
             get => text;
@@ -49,15 +87,20 @@ namespace WPFUI.ViewModels
                 text = value;
                 OnPropertyChanged();
             }
-        }
-        private void InitializeCommands()
+        } 
+        
+        public bool IsMailCorrect
         {
-            recoverCommand = new DelegateCommand(Recover, () => true);
-            checkCommand = new DelegateCommand(Check, () => true);
+            get => isMailCorrect;
+            set
+            {
+                isMailCorrect = value;
+                OnPropertyChanged();
+            }
         }
-        public ICommand RecoverCommand => recoverCommand;
-        public ICommand CheckCommand => checkCommand;
+        #endregion
 
+        #region Command Functions
         private void Recover()
         {
             Random random = new Random();
@@ -85,6 +128,7 @@ namespace WPFUI.ViewModels
             Text = "Enter key";
             Mail = "";
         }
+
         private void Check()
         {
             if (key == Mail)
@@ -92,5 +136,10 @@ namespace WPFUI.ViewModels
             else
                 Text = "False";
         }
-    }
+		#endregion
+
+		#region Command Can Execute Functions
+
+		#endregion
+	}
 }
