@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControlLibrary", "WpfControlLibrary\WpfControlLibrary.csproj", "{F17C2A83-6027-4C1F-A028-57BF75EE1BCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandsClassLibrary", "CommandsClassLibrary\CommandsClassLibrary.csproj", "{3E6871F1-8900-407E-B350-8C1614A9DBE9}"
 EndProject
 Global
@@ -29,6 +31,10 @@ Global
 		{F17C2A83-6027-4C1F-A028-57BF75EE1BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F17C2A83-6027-4C1F-A028-57BF75EE1BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F17C2A83-6027-4C1F-A028-57BF75EE1BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E6871F1-8900-407E-B350-8C1614A9DBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E6871F1-8900-407E-B350-8C1614A9DBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6871F1-8900-407E-B350-8C1614A9DBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
