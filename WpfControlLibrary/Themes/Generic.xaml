@@ -28,12 +28,22 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
+                                        <ThicknessAnimation To="2,2,2,2"
+                                                    Storyboard.TargetProperty="ButtonThickness"
+                                                    Duration="0:0:0.15"/>
+
                                         <ThicknessAnimation To="0,4,0,0"
                                                     Storyboard.TargetProperty="BorderMargin"
                                                     Duration="0:0:0.15"/>
+
                                         <ThicknessAnimation To="2,2,2,4"
-                                                    Storyboard.TargetProperty="ButtonThickness"
                                                     BeginTime="0:0:0.15"
+                                                    Storyboard.TargetProperty="ButtonThickness"
+                                                    Duration="0:0:0.15"/>
+
+                                        <ThicknessAnimation To="0"
+                                                    BeginTime="0:0:0.15"
+                                                    Storyboard.TargetProperty="BorderMargin"
                                                     Duration="0:0:0.15"/>
                                     </Storyboard>
                                 </BeginStoryboard>

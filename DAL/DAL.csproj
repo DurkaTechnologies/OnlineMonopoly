@@ -57,6 +57,7 @@
     <Compile Include="Entities\BranchType.cs" />
     <Compile Include="Entities\RentSetting.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="DbContext.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,26 +3,64 @@
                     xmlns:local="clr-namespace:UIWPF.UserControls">
     <SolidColorBrush x:Key="PageBackground" Color="#4CFFFFFF"/>
 
+	<!--Player Colors-->	
+	<SolidColorBrush x:Key="PlayerRed" Color="#cd3847" />
+	<SolidColorBrush x:Key="PlayerBlue" Color="#2494e2" />
+	<SolidColorBrush x:Key="PlayerGreen" Color="#8bcb5a" />
+	<SolidColorBrush x:Key="PlayerPurple" Color="#8f59b5" />
+	<SolidColorBrush x:Key="PlayerBonus" Color="#bf84e8" />
+		
     <SolidColorBrush x:Key="WhiteBackground" Color="WhiteSmoke"/>
     <SolidColorBrush x:Key="GreenBackground" Color="#FF94D34A"/>
     <SolidColorBrush x:Key="MagentaBackground" Color="#FFBD80F6"/>
     <SolidColorBrush x:Key="BlueBackground" Color="#FF6898CB"/>
     <SolidColorBrush x:Key="YellowBackground" Color="#FFF0C02D"/>
     <SolidColorBrush x:Key="RedBackground" Color="#FFE1526E"/>
+    <SolidColorBrush x:Key="DefFontColor" Color="#262626"/>
 
-
-    <Style x:Key="baseStyle" TargetType="{x:Type Border}">
+	<Style x:Key="baseStyle" TargetType="{x:Type Border}">
         <Setter Property="TextBlock.FontSize" Value="35"/>
         <Setter Property="TextBlock.FontWeight" Value="Bold"/>
         <Setter Property="TextBlock.Foreground" Value="Black"/>
     </Style>
 
+    <SolidColorBrush x:Key="DefSelBackground" Color="#FF64D9E3"/>
+    <SolidColorBrush x:Key="DefSelBorderBrush" Color="#FF4E9197"/>
+        
     <SolidColorBrush x:Key="DefBackground" Color="AliceBlue"/>
     <SolidColorBrush x:Key="DefBorderBrush" Color="#FFB0B0B0"/>
     <SolidColorBrush x:Key="DefSecondBackground" Color="#FFACACAC"/>
     <SolidColorBrush x:Key="DefSecondBorderBrush" Color="Gray"/>
     <SolidColorBrush x:Key="MainDarkRed" Color="Firebrick"/>
-    
+	
+	<SolidColorBrush x:Key="TransBlackBack" Color="#3F000000"/>
+	<SolidColorBrush x:Key="TransGrayBack" Color="#7F000000"/>
+
+    <DropShadowEffect x:Key="DefShadow" Direction="270" BlurRadius="10" />
+    <DropShadowEffect x:Key="DefRoundShadow" BlurRadius="10"  ShadowDepth="-10" Color="Gray"/>
+
+    <Color x:Key="DefGreenColor">#FF65C363</Color>
+    <SolidColorBrush x:Key="DefGreenBrush" Color="{StaticResource DefGreenColor}"/>
+    <Color x:Key="DefCyanColor">#FF64D9E3</Color>
+    <SolidColorBrush x:Key="DefCyanBrush" Color="{StaticResource DefCyanColor}"/>
+
+
+    <LinearGradientBrush x:Key="DefLineGradient">
+        <GradientStop Color="#00000000"/>
+        <GradientStop Color="#B2000000" Offset="0.4"/>
+        <GradientStop Color="Black" Offset="0.5"/>
+        <GradientStop Color="#B2000000" Offset="0.6"/>
+        <GradientStop Color="#00000000" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DefWhiteLineGradient">
+        <GradientStop Color="#00F0F8FF"/>
+        <GradientStop Color="#B2F0F8FF" Offset="0.4"/>
+        <GradientStop Color="AliceBlue" Offset="0.5"/>
+        <GradientStop Color="#B2F0F8FF" Offset="0.6"/>
+        <GradientStop Color="#00F0F8FF" Offset="1"/>
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="DefPageBackground">
         <LinearGradientBrush.RelativeTransform>
             <TransformGroup>
@@ -30,8 +68,19 @@
                 <TranslateTransform/>
             </TransformGroup>
         </LinearGradientBrush.RelativeTransform>
-        <GradientStop Color="#FF65C363"/>
-        <GradientStop Color="#FF64D9E3" Offset="1"/>
+        <GradientStop Color="{StaticResource DefGreenColor}"/>
+        <GradientStop Color="{StaticResource DefCyanColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="InversePageBackground">
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <RotateTransform Angle="-45" CenterY="0.5" CenterX="0.5"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="{StaticResource DefCyanColor}"/>
+        <GradientStop Color="{StaticResource DefGreenColor}" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="roundBtnStyle" TargetType="local:RoundButton" >
@@ -41,6 +90,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource DefBorderBrush}"/>
         <Setter Property="BorderStyle" Value="{StaticResource baseStyle}"/>
         <Setter Property="FontSize" Value="25"/>
+        <Setter Property="FontFamily" Value="Open Sans"/>
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect Direction="270" BlurRadius="10" />
@@ -162,33 +212,40 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DefListBox" TargetType="ListBox">
-        <Setter Property="ItemContainerStyle" Value="{StaticResource DefContainer}"/>
-        <Setter Property="Background" Value="{StaticResource DefBackground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource DefBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="SelectionMode" Value="Single"/>
-    </Style>
+	<Style x:Key="DefListBox" TargetType="ListBox">
+		<Setter Property="ItemContainerStyle" Value="{StaticResource DefContainer}"/>
+		<Setter Property="Background" Value="{StaticResource DefBackground}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource DefBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="SelectionMode" Value="Single"/>
+	</Style>
 
+	<DataTemplate x:Key="ProcessListTemplate">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition Width="1*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="2*"/>
+				<RowDefinition Height="1*"/>
+			</Grid.RowDefinitions>
 
-    <DataTemplate x:Key="ProcessListTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Text="{Binding FullName}" FontWeight="Bold"
+			<TextBlock Text="{Binding FullName}" FontWeight="Bold"
                        FontSize="16" Margin="10,5"/>
-            <TextBlock Text="{Binding FileSource}" FontSize="12" 
+			<TextBlock Text="{Binding FileSource}" FontSize="12" 
                        Grid.Row="1" Margin="10,5"/>
 
-            <TextBlock Text="{Binding AddDateTime}" FontSize="14" Margin="5,0"
+			<TextBlock Text="{Binding AddDateTime}" FontSize="14" Margin="5,0"
                        Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center"/>
-        </Grid>
-    </DataTemplate>
+		</Grid>
+	</DataTemplate>
+
+	<Style x:Key="InfoLabelStyle" TargetType="Label">
+		<Setter Property="FontFamily" Value="Open Sans" />
+        <Setter Property="Foreground" Value="{StaticResource DefFontColor}"/>
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+	</Style>
 </ResourceDictionary>
