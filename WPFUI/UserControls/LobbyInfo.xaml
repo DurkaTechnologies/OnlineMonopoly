@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="WPFUI.UserControls.LobbyInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" xmlns:luc="clr-namespace:WPFUI.UserControls"
+			 DataContext="{Binding RelativeSource={RelativeSource Self}}">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<Border BorderThickness="0,0,0,2" 
+            BorderBrush="{StaticResource DefLineGradient}">
+		<Grid>
+			<Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+				<RowDefinition Height="1*"/>
+			</Grid.RowDefinitions>
+
+            <ItemsControl ItemsSource="{Binding Users}" Margin="16,2,16,0" HorizontalAlignment="Left">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="{Binding CurrentUsers}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <!--<Border Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8,8,0,0">
+				<ItemsControl  ItemsSource="{Binding Users}" Margin="16,16,16,0">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<UniformGrid Columns="{Binding CurrentUsers}"></UniformGrid>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
+			</Border>-->
+
+			<Border Grid.Row="1">
+				<UniformGrid Columns="3">
+					<Label Grid.Column="0" Style="{StaticResource InfoLabelStyle}" 
+                           Content="GAME TYPE: " FontSize="18" Margin="16,-8,0,2" 
+                           HorizontalAlignment="Left"/>
+					<Image Width="32" Height="32" HorizontalAlignment="Left" Source="{Binding Image}" Margin="16,8"/>
+
+					<!--<StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,8,8" Orientation="Horizontal">
+						<Label Style="{StaticResource InfoLabelStyle}" FontSize="20" Content="{Binding CurrentUsers}" />
+						<Label Style="{StaticResource InfoLabelStyle}" FontSize="20" Content="/" />
+						<Label Style="{StaticResource InfoLabelStyle}" FontSize="20" Content="{Binding MaxUsers}" />
+					</StackPanel>-->
+				</UniformGrid>
+			</Border>
+		</Grid>
+	</Border>
+</UserControl>

@@ -2,6 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B321094E-A212-455D-9D23-3E4708B325DE}</ProjectGuid>
@@ -36,7 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,10 +64,56 @@
     <Compile Include="Pages\RecoverPasswordPage.xaml.cs">
       <DependentUpon>RecoverPasswordPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GeneralPage.xaml.cs">
+      <DependentUpon>GeneralPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AuctionDialog.xaml.cs">
+      <DependentUpon>AuctionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BurgerButton.xaml.cs">
+      <DependentUpon>BurgerButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BuyBranchDialog.xaml.cs">
+      <DependentUpon>BuyBranchDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DropGameDiceDialog.xaml.cs">
+      <DependentUpon>DropGameDiceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GamePiece.xaml.cs">
+      <DependentUpon>GamePiece.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LobbyInfo.xaml.cs">
+      <DependentUpon>LobbyInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PayRentDialog.xaml.cs">
+      <DependentUpon>PayRentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Materials\DiceTextures\DiceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiceResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GameDice.xaml.cs">
+      <DependentUpon>GameDice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GameDices.xaml.cs">
+      <DependentUpon>GameDices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayerIcon.xaml.cs">
+      <DependentUpon>PlayerIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ShortInfo.xaml.cs">
+      <DependentUpon>ShortInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\GeneralPageViewModel.cs" />
+    <Compile Include="ViewModels\BaseTCPViewModel.cs" />
+    <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\RecoverViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="Views\ColorGradientGenerator.cs" />
+    <Compile Include="Views\SenderToServer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +127,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Pages\GeneralPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,12 +152,52 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RecoverPasswordPage.xaml">
+    <Page Include="UserControls\AuctionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BurgerButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BuyBranchDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DropGameDiceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GamePiece.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LobbyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PayRentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GameDice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GameDices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ShortInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Navigation\IPageResolver.cs" />
     <Compile Include="Navigation\Navigation.cs" />
     <Compile Include="Navigation\PagesResolver.cs" />
     <Compile Include="Pages\MainMenu.xaml.cs">
@@ -129,6 +226,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Materials\DiceTextures\DiceResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiceResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,10 +240,35 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\CommandsClassLibrary\CommandsClassLibrary.csproj">
+      <Project>{3E6871F1-8900-407E-B350-8C1614A9DBE9}</Project>
+      <Name>CommandsClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WpfControlLibrary\WpfControlLibrary.csproj">
       <Project>{f17c2a83-6027-4c1f-a028-57bf75ee1bcf}</Project>
       <Name>WpfControlLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Materials\DiceTextures\dice2.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice3.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
+    <Resource Include="Resources\UserControlsImg\diceblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\UAH.png" />
+    <Resource Include="Resources\UserControlsImg\UAHblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\dicewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UserControlsImg\cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Materials\DiceTextures\dice1.png" />
+    <Resource Include="Resources\Materials\DiceTextures\dice6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

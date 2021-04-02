@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="WPFUI.UserControls.BuyBranchDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
+             MinHeight="150" MinWidth="300" FontFamily="Open Sans">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Background="{StaticResource DefPageBackground}"
+            CornerRadius="16" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Image Source="pack://application:,,,/Resources/UserControlsImg/cart.png" 
+                       MaxWidth="24" Margin="25,5,10,10">
+                    <Image.Effect>
+                        <DropShadowEffect Direction="270" BlurRadius="10" ShadowDepth="2"/>
+                    </Image.Effect>
+                </Image>
+
+                <TextBlock Grid.Column="1" Margin="0,5,20,10" TextAlignment="Left" Foreground="{StaticResource DefFontColor}"
+                       Style="{StaticResource DefTextBlockStyle}" Text="Buying?" FontWeight="UltraBold"/>
+            </StackPanel>
+
+
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" FontSize="12"
+                       Grid.Column="0" Margin="15,5" TextAlignment="Left"
+                       TextWrapping="WrapWithOverflow"
+                       VerticalAlignment="Top" Foreground="{StaticResource DefFontColor}"
+                       Text="If you refuse to purchase, the field will be put up for a general auction."
+                       Style="{StaticResource DefTextBlockStyle}"/>
+
+
+            <UniformGrid Columns="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="15,5,15,15">
+                <uc:RoundButton Margin="0,0,8,0" Background="{StaticResource DefSelBackground}" 
+                                BorderBrush="{StaticResource DefSelBorderBrush}">
+                    <TextBlock Style="{StaticResource DefTextBlockStyle}"
+                           Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20">
+                        <Run Text="Buy for "/>
+                        <Run Text="{Binding }"/>
+                        <Run Text="K"/>
+                    </TextBlock>
+                </uc:RoundButton>
+
+                <uc:RoundButton Margin="8,0,0,0">
+                    <TextBlock Style="{StaticResource DefTextBlockStyle}" Text="For auction"
+                           Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20"/>
+                </uc:RoundButton>
+            </UniformGrid>
+        </Grid>
+        
+        <Border.Effect>
+            <DropShadowEffect Direction="270" BlurRadius="10"/>
+        </Border.Effect>
+    </Border>
+</UserControl>

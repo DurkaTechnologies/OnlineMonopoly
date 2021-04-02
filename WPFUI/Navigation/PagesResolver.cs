@@ -13,10 +13,12 @@ namespace WPFUI.Navigation
         public PagesResolver()
         {
             pagesResolvers.Add(Navigation.MainMenuAlias, () => new MainMenu());
+            pagesResolvers.Add(Navigation.GamePageAlias, () => new GamePage());
             pagesResolvers.Add(Navigation.RecoverPageAlies, () => new RecoverPasswordPage());
             pagesResolvers.Add(Navigation.SecondRecoverPageAlies, () => new SecondRecoverPage());
             pagesResolvers.Add(Navigation.SignInPageAlias, () => new SignInPage());
             pagesResolvers.Add(Navigation.SignUpPageAlias, () => new SignUpPage());
+            pagesResolvers.Add(Navigation.GeneralPageAlias, () => new GeneralPage());
         }
 
         public Page GetPageInstance(string alias)

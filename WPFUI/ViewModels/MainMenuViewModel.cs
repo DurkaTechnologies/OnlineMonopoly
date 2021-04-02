@@ -10,6 +10,7 @@ namespace WPFUI.ViewModels
 		private Command goSignInCommand;
 		private Command goSignUpCommand;
 		private Command goMainPageCommand;
+		private Command goGeneralPageCommand;
 
 		public MainMenuViewModel()
 		{
@@ -21,11 +22,13 @@ namespace WPFUI.ViewModels
 			goSignInCommand = new DelegateCommand(GoToSignInPage, () => true);
 			goSignUpCommand = new DelegateCommand(GoToSignUpPage, () => true);
 			goMainPageCommand = new DelegateCommand(GoToGamePage, () => true);
+			goGeneralPageCommand = new DelegateCommand(GoToGeneralPage, () => true);
 		}
 
 		public ICommand GoSignInCommand => goSignInCommand;
 		public ICommand GoSignUpCommand => goSignUpCommand;
 		public ICommand GoMainPageCommand => goMainPageCommand;
+		public ICommand GoGeneralPageCommand => goGeneralPageCommand;
 
 		private void GoToSignInPage()
 		{
@@ -40,6 +43,11 @@ namespace WPFUI.ViewModels
 		public void GoToGamePage()
 		{
 			Navigation.Navigation.Navigate(Navigation.Navigation.GamePageAlias, null);
+		}
+
+		public void GoToGeneralPage()
+		{
+			Navigation.Navigation.Navigate(Navigation.Navigation.GeneralPageAlias, new GeneralPageViewModel());
 		}
 	}
 }
