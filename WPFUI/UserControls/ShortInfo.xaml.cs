@@ -59,8 +59,6 @@ namespace WPFUI.UserControls
 				CurrentBackground = defBackground;
 		}
 
-		//public object Value { get; set; }
-
 		private void InitializePropertyChanged()
 		{
 			PropertyChanged += (sender, args) =>
@@ -81,8 +79,6 @@ namespace WPFUI.UserControls
 		#endregion
 
 		#region Properties
-
-		// User Properties
 
 		public bool CurrentUser
 		{

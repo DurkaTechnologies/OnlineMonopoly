@@ -16,6 +16,7 @@ namespace WPFUI.Navigation
 			pagesResolvers.Add(Navigation.GamePageAlias, () => new GamePage());
 			pagesResolvers.Add(Navigation.SignInPageAlias, () => new SignInPage());
 			pagesResolvers.Add(Navigation.SignUpPageAlias, () => new SignUpPage());
+			pagesResolvers.Add(Navigation.GeneralPageAlias, () => new GeneralPage());
 		}
 
 		public Page GetPageInstance(string alias)

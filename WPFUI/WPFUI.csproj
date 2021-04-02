@@ -61,8 +61,14 @@
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GeneralPage.xaml.cs">
+      <DependentUpon>GeneralPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AuctionDialog.xaml.cs">
       <DependentUpon>AuctionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BurgerButton.xaml.cs">
+      <DependentUpon>BurgerButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\BuyBranchDialog.xaml.cs">
       <DependentUpon>BuyBranchDialog.xaml</DependentUpon>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="UserControls\GamePiece.xaml.cs">
       <DependentUpon>GamePiece.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LobbyInfo.xaml.cs">
+      <DependentUpon>LobbyInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PayRentDialog.xaml.cs">
       <DependentUpon>PayRentDialog.xaml</DependentUpon>
@@ -87,9 +96,13 @@
     <Compile Include="UserControls\GameDices.xaml.cs">
       <DependentUpon>GameDices.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PlayerIcon.xaml.cs">
+      <DependentUpon>PlayerIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ShortInfo.xaml.cs">
       <DependentUpon>ShortInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\GeneralPageViewModel.cs" />
     <Compile Include="ViewModels\BaseTCPViewModel.cs" />
     <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
@@ -114,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Pages\GeneralPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\BurgerButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\BuyBranchDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\LobbyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\PayRentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\GameDices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayerIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

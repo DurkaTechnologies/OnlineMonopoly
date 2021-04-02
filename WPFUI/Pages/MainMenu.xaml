@@ -5,14 +5,11 @@
       MinHeight="550" MinWidth="900" Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
-                <ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-       
-
-        </ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -34,6 +31,6 @@
         <uc:RoundButton Grid.Row="1" Content="Sign in" Command="{Binding GoSignInCommand}" RenderTransform="{StaticResource RightTransform}"/>
         <uc:RoundButton Grid.Row="2" Content="Sign up" Command="{Binding GoSignUpCommand}" RenderTransform="{StaticResource LeftTransform}"/>
 		<uc:RoundButton Grid.Row="3" Content="Rating" RenderTransform="{StaticResource RightTransform}" Command="{Binding GoMainPageCommand}"/>
-        <uc:RoundButton IsEnabled="False" Grid.Row="4" Content="About this" RenderTransform="{StaticResource LeftTransform}"/>
+        <uc:RoundButton IsEnabled="True" Grid.Row="4" Content="General Page" RenderTransform="{StaticResource LeftTransform}" Command="{Binding GoGeneralPageCommand}"/>
     </Grid>
 </Page>
