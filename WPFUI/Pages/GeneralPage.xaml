@@ -106,7 +106,8 @@
 		<!--Chat Panel-->
 
 		<Border Grid.Column="1" Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8" Margin="16">
-			<Label Style="{StaticResource InfoLabelStyle}">Chat</Label>
+			<!--<Label Style="{StaticResource InfoLabelStyle}">Chat</Label>-->
+			<luc:ShopItem></luc:ShopItem>
 		</Border>
 
 		<!--Events Panel-->

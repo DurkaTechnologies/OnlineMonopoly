@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="WPFUI.UserControls.ShopItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
+			 DataContext="{Binding RelativeSource={RelativeSource Self}}">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Grid Width="180" Height="260" Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="180"/>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Border Background="White">
+			<Ellipse Grid.Column="1" Width="180" Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
+                HorizontalAlignment="Stretch">
+				<Ellipse.Fill>
+					<ImageBrush ImageSource="{Binding Image}"></ImageBrush>
+				</Ellipse.Fill>
+			</Ellipse>
+		</Border>
+
+		<Border Grid.Row="1" Background="{StaticResource DefFontColor}">
+			<UniformGrid Rows="2">
+				<Label Style="{StaticResource InfoLabelStyle}" Content="{Binding Title}" FontSize="18"/>
+				<Label Style="{StaticResource InfoLabelStyle}" Content="{Binding Price}" />
+			</UniformGrid>
+		</Border>
+    </Grid>
+</UserControl>
