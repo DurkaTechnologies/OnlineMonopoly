@@ -30,8 +30,11 @@ namespace BLL
     }
     public interface IBranchService
     {
-        void CreateNewBranch(BranchDTO newUser);
+        void CreateNewBranch(BranchDTO newBranch);
         IEnumerable<BranchDTO> GetAllBranches();
+        void DeleteBranch(BranchDTO branch);
+        BranchDTO Find(int id);
+        BranchDTO Find(string login);
     }
     class BranchService : IBranchService
     {
@@ -56,6 +59,24 @@ namespace BLL
         public void CreateNewBranch(BranchDTO newBranch)
         {
             repositories.BranchRepository.Insert(mapper.Map<Branch>(newBranch));
+        }
+
+        public void DeleteBranch(BranchDTO newBranch)
+        {
+            repositories.BranchRepository.Delete(mapper.Map<Branch>(newBranch));
+        }
+
+        public BranchDTO Find(int id)
+        {
+            var result = repositories.BranchRepository.GetByID(id);
+            return mapper.Map<BranchDTO>(result);
+        }
+
+        public BranchDTO Find(string name)
+        {
+            var result = repositories.BranchRepository.Get(br => br.Name == name);
+            return mapper.Map<BranchDTO>(result);
+
         }
 
         public IEnumerable<BranchDTO> GetAllBranches()
