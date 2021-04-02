@@ -17,14 +17,24 @@
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
-			<Border>
-				<Ellipse Grid.Column="1" Width="160" Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
+			<Border Grid.Row="0" Width="128" Panel.ZIndex="0">
+				<Border.Effect>
+					<DropShadowEffect Direction="270" BlurRadius="10" />
+				</Border.Effect>
+				<Rectangle  Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
                 HorizontalAlignment="Stretch">
-					<Ellipse.Fill>
+					<Rectangle.Style>
+						<Style>
+							
+						</Style>
+					</Rectangle.Style>
+					<Rectangle.Fill>
 						<ImageBrush ImageSource="{Binding Image}"></ImageBrush>
-					</Ellipse.Fill>
-				</Ellipse>
+					</Rectangle.Fill>
+				</Rectangle>
 			</Border>
+
+			<Image Grid.Row="0" Source="../Resources/Materials/DiceTextures/dice3.png" Panel.ZIndex="1" Width="128" Height="128"/>
 
 			<Border Grid.Row="1">
 				<UniformGrid Rows="2">

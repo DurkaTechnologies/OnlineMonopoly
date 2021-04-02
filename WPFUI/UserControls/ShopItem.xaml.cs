@@ -39,7 +39,8 @@ namespace WPFUI.UserControls
 
 			Title = "Valentuna's Dices";
 			Price = 666;
-			ImageSource = "https://png.pngtree.com/png-vector/20201112/ourmid/pngtree-two-realistic-white-dices-vector-png-image_2423974.jpg";
+			ImageSource = "https://storage1b.censor.net/images/c/f/d/9/cfd9e6d259ddf06e5e7e0e0be00511fb/original.jpg";
+			//ImageSource = "https://clubbank.com.ua/media/com_easysocial/photos/39/52/privat24-logo_original.jpg";
 		}
 
 		#region Proporties
