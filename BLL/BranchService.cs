@@ -34,7 +34,7 @@ namespace BLL
         IEnumerable<BranchDTO> GetAllBranches();
         void DeleteBranch(BranchDTO branch);
         BranchDTO Find(int id);
-        BranchDTO Find(string login);
+        BranchDTO Find(string name);
     }
     class BranchService : IBranchService
     {
@@ -76,7 +76,6 @@ namespace BLL
         {
             var result = repositories.BranchRepository.Get(br => br.Name == name);
             return mapper.Map<BranchDTO>(result);
-
         }
 
         public IEnumerable<BranchDTO> GetAllBranches()

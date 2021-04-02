@@ -20,6 +20,8 @@ namespace BLL
     {
         void CreateNewUser(UserDTO newUser);
         IEnumerable<UserDTO> GetAllUsers();
+        UserDTO Find(int id);
+        UserDTO Find(string login);
     }
     class UserService : IUserService
     {
@@ -42,6 +44,18 @@ namespace BLL
         public void CreateNewUser(UserDTO newUser)
         {
             repositories.UserRepository.Insert(mapper.Map<User>(newUser));
+        }
+
+        public UserDTO Find(int id)
+        {
+            var result = repositories.BranchRepository.GetByID(id);
+            return mapper.Map<UserDTO>(result);
+        }
+
+        public UserDTO Find(string login)
+        {
+            var result = repositories.UserRepository.Get(us => us.Login == login);
+            return mapper.Map<UserDTO>(result);
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
