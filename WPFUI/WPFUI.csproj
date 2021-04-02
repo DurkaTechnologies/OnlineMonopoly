@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
@@ -102,10 +103,13 @@
       <DependentUpon>ShortInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\GeneralPageViewModel.cs" />
+    <Compile Include="ViewModels\BaseTCPViewModel.cs" />
+    <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Views\ColorGradientGenerator.cs" />
+    <Compile Include="Views\SenderToServer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -267,6 +271,10 @@
     <Resource Include="Resources\Study\water.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommandsClassLibrary\CommandsClassLibrary.csproj">
+      <Project>{3E6871F1-8900-407E-B350-8C1614A9DBE9}</Project>
+      <Name>CommandsClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WpfControlLibrary\WpfControlLibrary.csproj">
       <Project>{f17c2a83-6027-4c1f-a028-57bf75ee1bcf}</Project>
       <Name>WpfControlLibrary</Name>
