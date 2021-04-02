@@ -10,7 +10,7 @@ using WPFUI.Navigation;
 
 namespace WPFUI.ViewModels
 {
-	class SignUpViewModel : BaseViewModel
+	public class SignUpViewModel : BaseViewModel
 	{
 		private string login;
 		private string password;
