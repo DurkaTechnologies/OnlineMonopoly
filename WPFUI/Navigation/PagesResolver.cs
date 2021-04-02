@@ -17,6 +17,7 @@ namespace WPFUI.Navigation
 			pagesResolvers.Add(Navigation.SignInPageAlias, () => new SignInPage());
 			pagesResolvers.Add(Navigation.SignUpPageAlias, () => new SignUpPage());
 			pagesResolvers.Add(Navigation.GeneralPageAlias, () => new GeneralPage());
+			pagesResolvers.Add(Navigation.ShopPageAlias, () => new ShopPage());
 		}
 
 		public Page GetPageInstance(string alias)

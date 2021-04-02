@@ -10,26 +10,28 @@
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>
-	<Grid Width="180" Height="260" Background="White">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="180"/>
-			<RowDefinition />
-		</Grid.RowDefinitions>
+	<Border Background="{StaticResource TransBlackBack}" CornerRadius="8" Width="180">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="180"/>
+				<RowDefinition />
+			</Grid.RowDefinitions>
 
-		<Border Background="White">
-			<Ellipse Grid.Column="1" Width="180" Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
+			<Border>
+				<Ellipse Grid.Column="1" Width="160" Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
                 HorizontalAlignment="Stretch">
-				<Ellipse.Fill>
-					<ImageBrush ImageSource="{Binding Image}"></ImageBrush>
-				</Ellipse.Fill>
-			</Ellipse>
-		</Border>
+					<Ellipse.Fill>
+						<ImageBrush ImageSource="{Binding Image}"></ImageBrush>
+					</Ellipse.Fill>
+				</Ellipse>
+			</Border>
 
-		<Border Grid.Row="1" Background="{StaticResource DefFontColor}">
-			<UniformGrid Rows="2">
-				<Label Style="{StaticResource InfoLabelStyle}" Content="{Binding Title}" FontSize="18"/>
-				<Label Style="{StaticResource InfoLabelStyle}" Content="{Binding Price}" />
-			</UniformGrid>
-		</Border>
-    </Grid>
+			<Border Grid.Row="1">
+				<UniformGrid Rows="2">
+					<Label VerticalAlignment="Top" Style="{StaticResource InfoLabelStyle}" Content="{Binding Title}" FontSize="18"/>
+					<Label VerticalAlignment="Top" Style="{StaticResource InfoLabelStyle}" Content="{Binding Price}" FontSize="18"/>
+				</UniformGrid>
+			</Border>
+		</Grid>
+	</Border>
 </UserControl>

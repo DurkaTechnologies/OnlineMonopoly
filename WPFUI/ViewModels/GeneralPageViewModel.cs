@@ -21,12 +21,15 @@ namespace WPFUI.ViewModels
 		private ObservableCollection<PlayerIcon> friends;
 		private ObservableCollection<LobbyInfo> lobbies;
 
+		private ICommand openShopCommand;
+
 		#endregion
 
 		public GeneralPageViewModel()
 		{
 			InitializePropertyChanged();
 
+			openShopCommand = new DelegateCommand(OpenShop, () => true);
 			friends = new ObservableCollection<PlayerIcon>();
 			lobbies = new ObservableCollection<LobbyInfo>();
 
@@ -42,10 +45,16 @@ namespace WPFUI.ViewModels
 				lobbies.Add(new LobbyInfo());
 		}
 
+		private void OpenShop()
+		{
+			Navigation.Navigation.Navigate(Navigation.Navigation.ShopPageAlias, new ShopPageViewModel());
+		}
+
 		#region Proporties
 
 		public IEnumerable<PlayerIcon> Friends => friends;
 		public IEnumerable<LobbyInfo> Lobbies => lobbies;
+		public ICommand OpenShopCommand => openShopCommand;
 
 		#endregion
 

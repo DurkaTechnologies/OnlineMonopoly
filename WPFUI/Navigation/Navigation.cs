@@ -11,6 +11,7 @@ namespace WPFUI.Navigation
 		public static readonly string SignInPageAlias = "SignInPage";
 		public static readonly string SignUpPageAlias = "SignUpPage";
 		public static readonly string GeneralPageAlias = "GeneralPage";
+		public static readonly string ShopPageAlias = "ShopPage";
 
 		private NavigationService navService;
 		private readonly PagesResolver resolver;
