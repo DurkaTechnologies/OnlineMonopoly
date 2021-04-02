@@ -40,6 +40,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -94,5 +95,8 @@
 
         <uc:RoundButton Grid.Row="6" Content="Sign In" RenderTransform="{StaticResource RightTransform}" Command="{Binding SignInCommand}"/>
         <uc:RoundButton Grid.Row="7" Content="To main menu" RenderTransform="{StaticResource LeftTransform}" Command="{Binding GoMainMenuCommand}"/>
+        <uc:RoundButton Grid.Row="8" Content="I forgot my password" RenderTransform="{StaticResource RightTransform}" Command="{Binding GoRecoverCommand}"/> 
+
+
     </Grid>
 </Page>

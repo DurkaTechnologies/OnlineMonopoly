@@ -1,0 +1,207 @@
+﻿<Page x:Class="WPFUI.Pages.GeneralPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" 
+      xmlns:luc="clr-namespace:WPFUI.UserControls"
+      MinHeight="550" MinWidth="900">
+	<Page.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml" />
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/PageControlStyles.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+
+			<Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
+				<Setter Property="FontFamily" Value="Open Sans"/>
+				<Setter Property="Foreground" Value="{StaticResource DefFontColor}"/>
+				<Setter Property="FontSize" Value="28"/>
+				<Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+
+			<Style x:Key="ShopaStyle" TargetType="Border">
+				<Setter Property="Margin" Value="0, -86, 0, 0" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding Activated, ElementName=BurgerButton}" Value="True">
+						<DataTrigger.EnterActions>
+							<BeginStoryboard>
+								<Storyboard>
+									<ThicknessAnimation Duration="0:0:0.200" To="0,0,0,0" Storyboard.TargetProperty="Margin" />
+								</Storyboard>
+							</BeginStoryboard>
+						</DataTrigger.EnterActions>
+						<DataTrigger.ExitActions>
+							<BeginStoryboard>
+								<Storyboard>
+									<ThicknessAnimation Duration="0:0:0.200" To="0,-96,0,0" Storyboard.TargetProperty="Margin" />
+								</Storyboard>
+							</BeginStoryboard>
+						</DataTrigger.ExitActions>
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+
+            <Style x:Key="DefBorderStyle" TargetType="Border">
+                <Setter Property="Background" Value="#FF62CBAD"/>
+                <Setter Property="BorderBrush" Value="{StaticResource InversePageBackground}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Effect" Value="{StaticResource DefShadow}"/>
+            </Style>
+            
+		</ResourceDictionary>
+	</Page.Resources>
+
+	<Grid Background="{StaticResource DefPageBackground}">
+		<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="86"/>
+			<RowDefinition Height="2*"/>
+			<RowDefinition Height="3*"/>
+		</Grid.RowDefinitions>
+
+		<!--Burger Button-->
+        <luc:BurgerButton Grid.ColumnSpan="4" Margin="16" VerticalAlignment="Top" HorizontalAlignment="Right"
+                          Panel.ZIndex="2" x:Name="BurgerButton"/>
+
+		<!--Top Panel-->
+		<Border Grid.ColumnSpan="5" Background="{StaticResource DefFontColor}" 
+				Style="{StaticResource ShopaStyle}" Height="86" Panel.ZIndex="1" VerticalAlignment="Top">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="1.5*"/>
+					<ColumnDefinition Width="1.5*"/>
+					<ColumnDefinition Width="2*"/>
+				</Grid.ColumnDefinitions>
+
+				<Grid.RowDefinitions>
+					<RowDefinition />
+				</Grid.RowDefinitions>
+
+                <Ellipse Grid.Column="1" Grid.RowSpan="2"  Width="64" Margin="16,0,0,0" HorizontalAlignment="Left"
+                         Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
+					<Ellipse.Fill>
+						<ImageBrush ImageSource="https://pdacdn.com/photo/1570603604764.jpg"></ImageBrush>
+					</Ellipse.Fill>
+				</Ellipse>
+
+                <UniformGrid Rows="2" Grid.Column="2">
+                    <TextBlock Style="{StaticResource InfoTextBlockStyle}" VerticalAlignment="Bottom" FontSize="22"
+                               Margin="0,8,0,2" FontWeight="Bold" Text="UserName" 
+                               Foreground="{StaticResource DefBackground}"/>
+                    <TextBlock Style="{StaticResource InfoTextBlockStyle}" FontSize="20"
+                               Text="1000 $" Margin="0,2,0,8"  Foreground="{StaticResource DefBackground}"/>
+                </UniformGrid>
+
+                <uc:RoundButton Style="{StaticResource roundBtnStyle}" Margin="16" 
+                                Grid.Column="5" Content="Settings"/>
+
+                <uc:RoundButton Style="{StaticResource roundBtnStyle}" Grid.Column="6" Margin="16"
+									Content="Shop"/>
+
+			</Grid>
+		</Border>
+
+        <!--Chat Panel-->
+        <Decorator Grid.Column="2" Grid.RowSpan="2" Margin="16"
+                   Effect="{StaticResource DefRoundShadow}">
+            <Border Style="{StaticResource DefBorderStyle}" > 
+                <Label Style="{StaticResource InfoLabelStyle}">Chat</Label>
+            </Border>
+        </Decorator>
+
+        <!--Events Panel-->
+        <Decorator Grid.Column="1" Grid.RowSpan="2" Margin="16"
+                   Effect="{StaticResource DefRoundShadow}">
+            <Border Style="{StaticResource DefBorderStyle}">
+                <Label Style="{StaticResource InfoLabelStyle}">Events</Label>
+            </Border>
+        </Decorator>
+		
+		<!--Game Panel-->
+        <Decorator Grid.Column="2" Grid.Row="2" Margin="16,16,16,32"
+                   Effect="{StaticResource DefRoundShadow}">
+            <Border Style="{StaticResource DefBorderStyle}">
+                <Grid Grid.Column="2" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="0.05*"/>
+                        <RowDefinition Height="7*"/>
+                    </Grid.RowDefinitions>
+
+                    <UniformGrid Columns="2">
+                        <TextBlock Style="{StaticResource InfoTextBlockStyle}" Text="Waiting For Game" 
+		    				   TextAlignment="Left" VerticalAlignment="Center" Margin="16,8"/>
+                        <uc:RoundButton Style="{StaticResource roundBtnStyle}" Margin="16,8,16,8"
+                                        Content="Create game" Padding="0"/>
+                    </UniformGrid>
+
+                    <Border Grid.Row="1" Background="{StaticResource DefLineGradient}"/>
+
+                    <ScrollViewer Grid.Row="2" Padding="16" VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl ItemsSource="{Binding Lobbies}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="{x:Type luc:LobbyInfo}">
+                                                <Setter Property="Margin" Value="0,0,0,8" />
+                                            </Style>
+                                        </StackPanel.Resources>
+                                    </StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Decorator>
+
+        <!--Friends Panel-->
+        <Decorator Grid.Column="1" Grid.Row="2" Margin="16,16,16,32"
+                   Effect="{StaticResource DefRoundShadow}">
+            <Border Style="{StaticResource DefBorderStyle}">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*" />
+                        <RowDefinition Height="0.05*" />
+                        <RowDefinition Height="7*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Style="{StaticResource InfoTextBlockStyle}" Margin="16,8"
+                               Text="Friends Online" VerticalAlignment="Center"/>
+
+                    <Border Grid.Row="1" Background="{StaticResource DefLineGradient}"/>
+
+                    <Border Padding="16" Grid.Row="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <ItemsControl ItemsSource="{Binding Friends}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center">
+                                            <WrapPanel.Resources>
+                                                <Style TargetType="{x:Type luc:PlayerIcon}">
+                                                    <Setter Property="Margin" Value="8" />
+                                                </Style>
+                                            </WrapPanel.Resources>
+                                        </WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </Border>
+        </Decorator>
+    </Grid>
+</Page>

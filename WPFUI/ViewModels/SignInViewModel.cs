@@ -1,25 +1,34 @@
-﻿using System;
+﻿using CommandsClassLibrary;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using UIWPF.Commands;
 using UIWPF.ViewModels;
 using WPFUI.Navigation;
 
 namespace WPFUI.ViewModels
 {
-	class SignInViewModel : BaseViewModel
+	class SignInViewModel : BaseTCPViewModel
 	{
 		private string login;
 		private string password;
 		private bool isLoginCorrect;
 		private bool isPasswordCorrect;
 		private string errorText;
+		CancellationTokenSource cancelTokenSource;
 
 		private Command signInCommand;
 		private Command goMainMenuCommand;
-
+		private Command goRecoverCommand;
 		public SignInViewModel()
 		{
+			ParseConfig();
+			//ConnectClient();
+
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;
 			InitializeCommands();
@@ -30,6 +39,8 @@ namespace WPFUI.ViewModels
 		{
 			signInCommand = new DelegateCommand(SignIn, SignInCanExecute);
 			goMainMenuCommand = new DelegateCommand(GoToMainPage, () => true);
+			goRecoverCommand = new DelegateCommand(GoToRecoverPage, () => true);
+
 		}
 
 		private void InitializePropertyChanged()
@@ -63,6 +74,8 @@ namespace WPFUI.ViewModels
 
 		public ICommand SignInCommand => signInCommand;
 		public ICommand GoMainMenuCommand => goMainMenuCommand;
+		public ICommand GoRecoverCommand => goRecoverCommand;
+
 
 		public string Login
 		{
@@ -97,12 +110,52 @@ namespace WPFUI.ViewModels
 
 		private void SignIn()
 		{
-		
+			//BinaryFormatter formatter = new BinaryFormatter();
+			//formatter.Serialize(client.GetStream(), new ClientUserDataCommand(Login, UserServiceDapper.ComputeSha256Hash(Password)));
+
+			cancelTokenSource = new CancellationTokenSource();
+			CancellationToken token = cancelTokenSource.Token;
+			Task.Run(() => Listen(token), token);
 		}
 
 		public void GoToMainPage()
 		{
 			Navigation.Navigation.Navigate(Navigation.Navigation.MainMenuAlias, null);
+		}
+		public void GoToRecoverPage()
+		{
+			Navigation.Navigation.Navigate(Navigation.Navigation.RecoverPageAlies, null);
+		}
+
+		private void Listen(CancellationToken token)
+		{
+
+			while (true)
+			{
+				try
+				{
+					if (token.IsCancellationRequested)
+						return;
+
+					BinaryFormatter formatter = new BinaryFormatter();
+					ServerUserDataCommand command = (ServerUserDataCommand)formatter.Deserialize(client.GetStream());
+
+					if (!String.IsNullOrWhiteSpace(command.Login))
+					{
+						client.Close();
+						//Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background,
+						//		   new Action(() =>
+						//		   Navigation.Navigation.Navigate(Navigation.Navigation.MainPageAlias,
+						//		   new MainPageViewModel(command.Login))));
+					}
+					else
+						Password = "";
+					return;
+				}
+				catch (Exception)
+				{
+				}
+			}
 		}
 
 		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
