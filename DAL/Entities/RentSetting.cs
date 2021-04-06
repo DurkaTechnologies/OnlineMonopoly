@@ -11,14 +11,18 @@ namespace DAL.Entities
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public int StartCost { get; set; }
+
         [Required]
         public float FirstCoef { get; set; }
+
         [Required]
         public int SecondCoef { get; set; }
+
         [Required]
-        public bool BybranchQuantity { get; set; }
-        public virtual ICollection<Branch> Branches { get; set; }
+        public bool ByBranchQuantity { get; set; }
+
     }
 }

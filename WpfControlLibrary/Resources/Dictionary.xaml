@@ -36,7 +36,7 @@
 	<SolidColorBrush x:Key="TransBlackBack" Color="#3F000000"/>
 	<SolidColorBrush x:Key="TransGrayBack" Color="#7F000000"/>
 
-    <DropShadowEffect x:Key="DefShadow" Direction="270" BlurRadius="10" />
+    <DropShadowEffect x:Key="DefShadow" Direction="270" BlurRadius="10" ShadowDepth="2" />
     <DropShadowEffect x:Key="DefRoundShadow" BlurRadius="10"  ShadowDepth="-10" Color="Gray"/>
 
     <Color x:Key="DefGreenColor">#FF65C363</Color>
@@ -44,16 +44,25 @@
     <Color x:Key="DefCyanColor">#FF64D9E3</Color>
     <SolidColorBrush x:Key="DefCyanBrush" Color="{StaticResource DefCyanColor}"/>
 
+	<SolidColorBrush x:Key="DefLineGradient" Color="#7F000000"/>
 
-    <LinearGradientBrush x:Key="DefLineGradient">
+	<!--<LinearGradientBrush x:Key="DefLineGradient">
         <GradientStop Color="#00000000"/>
         <GradientStop Color="#B2000000" Offset="0.4"/>
         <GradientStop Color="Black" Offset="0.5"/>
         <GradientStop Color="#B2000000" Offset="0.6"/>
         <GradientStop Color="#00000000" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="DefWhiteLineGradient">
+	</LinearGradientBrush>-->
+		
+	<!--<LinearGradientBrush x:Key="DefLineGradient">
+		<GradientStop Color="#00000000"/>
+		<GradientStop Color="#B2000000" Offset="0.4"/>
+		<GradientStop Color="Black" Offset="0.5"/>
+		<GradientStop Color="#B2000000" Offset="0.6"/>
+		<GradientStop Color="#00000000" Offset="1"/>
+	</LinearGradientBrush>-->
+		
+	<LinearGradientBrush x:Key="DefWhiteLineGradient">
         <GradientStop Color="#00F0F8FF"/>
         <GradientStop Color="#B2F0F8FF" Offset="0.4"/>
         <GradientStop Color="AliceBlue" Offset="0.5"/>

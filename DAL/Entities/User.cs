@@ -13,19 +13,24 @@ namespace DAL
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [Index("IX_UniqueKeyString", IsUnique = true, Order = 1)]
         [MaxLength(100)]
         public string Login { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Password { get; set; }
+
         [Required]
         [MaxLength(150)]
         [Index("IX_UniqueKeyString", IsUnique = true, Order = 2)]
         public string Email { get; set; }
+
         [DefaultValue(0)]
         public int Rating { get; set; }
+
         [DefaultValue(0)]
         public int Money { get; set; }
     }

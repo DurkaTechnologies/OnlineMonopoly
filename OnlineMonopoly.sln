@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUI", "WPFUI\WPFUI.csproj", "{B321094E-A212-455D-9D23-3E4708B325DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFUI", "WPFUI\WPFUI.csproj", "{B321094E-A212-455D-9D23-3E4708B325DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{3C3E86E3-75E6-4FF9-B464-DA760EB22FA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{3C3E86E3-75E6-4FF9-B464-DA760EB22FA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControlLibrary", "WpfControlLibrary\WpfControlLibrary.csproj", "{F17C2A83-6027-4C1F-A028-57BF75EE1BCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfControlLibrary", "WpfControlLibrary\WpfControlLibrary.csproj", "{F17C2A83-6027-4C1F-A028-57BF75EE1BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{5B5A1EB5-68BB-45AA-8A91-EA55A63673BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandsClassLibrary", "CommandsClassLibrary\CommandsClassLibrary.csproj", "{3E6871F1-8900-407E-B350-8C1614A9DBE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandsClassLibrary", "CommandsClassLibrary\CommandsClassLibrary.csproj", "{3E6871F1-8900-407E-B350-8C1614A9DBE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcService", "GrpcService\GrpcService.csproj", "{E634A9C1-F62B-4FBA-8B07-13A35106A0C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protos", "Protos\Protos.csproj", "{F3009F62-D904-407C-B81D-C85B4014A6E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{3E6871F1-8900-407E-B350-8C1614A9DBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6871F1-8900-407E-B350-8C1614A9DBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6871F1-8900-407E-B350-8C1614A9DBE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E634A9C1-F62B-4FBA-8B07-13A35106A0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E634A9C1-F62B-4FBA-8B07-13A35106A0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E634A9C1-F62B-4FBA-8B07-13A35106A0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E634A9C1-F62B-4FBA-8B07-13A35106A0C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3009F62-D904-407C-B81D-C85B4014A6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3009F62-D904-407C-B81D-C85B4014A6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3009F62-D904-407C-B81D-C85B4014A6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3009F62-D904-407C-B81D-C85B4014A6E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
