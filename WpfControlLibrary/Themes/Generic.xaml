@@ -14,6 +14,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="{TemplateBinding ButtonRadius}"
                             BorderThickness="{TemplateBinding ButtonThickness}"
+                            Margin="{TemplateBinding BorderMargin}"
                             Padding="{TemplateBinding Padding}">
                         <ContentPresenter 
                             VerticalAlignment="Center"  
