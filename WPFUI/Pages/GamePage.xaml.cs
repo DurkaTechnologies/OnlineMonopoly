@@ -15,5 +15,10 @@ namespace WPFUI.Pages
 		{
 			InitializeComponent();
 		}
+
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+			DataContext = new GamePageViewModel();
+		}
 	}
 }

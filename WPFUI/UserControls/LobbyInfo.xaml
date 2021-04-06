@@ -19,24 +19,22 @@
 				<RowDefinition Height="1*"/>
 			</Grid.RowDefinitions>
 
-            <ItemsControl ItemsSource="{Binding Users}" Margin="16,2,16,0" HorizontalAlignment="Left">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="{Binding CurrentUsers}"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-
-            <!--<Border Grid.Row="0" Background="{StaticResource TransBlackBack}" CornerRadius="8,8,0,0">
-				<ItemsControl  ItemsSource="{Binding Users}" Margin="16,16,16,0">
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<UniformGrid Columns="{Binding CurrentUsers}"></UniformGrid>
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-				</ItemsControl>
-			</Border>-->
-
+			<ItemsControl ItemsSource="{Binding Users}" Margin="16,2,16,0" >
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<UniformGrid Columns="{Binding CurrentUsers}" HorizontalAlignment="Center">
+							<UniformGrid.Resources>
+								<Style TargetType="{x:Type luc:PlayerIcon}">
+									<Setter Property="Margin" Value="0,2,32,0" />
+									<Setter Property="Width" Value="100" />
+									<Setter Property="FontSize" Value="13" />
+								</Style>
+							</UniformGrid.Resources>
+						</UniformGrid>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+			
 			<Border Grid.Row="1">
 				<UniformGrid Columns="3">
 					<Label Grid.Column="0" Style="{StaticResource InfoLabelStyle}" 

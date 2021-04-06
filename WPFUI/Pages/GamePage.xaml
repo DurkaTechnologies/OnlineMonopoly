@@ -3,9 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:WPFUI.Pages"
-      xmlns:uc="clr-namespace:WPFUI.UserControls"
-      MinHeight="550" MinWidth="900" 
-      Title="GamePage">
+      xmlns:uc="clr-namespace:WPFUI.UserControls" 
+	  xmlns:uc1="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
+	  MinHeight="550" MinWidth="900" 
+      Title="GamePage" Loaded="Page_Loaded">
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -351,6 +352,28 @@
 				<Border Background="White" Grid.Row="1" Margin="{StaticResource MarginLeft}">
 					<Image Source="pack://application:,,,/Resources/Delivers/oregano.png"/>
 				</Border>
+
+				<Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Grid.RowSpan="9"  Background="DarkBlue">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="9*"/>
+						<RowDefinition Height="1*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="9*"/>
+						<ColumnDefinition Width="1*"/>
+					</Grid.ColumnDefinitions>
+
+					<ListBox Style="{StaticResource DefListBox}" Grid.ColumnSpan="2" Margin="20,20,20,10"
+							 ItemContainerStyle="{StaticResource DefContainer}" ItemsSource="{Binding Messages}">
+						
+					</ListBox>
+
+					<uc1:CustomTextBox Grid.Row="1" Style="{StaticResource DefCustomTextBox}" Margin="20,10,10,20" 
+									   Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged}"/>
+					
+					<uc1:RoundButton Grid.Row="1" Margin="10,10,20,20" Command="{Binding SendCommand}"/>
+				</Grid>
+				
 			</Grid>
 		</Border>
 	</Grid>

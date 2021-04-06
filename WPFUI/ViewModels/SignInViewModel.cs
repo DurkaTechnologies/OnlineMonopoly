@@ -1,5 +1,4 @@
-﻿using CommandsClassLibrary;
-using System;
+﻿using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
@@ -137,20 +136,20 @@ namespace WPFUI.ViewModels
 					if (token.IsCancellationRequested)
 						return;
 
-					BinaryFormatter formatter = new BinaryFormatter();
-					ServerUserDataCommand command = (ServerUserDataCommand)formatter.Deserialize(client.GetStream());
+					//BinaryFormatter formatter = new BinaryFormatter();
+					//ServerUserDataCommand command = (ServerUserDataCommand)formatter.Deserialize(client.GetStream());
 
-					if (!String.IsNullOrWhiteSpace(command.Login))
-					{
-						client.Close();
-						//Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background,
-						//		   new Action(() =>
-						//		   Navigation.Navigation.Navigate(Navigation.Navigation.MainPageAlias,
-						//		   new MainPageViewModel(command.Login))));
-					}
-					else
-						Password = "";
-					return;
+					//if (!String.IsNullOrWhiteSpace(command.Login))
+					//{
+					//	client.Close();
+					//	//Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background,
+					//	//		   new Action(() =>
+					//	//		   Navigation.Navigation.Navigate(Navigation.Navigation.MainPageAlias,
+					//	//		   new MainPageViewModel(command.Login))));
+					//}
+					//else
+					//	Password = "";
+					//return;
 				}
 				catch (Exception)
 				{
