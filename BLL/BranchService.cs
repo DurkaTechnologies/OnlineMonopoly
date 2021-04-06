@@ -1,34 +1,12 @@
 ﻿using AutoMapper;
+using BLL.DTO;
 using DAL;
 using DAL.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class BranchDTO
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public int pledge { get; set; }
-        public int Buyout { get; set; }
-        public int Price { get; set; }
-        public int Upgrade { get; set; }
-        public virtual RentSettingsDTO RentSetting { get; set; }
-    }
-    public class RentSettingsDTO
-    {
-        public int Id { get; set; }
-        public int StartCost { get; set; }
-        public float FirstCoef { get; set; }
-        public int SecondCoef { get; set; }
-        public bool BybranchQuantity { get; set; }
-    }
-    public interface IBranchService
+	public interface IBranchService
     {
         void CreateNewBranch(BranchDTO newBranch);
         IEnumerable<BranchDTO> GetAllBranches();
@@ -36,10 +14,12 @@ namespace BLL
         BranchDTO Find(int id);
         BranchDTO Find(string name);
     }
+
     class BranchService : IBranchService
     {
-        UnitOfWork repositories;
-        IMapper mapper;
+        private UnitOfWork repositories;
+        private IMapper mapper;
+
         public BranchService()
         {
             repositories = new UnitOfWork();

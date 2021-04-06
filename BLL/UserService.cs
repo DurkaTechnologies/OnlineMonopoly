@@ -1,22 +1,11 @@
 ﻿using AutoMapper;
+using BLL.DTO;
 using DAL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class UserDTO
-    {
-        public int Id { get; set; }
-        public string Login { get; set; }
-        public string Email { get; set; }
-        public int Rating { get; set; }
-        public int Money { get; set; }
-    }
-    public interface IUserService
+	public interface IUserService
     {
         void CreateNewUser(UserDTO newUser);
         IEnumerable<UserDTO> GetAllUsers();
@@ -25,8 +14,9 @@ namespace BLL
     }
     class UserService : IUserService
     {
-        UnitOfWork repositories;
-        IMapper mapper;
+        private UnitOfWork repositories;
+        private IMapper mapper;
+
         public UserService()
         {
             repositories = new UnitOfWork();
