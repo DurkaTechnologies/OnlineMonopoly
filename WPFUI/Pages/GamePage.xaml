@@ -5,7 +5,7 @@
       xmlns:local="clr-namespace:WPFUI.Pages"
       xmlns:uc="clr-namespace:WPFUI.UserControls" 
 	  xmlns:uc1="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
-	  MinHeight="550" MinWidth="900" 
+	  MinHeight="550" MinWidth="900"
       Title="GamePage" Loaded="Page_Loaded">
 	<Page.Resources>
 		<ResourceDictionary>
@@ -41,22 +41,21 @@
 	</Page.Resources>
 	<Grid Background="DimGray">
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2.2*"/>
+			<ColumnDefinition Width="2*"/>
 			<ColumnDefinition Width="4*"/>
-			<ColumnDefinition Width="2.2*"/>
+			<ColumnDefinition Width="1*"/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="0.4*"/>
-			<RowDefinition Height="9*"/>
-			<RowDefinition Height="0.4*"/>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="45*"/>
+			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
 
-		<Border Grid.Column="1" Grid.Row="1" MaxWidth="1920"
-                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" 
-                HorizontalAlignment="Stretch">
+		<Border Grid.Column="1" Grid.Row="1" 
+                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Mode=OneWay}">
 			<Grid>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="1.8*"/>
+					<ColumnDefinition Width="2*"/>
 					<ColumnDefinition Width="1*"/>
 					<ColumnDefinition Width="1*"/>
 
@@ -69,13 +68,13 @@
 					<ColumnDefinition Width="1*"/>
 
 					<ColumnDefinition Width="1*"/>
-					<ColumnDefinition Width="1.8*"/>
+					<ColumnDefinition Width="2*"/>
 
 				</Grid.ColumnDefinitions>
 
 
 				<Grid.RowDefinitions>
-					<RowDefinition Height="1.8*"/>
+					<RowDefinition Height="2*"/>
 					<RowDefinition Height="1*"/>
 					<RowDefinition Height="1*"/>
 
@@ -88,7 +87,7 @@
 					<RowDefinition Height="1*"/>
 
 					<RowDefinition Height="1*"/>
-					<RowDefinition Height="1.8*"/>
+					<RowDefinition Height="2*"/>
 				</Grid.RowDefinitions>
 
 				<!--Push-->
@@ -278,7 +277,7 @@
 				</Border>
 
 				<!--Police-->
-				<Border Background="White" Grid.Row="10" Margin="0,1,1,0">
+				<Border Background="White" Grid.Row="10" >
 					<Image Source="pack://application:,,,/Resources/Materials/police.png"/>
 				</Border>
 
