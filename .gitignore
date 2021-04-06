@@ -9,3 +9,7 @@ DAL/bin/
 DAL/obj/
 BLL/bin/
 BLL/obj/
+GrpcService/bin/
+GrpcService/obj/
+Protos/bin/
+Protos/obj/
