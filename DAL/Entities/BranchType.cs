@@ -12,10 +12,11 @@ namespace DAL.Entities
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
-        [Index("IX_UniqueKeyString", IsUnique = true, Order = 1)]
         [MaxLength(100)]
         public string Name { get; set; }
+
         [Required]
         public int Quantity { get; set; }
     }
