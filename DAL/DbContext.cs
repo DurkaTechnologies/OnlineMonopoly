@@ -2,9 +2,10 @@
 using System.Data.Entity;
 using System.Linq;
 using DAL.Entities;
+
 namespace DAL
 {
-    public class MonopolyDbContext : System.Data.Entity.DbContext
+    public class MonopolyDbContext : DbContext
     {
         public MonopolyDbContext()
             : base("name=MonopolyDb")
