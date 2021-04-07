@@ -13,6 +13,7 @@ namespace WPFUI.Navigation
 		public static readonly string RecoverPageAlies = "RecoverPasswordPage";
 		public static readonly string SecondRecoverPageAlies = "SecondRecoverPage";
 		public static readonly string GeneralPageAlias = "GeneralPage";
+		public static readonly string SettingPageAlias  = "SettingPage";
 
 		private NavigationService navService;
 		private readonly PagesResolver resolver;
