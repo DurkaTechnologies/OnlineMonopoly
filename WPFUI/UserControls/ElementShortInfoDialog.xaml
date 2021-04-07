@@ -1,6 +1,7 @@
-﻿<UserControl x:Class="WPFUI.UserControls.SettingsControl"
+﻿<UserControl x:Class="WPFUI.UserControls.ElementShortInfoDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" Height="300" Width="200" Background="Transparent" >
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
+             Background="Transparent" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -12,7 +13,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Foreground="White" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="10,0,0,0">Apple</TextBlock>
+                <TextBlock Foreground="White" VerticalAlignment="Bottom" FontSize="15" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding FName}"></TextBlock>
                 <TextBlock Grid.Row="1" Foreground="White" VerticalAlignment="Top" FontSize="10"  Margin="10,0,0,0">blalbbllb</TextBlock>
             </Grid>
         </Border>
@@ -22,21 +23,25 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
                     <RowDefinition Height="9*"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.ColumnSpan="2" TextWrapping="Wrap" Foreground="Gray">saddaadsdsasdsdasaasdda</TextBlock>
-                <TextBlock  Grid.Row="2" Foreground="Gray">saddsdasaasdda</TextBlock>
-                <TextBlock  Grid.Row="4" Foreground="Gray">saddsdasaasdda</TextBlock>
-                <TextBlock  Grid.Row="3" Foreground="Gray">saddsdasaasdda</TextBlock>
+                <TextBlock  Margin="10,4,20,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Foreground="Gray"><Run Language="ru-ru" Text="Будуйте філіали, щоб збільшувати вартість ренту"/></TextBlock>
+                <TextBlock VerticalAlignment="Top" Margin="10,0,0,0" Grid.Row="2" Foreground="Gray"  >Вартість поля:</TextBlock>
+                <TextBlock VerticalAlignment="Top" Margin="10,0,0,0" Grid.Row="3" Foreground="Gray" >Викуп поля:</TextBlock>
+                <TextBlock VerticalAlignment="Top" Margin="10,0,0,0" Grid.Row="4" Foreground="Gray">Залог поля:</TextBlock>
+                <TextBlock VerticalAlignment="Top" Margin="10,0,0,0" Grid.Row="5" Foreground="Gray">Вартість филиала:</TextBlock>
                 <ListBox Grid.Row="1" Grid.ColumnSpan="2"></ListBox>
-                <TextBlock Grid.Column="1" Grid.Row="2" Foreground="Gray" >saddsda <Span>k</Span></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" Foreground="Gray">saddsda <Span>k</Span></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="4" Foreground="Gray">saddsda <Span>k</Span></TextBlock>
+                <TextBlock VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Foreground="Gray" Text="{Binding Price}"></TextBlock>
+                <TextBlock VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" Foreground="Gray" Text="{Binding Pledge}"></TextBlock>
+                <TextBlock VerticalAlignment="Top" Grid.Column="1" Grid.Row="4" Foreground="Gray" Text="{Binding Pledge}"></TextBlock>
+                <TextBlock VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" Foreground="Gray" Text="{Binding Upgrade}"></TextBlock>
             </Grid>
         </Border>
     </Grid>
