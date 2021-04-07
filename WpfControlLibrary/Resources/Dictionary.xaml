@@ -153,7 +153,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource DefFontColor}"/>
         <Setter Property="Margin" Value="0,5,0,0"/>
         <Setter Property="Grid.Column" Value="1"/>
     </Style>
@@ -196,30 +196,30 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DefContainer" TargetType="ListBoxItem">
-        <Setter Property="MinHeight" Value="30" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="BorderThickness" Value="6"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ListBoxItem">
-                    <Border SnapsToDevicePixels="true"
+	<Style x:Key="DefContainer" TargetType="ListBoxItem">
+		<Setter Property="MinHeight" Value="30" />
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+		<Setter Property="BorderThickness" Value="6"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListBoxItem">
+					<Border SnapsToDevicePixels="true"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Background" Value="#FFD814AE"/>
-                            <Setter Property="BorderBrush" Value="{StaticResource DefSecondBorderBrush}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+						<ContentPresenter />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsSelected" Value="true">
+							<Setter Property="Background" Value="#FFD814AE"/>
+							<Setter Property="BorderBrush" Value="{StaticResource DefSecondBorderBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
 	<Style x:Key="DefListBox" TargetType="ListBox">
 		<Setter Property="ItemContainerStyle" Value="{StaticResource DefContainer}"/>

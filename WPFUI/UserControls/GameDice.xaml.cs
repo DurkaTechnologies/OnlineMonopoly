@@ -43,6 +43,7 @@ namespace WPFUI.UserControls
 			DiceValueProperty = DependencyProperty.Register("DiceValue", typeof(int), typeof(GameDice),
 					new FrameworkPropertyMetadata(0));
 		}
+
 		public GameDice()
 		{
 			InitializeComponent();

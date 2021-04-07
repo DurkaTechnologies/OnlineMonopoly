@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 DataContext="{Binding RelativeSource={RelativeSource Self}}"
 			 x:Name="this">
+
+	<!--Width="256" Height="128"-->
+	
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -11,7 +14,7 @@
 
 		</ResourceDictionary>
 	</UserControl.Resources>
-	<Grid Background="White">
+	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*"/>
 			<ColumnDefinition Width="2*"/>
@@ -23,7 +26,8 @@
 		</Grid.RowDefinitions>
 
 		<Ellipse Grid.RowSpan="2" 
-				 Width="{Binding Path=ActualHeight, ElementName=this}" HorizontalAlignment="Right">
+				 Width="{Binding Path=ActualHeight, ElementName=this}"
+				 HorizontalAlignment="Right">
 			<Ellipse.Fill>
 				<ImageBrush ImageSource="{Binding Image}"/>
 			</Ellipse.Fill>
@@ -33,12 +37,16 @@
 				   Style="{StaticResource DefTextBlockStyle}" 
 				   FontSize="{Binding Path=FontSize, ElementName=this}"
 				   HorizontalAlignment="Left"
-				   Margin="8,0,0,0" Text="{Binding UserName}"/>
+				   VerticalAlignment="Bottom"
+				   Margin="8,0,0,0" Text="{Binding UserName}"
+				   Foreground="{StaticResource DefFontColor}"/>
 
 		<TextBlock Grid.Row="1"
 				   Style="{StaticResource DefTextBlockStyle}" 
 				   FontSize="{Binding Path=FontSize, ElementName=this}"
 				   HorizontalAlignment="Left"
-				   Margin="8,0,0,0" Text="{Binding UserTypeText}"/>
+				   VerticalAlignment="Top"
+				   Margin="8,0,0,0" Text="{Binding UserTypeText}"
+				   Foreground="{StaticResource DefBorderBrush}"/>
 	</Grid>
 </UserControl>

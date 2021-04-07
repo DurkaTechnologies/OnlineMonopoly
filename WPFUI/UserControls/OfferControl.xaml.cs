@@ -21,19 +21,220 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class OfferControl : UserControl, INotifyPropertyChanged
 	{
-		private ICollection<object> userElements = new ObservableCollection<object>();
+		public static DependencyProperty LeftUserMoneyProperty;
 
-		public IEnumerable<object> UserElements => userElements;
+		public int LeftUserMoney
+		{
+			get => (int)GetValue(LeftUserMoneyProperty);
+			set
+			{
+				SetValue(LeftUserMoneyProperty, value);
+				OnPropertyChanged();
+			}
+		}
+
+		#region Fields
+
+		private ICollection<UserElement> leftUserElements = new ObservableCollection<UserElement>();
+		private ICollection<UserElement> rightUserElements = new ObservableCollection<UserElement>();
+		
+		//private int leftUserMoney;
+		private int rightUserMoney;
+
+		private int allRightMoney;
+		private int allLeftMoney;
+
+		#endregion
+
+		static OfferControl() 
+		{
+			LeftUserMoneyProperty = DependencyProperty.Register("LeftUserMoney", typeof(int), typeof(OfferControl),
+						new FrameworkPropertyMetadata(0));
+		}
 
 		public OfferControl()
 		{
 			InitializeComponent();
 
+			AddLeftUserElement(new UserElement("SoftServe", 666, "pack://application:,,,/Resources/IT/softserve.png"));
+			AddLeftUserElement(new UserElement("Step", 666, "pack://application:,,,/Resources/IT/step.png"));
 
-			for (int i = 0; i < 5; i++)
+			AddRightUserElement(new UserElement("Riven", 666, "pack://application:,,,/Resources/Drinks/riven.png"));
+		}
+
+		#region Methods
+
+		public void AddLeftUserElement(UserElement element) 
+		{
+			leftUserElements.Add(element);
+			UpdateAllLeftMoney();
+		}
+
+		public void AddRightUserElement(UserElement element)
+		{
+			rightUserElements.Add(element);
+			UpdateAllRightMoney();
+		}
+
+		#endregion
+
+		#region Proporties
+
+		public IEnumerable<UserElement> LeftUserElements => leftUserElements;
+		public IEnumerable<UserElement> RightUserElements => rightUserElements;
+
+		//public int LeftUserMoney
+		//{
+		//	get => leftUserMoney;
+		//	set
+		//	{
+		//		LeftUserMoney = value;
+		//		OnPropertyChanged();
+		//	}
+		//}
+
+		public int RightUserMoney
+		{
+			get => rightUserMoney;
+			set
 			{
-				userElements.Add(new object());
+				rightUserMoney = value;
+				OnPropertyChanged();
 			}
+		}
+
+
+		public int AllLeftMoney
+		{
+			get => allLeftMoney;
+			set
+			{
+				allLeftMoney = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public int AllRightMoney
+		{
+			get => allRightMoney;
+			set
+			{
+				allRightMoney = value;
+				OnPropertyChanged();
+			}
+		}
+
+		#endregion
+
+		#region INotify
+
+		private void InitializePropertyChanged()
+		{
+			PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName.Equals(nameof(LeftUserMoney)))
+					UpdateAllLeftMoney();
+				
+				if (args.PropertyName.Equals(nameof(RightUserMoney)))
+					UpdateAllRightMoney();
+			};
+		}
+
+		private void UpdateAllLeftMoney()
+		{
+			AllLeftMoney = LeftUserMoney;
+
+			foreach (var item in leftUserElements)
+				AllLeftMoney += item.Price;
+		}
+
+		private void UpdateAllRightMoney() 
+		{
+			AllRightMoney = RightUserMoney;
+
+			foreach (var item in rightUserElements)
+				AllRightMoney += item.Price;
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged([CallerMemberName] string name = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+		}
+
+		#endregion
+	}
+
+	public class UserElement : INotifyPropertyChanged
+	{
+		#region Fields
+
+		private string title;
+		private int price;
+		private ImageSource image;
+		private string imageSource;
+
+		#endregion
+
+		#region Proporties
+
+
+		public string Title
+		{
+			get => title;
+			set
+			{
+				title = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public int Price
+		{
+			get => price;
+			set
+			{
+				price = value;
+				OnPropertyChanged();
+			}
+		}
+
+
+		public ImageSource Image
+		{
+			get => image;
+			set
+			{
+				image = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string ImageSource
+		{
+			get => imageSource;
+			set
+			{
+				imageSource = value;
+				OnPropertyChanged();
+				OnPropertyChanged(nameof(Image));
+			}
+		}
+
+		#endregion
+
+		public UserElement()
+		{
+			InitializePropertyChanged();
+		}
+
+		public UserElement(string title, int price, string image)
+		{
+			InitializePropertyChanged();
+			Title = title;
+			Price = price;
+			ImageSource = image;
 		}
 
 		#region INotify
@@ -42,17 +243,17 @@ namespace WPFUI.UserControls
 		{
 			PropertyChanged += (sender, args) =>
 			{
-				//if (args.PropertyName.Equals(nameof(ImageSource)))
-				//{
-				//	try
-				//	{
-				//		Image = new BitmapImage(new Uri(ImageSource));
-				//	}
-				//	catch (Exception e)
-				//	{
-				//		Console.WriteLine(e.Message);
-				//	}
-				//}
+				if (args.PropertyName.Equals(nameof(ImageSource)))
+				{
+					try
+					{
+						Image = new BitmapImage(new Uri(ImageSource));
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
 			};
 		}
 
@@ -66,3 +267,4 @@ namespace WPFUI.UserControls
 		#endregion
 	}
 }
+

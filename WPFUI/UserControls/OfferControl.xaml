@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" xmlns:luc="clr-namespace:WPFUI.UserControls.OfferControlAdditionals"
 			 DataContext="{Binding RelativeSource={RelativeSource Self}}"
 			 MaxWidth="2048" MaxHeight="2048"
-			 FontSize="14" x:Name="this">
+			 FontSize="20" x:Name="this">
 
 	<!--Width="512" Height="512"-->
 
@@ -42,6 +42,55 @@
 						</ControlTemplate>
 					</Setter.Value>
 				</Setter>
+			</Style>
+
+			<DataTemplate x:Key="UserElementsTemplate">
+				<Grid HorizontalAlignment="Left">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+
+					<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+										   Height="{Binding Path=ActualHeight, ElementName=LeftUser}"
+										   HorizontalAlignment="Left"
+										   Source="{Binding Image}" />
+
+					<TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource DefTextBlockStyle}"
+							   HorizontalAlignment="Left" Text="{Binding Title}" FontSize="14"/>
+
+					<TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource DefTextBlockStyle}"
+							   HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"
+							   Text="{Binding Price}" />
+				</Grid>
+			</DataTemplate>
+
+			<Style TargetType="ListBox">
+				<Setter Property="ItemContainerStyle" Value="{StaticResource ContainerStyle}"/>
+				<Setter Property="BorderThickness" Value="0"/>
+				<Setter Property="HorizontalContentAlignment" Value="Left"/>
+				<Setter Property="Padding" Value="18,8,0,0"/>
+				<Setter Property="BorderThickness" Value="0"/>
+				<Setter Property="ItemTemplate" Value="{StaticResource UserElementsTemplate}"/>
+			</Style>
+
+			<Style TargetType="ScrollViewer">
+				<Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+			</Style>
+
+			<Style TargetType="TextBlock" BasedOn="{StaticResource DefTextBlockStyle}">
+				<Setter Property="FontSize" Value="{Binding Path=FontSize, ElementName=this}" />
+			</Style>
+
+			<Style x:Key="AllSumMoney" TargetType="Image">
+				<Setter Property="Width" Value="16" />
+				<Setter Property="Height" Value="16" />
+				<Setter Property="Margin" Value="4,0,0,0" />
 			</Style>
 
 		</ResourceDictionary>
@@ -117,7 +166,7 @@
 
 				<luc:OfferUsersMoney Grid.Row="2" Grid.ColumnSpan="2" 
 									 Margin="32,4" FontSize="{Binding Path=FontSize, ElementName=this}"
-									 HorizontalAlignment="Left"/>
+									 HorizontalAlignment="Left" UserMoney="{Binding LeftUserMoney}"/>
 
 				<luc:OfferUsersMoney Grid.Column="2" Grid.Row="2" 
 									 Grid.ColumnSpan="2" Margin="32,4"
@@ -141,106 +190,30 @@
 
 				<!--Users Cards-->
 
-				<ScrollViewer Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
-							  VerticalScrollBarVisibility="Hidden">
-					<ListBox ItemsSource="{Binding UserElements}"
-							 ItemContainerStyle="{StaticResource ContainerStyle}"
-							 BorderThickness="0"
-							 HorizontalContentAlignment="Left"
-							 Padding="18,8,0,0">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid HorizontalAlignment="Left">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition />
-										<ColumnDefinition />
-									</Grid.ColumnDefinitions>
-
-									<Grid.RowDefinitions>
-										<RowDefinition />
-										<RowDefinition />
-									</Grid.RowDefinitions>
-
-									<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
-										   Height="{Binding Path=ActualHeight, ElementName=LeftUser}"
-										   HorizontalAlignment="Left"
-										   Source="pack://application:,,,/Resources/Cars/tata.png" />
-
-									<TextBlock Grid.Column="1" Grid.Row="0" 
-											   Style="{StaticResource DefTextBlockStyle}"
-											   HorizontalAlignment="Left">
-										TATA
-									</TextBlock>
-									<TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource DefTextBlockStyle}"
-											   HorizontalAlignment="Left"
-											   VerticalAlignment="Top" FontSize="12">
-										666
-									</TextBlock>
-
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
+				<ScrollViewer Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+					<ListBox ItemsSource="{Binding LeftUserElements}" />
 				</ScrollViewer>
 
-				<ScrollViewer Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"
-							  VerticalScrollBarVisibility="Hidden">
-					<ListBox ItemsSource="{Binding UserElements}"
-							 ItemContainerStyle="{StaticResource ContainerStyle}"
-							 BorderThickness="0"
-							 HorizontalContentAlignment="Left"
-							 Padding="18,8,0,0">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid HorizontalAlignment="Left">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition />
-										<ColumnDefinition />
-									</Grid.ColumnDefinitions>
-
-									<Grid.RowDefinitions>
-										<RowDefinition />
-										<RowDefinition />
-									</Grid.RowDefinitions>
-
-									<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
-										   Height="{Binding Path=ActualHeight, ElementName=LeftUser}"
-										   HorizontalAlignment="Left"
-										   Source="pack://application:,,,/Resources/Cars/tata.png" />
-
-									<TextBlock Grid.Column="1" Grid.Row="0" 
-											   Style="{StaticResource DefTextBlockStyle}"
-											   HorizontalAlignment="Left">
-										TATA
-									</TextBlock>
-									<TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource DefTextBlockStyle}"
-											   HorizontalAlignment="Left"
-											   VerticalAlignment="Top" FontSize="12">
-										666
-									</TextBlock>
-									
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
+				<ScrollViewer Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
+					<ListBox ItemsSource="{Binding RightUserElements}"/>
 				</ScrollViewer>
+				
+				<!--All Money-->
 
-				<TextBlock Grid.Column="0" Grid.Row="4"
-						   Style="{StaticResource DefTextBlockStyle}" 
-						   FontSize="{Binding Path=FontSize, ElementName=this}"
-						   Text="10232"/>
+				<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Text="{Binding AllLeftMoney}">
+					<Span>
+						<Image Source="../Resources/UserControlsImg/UAH.png" 
+							   Style="{StaticResource AllSumMoney}" />
+					</Span>
+				</TextBlock>
 
-				<TextBlock Grid.Column="3" Grid.Row="4"
-						   Style="{StaticResource DefTextBlockStyle}" 
-						   FontSize="{Binding Path=FontSize, ElementName=this}"
-						   Text="10232" />
-
-				<TextBlock Grid.Column="1" Grid.Row="4"
-						   Grid.ColumnSpan="2"
-						   Style="{StaticResource DefTextBlockStyle}" 
-						   FontSize="{Binding Path=FontSize, ElementName=this}"
-						   Foreground="{StaticResource DefBorderBrush}"
-						   Text="All Sum" />
+				<TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Text="{Binding AllRightMoney}">
+					<Span>
+						<Image Source="../Resources/UserControlsImg/UAH.png" 
+							   Width="16" Height="16" Margin="6,0,0,0" />
+					</Span>
+				</TextBlock>
+				
 			</Grid>
 		</Border>
 	</Grid>

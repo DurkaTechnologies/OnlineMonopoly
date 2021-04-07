@@ -20,23 +20,20 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 	/// </summary>
 	public partial class OfferUsersMoney : UserControl, INotifyPropertyChanged
 	{
-		private int userMoney;
+		#region Fields
+
+		public static DependencyProperty UserMoneyProperty;
+		//private int userMoney;
 		private bool vis;
 
-		public int UserMoney 
-		{
-			get => userMoney;
-			set 
-			{
-				userMoney = value;
-				OnPropertyChanged();
-			}
-		}
+		#endregion
 
-		public bool Vis 
+		#region Proporties
+
+		public bool Vis
 		{
 			get => vis;
-			set 
+			set
 			{
 				vis = value;
 				OnPropertyChanged();
@@ -46,11 +43,31 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 
 		public string Hidden => (Vis) ? "Visible" : "Hidden";
 
+		public int UserMoney
+		{
+			get => (int)GetValue(UserMoneyProperty);
+			set
+			{
+				SetValue(UserMoneyProperty, value);
+				OnPropertyChanged();
+			}
+		}
+
+		#endregion
+
+		static OfferUsersMoney()
+		{
+			UserMoneyProperty = DependencyProperty.Register("UserMoney", typeof(int), typeof(OfferUsersMoney),
+					new FrameworkPropertyMetadata(0));
+		}
+
 		public OfferUsersMoney()
 		{
 			InitializeComponent();
 			Vis = false;
 		}
+
+		#region Methods
 
 		private void RoundButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -62,25 +79,9 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 			Vis = false;
 		}
 
-		#region INotify
+		#endregion
 
-		private void InitializePropertyChanged()
-		{
-			PropertyChanged += (sender, args) =>
-			{
-				//if (args.PropertyName.Equals(nameof(ImageSource)))
-				//{
-				//	try
-				//	{
-				//		Image = new BitmapImage(new Uri(ImageSource));
-				//	}
-				//	catch (Exception e)
-				//	{
-				//		Console.WriteLine(e.Message);
-				//	}
-				//}
-			};
-		}
+		#region INotify
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

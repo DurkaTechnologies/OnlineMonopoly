@@ -37,7 +37,7 @@
 			       MaxHeight="{Binding Path=FontSize, ElementName=money}" />
 		</uc:RoundButton>
 
-		<TextBox Grid.Column="1" Grid.ColumnSpan="2" 
+		<uc:CustomTextBox Grid.Column="1" Grid.ColumnSpan="2" 
 						  Background="White" 
 						  Visibility="{Binding Hidden}"
 						  VerticalAlignment="Center"
@@ -48,6 +48,6 @@
 						  MouseLeave="CustomTextBox_MouseLeave"
 						  Text="{Binding UserMoney, UpdateSourceTrigger=PropertyChanged}">
 
-		</TextBox>
+		</uc:CustomTextBox>
 	</Grid>
 </UserControl>

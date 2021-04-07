@@ -66,6 +66,7 @@
     <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
     <Resource Include="Resources\UserControlsImg\diceblue.png" />
+    <Resource Include="Resources\UserControlsImg\pen.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\UserControlsImg\UAH.png" />
@@ -89,6 +90,7 @@
     <Resource Include="Resources\Materials\police.png" />
     <Resource Include="Resources\Materials\relax.png" />
     <Resource Include="Resources\Materials\revolver.png" />
+    <Resource Include="Resources\UserControlsImg\UAHGRIVNA.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -120,5 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Views\*.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\UserControlsImg\pen.png" />
+    <None Remove="Resources\UserControlsImg\UAHGRIVNA.png" />
   </ItemGroup>
 </Project>

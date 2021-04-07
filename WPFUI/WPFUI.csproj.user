@@ -8,12 +8,18 @@
     <Compile Update="UserControls\OfferControlAdditionals\OfferUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\OfferControlAdditionals\OfferUsersMoney.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UserControls\OfferControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\OfferControlAdditionals\OfferUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\OfferControlAdditionals\OfferUsersMoney.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
