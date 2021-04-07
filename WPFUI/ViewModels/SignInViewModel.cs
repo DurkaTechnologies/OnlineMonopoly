@@ -13,33 +13,40 @@ namespace WPFUI.ViewModels
 {
 	class SignInViewModel : BaseTCPViewModel
 	{
+		#region Fields
+
+		private IPasswordSupplier suppliear;
 		private string login;
 		private string password;
 		private bool isLoginCorrect;
 		private bool isPasswordCorrect;
 		private string errorText;
-		CancellationTokenSource cancelTokenSource;
 
 		private Command signInCommand;
 		private Command goMainMenuCommand;
 		private Command goRecoverCommand;
-		public SignInViewModel()
+
+		#endregion
+
+		public SignInViewModel(IPasswordSupplier suppliear)
 		{
+			this.suppliear = suppliear;
 			ParseConfig();
-			//ConnectClient();
 
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;
+
 			InitializeCommands();
 			InitializePropertyChanged();
 		}
+
+		#region Initialize
 
 		private void InitializeCommands()
 		{
 			signInCommand = new DelegateCommand(SignIn, SignInCanExecute);
 			goMainMenuCommand = new DelegateCommand(GoToMainPage, () => true);
 			goRecoverCommand = new DelegateCommand(GoToRecoverPage, () => true);
-
 		}
 
 		private void InitializePropertyChanged()
@@ -65,11 +72,15 @@ namespace WPFUI.ViewModels
 						ErrorText = "";
 					else if (IsLoginCorrect && !IsPasswordCorrect)
 						ErrorText = "Password lenght not correct";
-					else if (!IsLoginCorrect && !IsPasswordCorrect)
+					else if (!IsLoginCorrect && IsPasswordCorrect)
 						ErrorText = "Password and Login incorrect";
 				}
 			};
 		}
+
+		#endregion
+
+		#region Proporties
 
 		public ICommand SignInCommand => signInCommand;
 		public ICommand GoMainMenuCommand => goMainMenuCommand;
@@ -107,14 +118,19 @@ namespace WPFUI.ViewModels
 
 		}
 
+		#endregion
+
+		#region Methods
+
+		public void UpdatePassword()
+		{
+			Password = suppliear.GetPassword();
+		}
+
 		private void SignIn()
 		{
-			//BinaryFormatter formatter = new BinaryFormatter();
-			//formatter.Serialize(client.GetStream(), new ClientUserDataCommand(Login, UserServiceDapper.ComputeSha256Hash(Password)));
-
-			cancelTokenSource = new CancellationTokenSource();
-			CancellationToken token = cancelTokenSource.Token;
-			Task.Run(() => Listen(token), token);
+			/*get password method from passwordbox*/
+			ErrorText = suppliear.GetPassword();
 		}
 
 		public void GoToMainPage()
@@ -126,38 +142,7 @@ namespace WPFUI.ViewModels
 			Navigation.Navigation.Navigate(Navigation.Navigation.RecoverPageAlies, null);
 		}
 
-		private void Listen(CancellationToken token)
-		{
-
-			while (true)
-			{
-				try
-				{
-					if (token.IsCancellationRequested)
-						return;
-
-					//BinaryFormatter formatter = new BinaryFormatter();
-					//ServerUserDataCommand command = (ServerUserDataCommand)formatter.Deserialize(client.GetStream());
-
-					//if (!String.IsNullOrWhiteSpace(command.Login))
-					//{
-					//	client.Close();
-					//	//Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background,
-					//	//		   new Action(() =>
-					//	//		   Navigation.Navigation.Navigate(Navigation.Navigation.MainPageAlias,
-					//	//		   new MainPageViewModel(command.Login))));
-					//}
-					//else
-					//	Password = "";
-					//return;
-				}
-				catch (Exception)
-				{
-				}
-			}
-		}
-
-		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
+		#endregion
 
 		#region IsCorrect
 		public bool IsLoginCorrect
@@ -182,5 +167,11 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
+		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
+	}
+
+	public interface IPasswordSupplier
+	{
+		string GetPassword();
 	}
 }
