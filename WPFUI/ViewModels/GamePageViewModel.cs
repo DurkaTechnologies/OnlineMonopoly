@@ -28,11 +28,8 @@ namespace WPFUI.ViewModels
 
 		public GamePageViewModel()
 		{
-
-
 			InitializeCommands();
 			InitializePropertyChanged();
-		
 
 
 			channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -58,7 +55,7 @@ namespace WPFUI.ViewModels
 					{
 						p = false;
 
-						//await Start();
+						await Start();
 					}
 
 					sendCommand.RaiseCanExecuteChanged();
