@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class User
+	public class User
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [Index("IX_UniqueKeyString", IsUnique = true, Order = 1)]
-        [MaxLength(100)]
+        [StringLength(100)]
         public string Login { get; set; }
 
         [Required]
@@ -24,8 +19,7 @@ namespace DAL
         public string Password { get; set; }
 
         [Required]
-        [MaxLength(150)]
-        [Index("IX_UniqueKeyString", IsUnique = true, Order = 2)]
+        [StringLength(150)]
         public string Email { get; set; }
 
         [DefaultValue(0)]

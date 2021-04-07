@@ -18,6 +18,9 @@ namespace DAL.Entities
         public string Name { get; set; }
 
         [Required]
+        public string Color { get; set; }
+
+        [Required]
         public int Quantity { get; set; }
     }
 }
