@@ -10,10 +10,30 @@ namespace WPFUI.Views
 	static class ColorGradientGenerator
 	{
 		public static int ColorMax = 255;
+		private static List<Color> colors;
 
 		static ColorGradientGenerator()
 		{
+			colors = new List<Color>();
+			colors.Add(Color.FromRgb(22, 26, 27));
+			colors.Add(Color.FromRgb(205, 56, 71));
+			colors.Add(Color.FromRgb(36,148, 226));
+			colors.Add(Color.FromRgb(139, 203, 90));
+			colors.Add(Color.FromRgb(143, 89, 181));
+			colors.Add(Color.FromRgb(191, 132, 232));
+		}
 
+		public static Color GetColorFromLib(int id = 0) 
+		{
+			if (id < 0 || id > colors.Count - 1)
+				return colors[0];
+
+			return colors[id];
+		}
+
+		public static SolidColorBrush GetColorBrushFromLib(int id = 0)
+		{
+			return new SolidColorBrush(GetColorFromLib(id));
 		}
 
 		public static SolidColorBrush GenerateDarkerColor(Color color)
