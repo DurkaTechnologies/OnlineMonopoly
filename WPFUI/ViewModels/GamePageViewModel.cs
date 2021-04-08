@@ -20,12 +20,29 @@ namespace WPFUI.ViewModels
 	{
 		#region Fields
 
-		private ICollection<ShortInfo> users;
+		private ObservableCollection<ShortInfo> users;
 		private int usersCount;
+		private DispatcherTimer timer = new DispatcherTimer();
+		private int time;
+		private int currentUser = 0;
+
+		/*def rotate time for test*/
+
+		private const int TIME = 1;
 
 		#endregion
 
 		#region Proporties
+
+		public int CurrentUser
+		{
+			get => currentUser;
+			set
+			{
+				currentUser = value;
+				OnPropertyChanged();
+			}
+		}
 
 		public IEnumerable<ShortInfo> Users => users;
 
@@ -54,17 +71,41 @@ namespace WPFUI.ViewModels
 			user.CurrentUser = false;
 		}
 
+		private void TimerTick(object sender, EventArgs e)
+		{
+			if (time == TIME)
+			{
+				time = 0;
+
+				users[CurrentUser].CurrentUser = false;
+				CurrentUser++;
+
+				if (CurrentUser == UsersCount)
+					CurrentUser = 0;
+
+				users[CurrentUser].CurrentUser = true;
+			}
+			users[CurrentUser].UserTime = TIME - time++;
+		}
+
 		#endregion
 
 		public GamePageViewModel()
 		{
 			users = new ObservableCollection<ShortInfo>();
 
-			AddUser(new ShortInfo() { UserName = "Pozhilou", UserMoney = 666, ImageSource = "https://pdacdn.com/photo/1570603604764.jpg"});
+			AddUser(new ShortInfo() { UserName = "Pozhilou", UserMoney = 666, ImageSource = "https://pdacdn.com/photo/1570603604764.jpg" });
 			AddUser(new ShortInfo() { UserName = "KazzModan", UserMoney = 999, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829448089928597516/38bb8d4c3816590e.png" });
 			AddUser(new ShortInfo() { UserName = "deathCodeDevelop", UserMoney = 1200, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829441923084320810/sticker.png" });
 			AddUser(new ShortInfo() { UserName = "Yulia", UserMoney = 1333, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829308495093432430/unknown.png" });
 			AddUser(new ShortInfo() { UserName = "Programist", UserMoney = 1422, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829297626120716308/F56E508D-C792-4715-A94A-DD4C878BD73B.jpg" });
+
+			/*Test Rotate*/
+
+			users[0].CurrentUser = true;
+			timer.Tick += TimerTick;
+			timer.Interval = new TimeSpan(0, 0, 1);
+			timer.Start();
 		}
 
 		public GamePageViewModel(object obj)
