@@ -6,7 +6,7 @@
       xmlns:uc="clr-namespace:WPFUI.UserControls" 
 	  xmlns:uc1="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
 	  MinHeight="550" MinWidth="900"
-      Title="GamePage" Loaded="Page_Loaded" Width="1920" Height="1080">
+      Title="GamePage" Loaded="Page_Loaded" MaxWidth="1920" MaxHeight="1080">
 
 	<!--Width="1920" Height="1080"-->
 	
@@ -31,18 +31,18 @@
 			<Thickness x:Key="MarginBottom" Bottom="0" Right="{StaticResource DefMargin}" 
                    Top="{StaticResource DefMargin}" Left="{StaticResource DefMargin}"/>
 
-			<Style x:Key="ShortInfoStyle" TargetType="uc:ShortInfo">
-				<Setter Property="Margin" Value="-8,0" />
+			<Style x:Key="ShortInfoStyle"  TargetType="uc:ShortInfo">
+				<Setter Property="Margin" Value="0, 8" />
 
 				<Style.Triggers>
-					<DataTrigger Binding="{Binding CurrentUser}" Value="False">
-						<Setter Property="Margin" Value="8" />
+					<DataTrigger Binding="{Binding CurrentUser}" Value="True">
+						<Setter Property="Margin" Value="-8, 0" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</ResourceDictionary>
 	</Page.Resources>
-	<Grid Background="DimGray">
+	<Grid Background="{StaticResource GamePageBackground}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*"/>
 			<ColumnDefinition Width="4*"/>
@@ -54,8 +54,9 @@
 			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
 
-		<Border Grid.Column="1" Grid.Row="1" 
-                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Mode=OneWay}">
+		<Border Grid.Column="1" Grid.Row="1"
+                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Mode=OneWay}"
+				HorizontalAlignment="Left">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="2*"/>
@@ -382,5 +383,22 @@
 
 			</Grid>
 		</Border>
+		
+		<!--Users Info-->
+
+		<ItemsControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Users}" HorizontalAlignment="Right" Margin="0,0,16,0">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Rows="{Binding UsersCount}">
+						<UniformGrid.Resources>
+							<Style TargetType="{x:Type uc:ShortInfo}" BasedOn="{StaticResource ShortInfoStyle}">
+								
+							</Style>
+						</UniformGrid.Resources>
+					</UniformGrid>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+
 	</Grid>
 </Page>

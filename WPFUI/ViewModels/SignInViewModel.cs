@@ -11,7 +11,7 @@ using WPFUI.Navigation;
 
 namespace WPFUI.ViewModels
 {
-	class SignInViewModel : BaseTCPViewModel
+	class SignInViewModel : BaseViewModel
 	{
 		#region Fields
 
@@ -31,7 +31,6 @@ namespace WPFUI.ViewModels
 		public SignInViewModel(IPasswordSupplier suppliear)
 		{
 			this.suppliear = suppliear;
-			ParseConfig();
 
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;
