@@ -64,13 +64,13 @@
             </TextBox.Style>
         </uc:CustomTextBox>
 
-        <TextBlock Grid.Row="5" Text="Phone Number" Style="{StaticResource DefTextBlockStyle}"/>
+        <TextBlock Grid.Row="5" Text="Email" Style="{StaticResource DefTextBlockStyle}"/>
         <uc:CustomTextBox Grid.Row="6"  RenderTransform="{StaticResource RightTransform}" 
-                              Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}">
+                              Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
                 <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsPhoneNumberCorrect}" Value="False">
+						<DataTrigger Binding="{Binding IsEmailCorrect}" Value="False">
                             <Setter Property="SecondBorderBrush" Value="{StaticResource MainDarkRed}"/>
                             <Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
                         </DataTrigger>

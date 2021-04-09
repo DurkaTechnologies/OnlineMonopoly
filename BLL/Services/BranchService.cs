@@ -4,7 +4,7 @@ using DAL;
 using DAL.Entities;
 using System.Collections.Generic;
 
-namespace BLL
+namespace BLL.Services
 {
 	public interface IBranchService
     {
@@ -15,7 +15,7 @@ namespace BLL
         BranchDTO Find(string name);
     }
 
-    class BranchService : IBranchService
+    public class BranchService : IBranchService
     {
         private UnitOfWork repositories;
         private IMapper mapper;

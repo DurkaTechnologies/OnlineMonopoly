@@ -175,6 +175,9 @@ namespace WPFUI.ViewModels
 		{
 			InitializeCommands();
 			InitializePropertyChanged();
+      
+			InitializeCommands();
+			InitializePropertyChanged();
 
 			channel = GrpcChannel.ForAddress("https://localhost:5001");
 			client = new ChatRoom.ChatRoomClient(channel);
@@ -196,7 +199,6 @@ namespace WPFUI.ViewModels
 		AsyncDuplexStreamingCall<Message, Message> chat;
 		ObservableCollection<string> messages;
 		bool p = true;
-
 		#endregion
 
 		#region Proporties

@@ -6,7 +6,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GrpcChatServer
+namespace GrpcService
 {
     public class ChatRoom
     {

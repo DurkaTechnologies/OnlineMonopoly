@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Grpc.Net.Client;
+using SignUp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,23 +18,28 @@ namespace WPFUI.ViewModels
 	{
 		private string login;
 		private string password;
-		private string phoneNumber;
-	
+		private string email;
+
 		private bool isLoginCorrect;
 		private bool isPasswordCorrect;
-		private bool isPhoneNumberCorrect;
+		private bool isEmailCorrect;
 
 		private Command signUpCommand;
 		private Command goMainMenuCommand;
 		private bool registerDone;
+		GrpcChannel channel;
+		Register.RegisterClient client;
 
 		public SignUpViewModel()
 		{
+			channel = GrpcChannel.ForAddress("https://localhost:5001");
+			client = new Register.RegisterClient(channel);
+
 			InitializeCommands();
 			InitializePropertyChanged();
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;
-			IsPhoneNumberCorrect = false;
+			IsEmailCorrect = false;
 			RegisterDone = false;
 		}
 
@@ -42,11 +51,12 @@ namespace WPFUI.ViewModels
 
 		private void InitializePropertyChanged()
 		{
-			PropertyChanged += (sender, args) =>
+			PropertyChanged += async (sender, args) =>
 			{
 				if (args.PropertyName.Equals(nameof(Login)))
 				{
-
+        	IsLoginCorrect = (await client.CheckLoginAsync(new Login() { Login_ = login })).Correct_;
+					signUpCommand.RaiseCanExecuteChanged();
 				}
 
 				if (args.PropertyName.Equals(nameof(Password)))
@@ -55,8 +65,9 @@ namespace WPFUI.ViewModels
 					signUpCommand.RaiseCanExecuteChanged();
 				}
 
-				if (args.PropertyName.Equals(nameof(PhoneNumber)))
+				if (args.PropertyName.Equals(nameof(Email)))
 				{
+					IsEmailCorrect = !String.IsNullOrWhiteSpace(Email);
 					signUpCommand.RaiseCanExecuteChanged();
 				}
 			};
@@ -67,7 +78,19 @@ namespace WPFUI.ViewModels
 
 		private async void SignUpAsync()
 		{
+			bool result = (await client.SendDataAsync(new RegInfo()
+			{
+				Login = Login,
+				Password = ComputeSha256Hash(Password),
+				Email = Email,
+			})).Correct_;
 
+			if (result)
+			{
+				RegisterDone = true;
+				await Task.Delay(1500);
+				GoToMainMenu();
+			}
 		}
 
 		public void GoToMainMenu()
@@ -75,7 +98,7 @@ namespace WPFUI.ViewModels
 			Navigation.Navigation.Navigate(Navigation.Navigation.MainMenuAlias, null);
 		}
 
-		private bool SignUpCanExecute() => IsLoginCorrect && IsPasswordCorrect && IsPhoneNumberCorrect;
+		private bool SignUpCanExecute() => IsLoginCorrect && IsPasswordCorrect && IsEmailCorrect;
 
 		#region Properties
 		public string Login
@@ -98,26 +121,12 @@ namespace WPFUI.ViewModels
 			}
 		}
 
-		public string PhoneNumber
+		public string Email
 		{
-			get => phoneNumber;
+			get => email;
 			set
 			{
-				if (value.Length > 12)
-					return;
-
-				if (value.Length < phoneNumber?.Length)
-				{
-					if (phoneNumber.Length == 4)
-						value = value.Remove(2);
-					if (phoneNumber.Length == 8)
-						value = value.Remove(6);
-				}
-				else if (value.Length == 3)
-					value += '-';
-				else if (value.Length == 7)
-					value += '-';
-				phoneNumber = value;
+				email = value;
 				OnPropertyChanged();
 			}
 		}
@@ -145,12 +154,12 @@ namespace WPFUI.ViewModels
 			}
 		}
 
-		public bool IsPhoneNumberCorrect
+		public bool IsEmailCorrect
 		{
-			get => isPhoneNumberCorrect;
+			get => isEmailCorrect;
 			set
 			{
-				isPhoneNumberCorrect = value;
+				isEmailCorrect = value;
 				OnPropertyChanged();
 			}
 		}
@@ -165,5 +174,18 @@ namespace WPFUI.ViewModels
 			}
 		}
 		#endregion
+
+		public static string ComputeSha256Hash(string data)
+		{
+			using (SHA256 sha256Hash = SHA256.Create())
+			{
+				byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(data));
+				StringBuilder builder = new StringBuilder();
+
+				for (int i = 0; i < bytes.Length; i++)
+					builder.Append(bytes[i].ToString("x2"));
+				return builder.ToString();
+			}
+		}
 	}
 }

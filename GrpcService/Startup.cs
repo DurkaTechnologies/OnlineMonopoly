@@ -1,13 +1,10 @@
-﻿using GrpcChatServer;
+﻿using GrpcService;
+using GrpcService.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GrpcService
 {
@@ -34,6 +31,8 @@ namespace GrpcService
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapGrpcService<ChatService>();
+				endpoints.MapGrpcService<RegisterService>();
+				endpoints.MapGrpcService<LoginService>();
 
 				endpoints.MapGet("/", async context =>
 				{

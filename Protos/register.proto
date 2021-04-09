@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+package SignUp;
+
+service Register {
+  rpc SendData (RegInfo) returns (Correct) {}
+  rpc CheckLogin (Login) returns (Correct) {}
+}
+
+message Correct {
+  bool correct = 1;
+}
+
+message Login {
+  string login = 1;
+}
+
+message RegInfo {
+  string login = 1;
+  string password = 2;
+  string email = 3;
+}

@@ -7,7 +7,7 @@ using Grpc.Core;
 
 using Chat;
 
-namespace GrpcChatServer
+namespace GrpcService.Services
 {
     public class ChatService : Chat.ChatRoom.ChatRoomBase
     {
