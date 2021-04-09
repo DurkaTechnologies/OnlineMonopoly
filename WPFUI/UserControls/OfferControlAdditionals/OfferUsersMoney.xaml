@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WPFUI.UserControls.OfferControlAdditionals.OfferUsersMoney"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
+			 DataContext="{Binding RelativeSource={RelativeSource Self}}"
+			 x:Name="this">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/WpfControlLibrary;component/Resources/Dictionary.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+
+		</ResourceDictionary>
+	</UserControl.Resources>
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<Image Source="../../Resources/UserControlsImg/UAHGRIVNA.png"
+			   Width="{Binding ActualHeight, ElementName=this}"
+			   Height="{Binding ActualHeight, ElementName=this}"
+			   HorizontalAlignment="Right" />
+
+		<TextBlock Grid.Column="1" 
+				   Style="{StaticResource DefTextBlockStyle}" 
+				   FontSize="{Binding Path=FontSize, ElementName=this}"
+				   Margin="8,0"
+				   Text="{Binding UserMoney}" />
+
+		<uc:RoundButton Grid.Column="2" VerticalAlignment="Center" 
+						ButtonThickness="0" Style="{x:Null}"
+						Click="RoundButton_Click">
+			<Image Source="../../Resources/UserControlsImg/pen.png"
+			       MaxWidth="{Binding Path=FontSize, ElementName=this}" 
+			       MaxHeight="{Binding Path=FontSize, ElementName=this}" />
+		</uc:RoundButton>
+
+		<uc:CustomTextBox Grid.Column="1" Grid.ColumnSpan="2" Background="White" 
+						  Visibility="{Binding Hidden}" VerticalAlignment="Center"
+						  FontSize="{Binding Path=FontSize, ElementName=this}"
+						  BorderBrush="{StaticResource DefFontColor}"
+						  BorderThickness="2" Margin="4,4,0,4"
+						  MouseLeave="CustomTextBox_MouseLeave"
+						  Text="{Binding UserMoney, UpdateSourceTrigger=PropertyChanged}" />
+
+	</Grid>
+</UserControl>

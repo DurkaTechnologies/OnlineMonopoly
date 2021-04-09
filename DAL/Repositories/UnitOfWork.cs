@@ -8,11 +8,13 @@ namespace DAL
 {
     public class UnitOfWork : IDisposable
     {
-        private MonopolyDbContext context = new MonopolyDbContext();
+        private MonopolyDbContext context = new MonopolyDbContext(DbContextOptions.GetOptions());
+
         private GenericRepository<Branch> branchRepository;
         private GenericRepository<BranchType> branchTypeRepository;
         private GenericRepository<RentSetting> rentRepository;
         private GenericRepository<User> userRepository;
+
         public GenericRepository<Branch> BranchRepository
         {
             get

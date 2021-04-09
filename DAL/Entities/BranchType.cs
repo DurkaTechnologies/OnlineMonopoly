@@ -10,13 +10,24 @@ namespace DAL.Entities
 {
     public class BranchType
     {
+		public BranchType()
+		{
+            Branches = new HashSet<Branch>();
+        }
+
         [Key]
         public int Id { get; set; }
+
         [Required]
-        [Index("IX_UniqueKeyString", IsUnique = true, Order = 1)]
         [MaxLength(100)]
         public string Name { get; set; }
+
+        [Required]
+        public string Color { get; set; }
+
         [Required]
         public int Quantity { get; set; }
+
+        public virtual ICollection<Branch> Branches { get; set; }
     }
 }

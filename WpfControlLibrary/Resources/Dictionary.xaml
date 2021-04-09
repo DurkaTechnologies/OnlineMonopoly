@@ -3,13 +3,21 @@
                     xmlns:local="clr-namespace:UIWPF.UserControls">
     <SolidColorBrush x:Key="PageBackground" Color="#4CFFFFFF"/>
 
-	<!--Player Colors-->	
+	<!--Player Colors-->
+
+	<LinearGradientBrush x:Key="DefPlayer">
+		<GradientStop Color="#161a1b" Offset="0"/>
+		<GradientStop Color="#161a1b" Offset="1"/>
+	</LinearGradientBrush>
+
+	<SolidColorBrush x:Key="Player" Color="#161a1b" />
 	<SolidColorBrush x:Key="PlayerRed" Color="#cd3847" />
 	<SolidColorBrush x:Key="PlayerBlue" Color="#2494e2" />
 	<SolidColorBrush x:Key="PlayerGreen" Color="#8bcb5a" />
 	<SolidColorBrush x:Key="PlayerPurple" Color="#8f59b5" />
 	<SolidColorBrush x:Key="PlayerBonus" Color="#bf84e8" />
-		
+
+	<SolidColorBrush x:Key="GamePageBackground" Color="#262c2f"/>
     <SolidColorBrush x:Key="WhiteBackground" Color="WhiteSmoke"/>
     <SolidColorBrush x:Key="GreenBackground" Color="#FF94D34A"/>
     <SolidColorBrush x:Key="MagentaBackground" Color="#FFBD80F6"/>
@@ -36,7 +44,7 @@
 	<SolidColorBrush x:Key="TransBlackBack" Color="#3F000000"/>
 	<SolidColorBrush x:Key="TransGrayBack" Color="#7F000000"/>
 
-    <DropShadowEffect x:Key="DefShadow" Direction="270" BlurRadius="10" />
+    <DropShadowEffect x:Key="DefShadow" Direction="270" BlurRadius="10" ShadowDepth="2" />
     <DropShadowEffect x:Key="DefRoundShadow" BlurRadius="10"  ShadowDepth="-10" Color="Gray"/>
 
     <Color x:Key="DefGreenColor">#FF65C363</Color>
@@ -44,16 +52,25 @@
     <Color x:Key="DefCyanColor">#FF64D9E3</Color>
     <SolidColorBrush x:Key="DefCyanBrush" Color="{StaticResource DefCyanColor}"/>
 
+	<SolidColorBrush x:Key="DefLineGradient" Color="#7F000000"/>
 
-    <LinearGradientBrush x:Key="DefLineGradient">
+	<!--<LinearGradientBrush x:Key="DefLineGradient">
         <GradientStop Color="#00000000"/>
         <GradientStop Color="#B2000000" Offset="0.4"/>
         <GradientStop Color="Black" Offset="0.5"/>
         <GradientStop Color="#B2000000" Offset="0.6"/>
         <GradientStop Color="#00000000" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="DefWhiteLineGradient">
+	</LinearGradientBrush>-->
+		
+	<!--<LinearGradientBrush x:Key="DefLineGradient">
+		<GradientStop Color="#00000000"/>
+		<GradientStop Color="#B2000000" Offset="0.4"/>
+		<GradientStop Color="Black" Offset="0.5"/>
+		<GradientStop Color="#B2000000" Offset="0.6"/>
+		<GradientStop Color="#00000000" Offset="1"/>
+	</LinearGradientBrush>-->
+		
+	<LinearGradientBrush x:Key="DefWhiteLineGradient">
         <GradientStop Color="#00F0F8FF"/>
         <GradientStop Color="#B2F0F8FF" Offset="0.4"/>
         <GradientStop Color="AliceBlue" Offset="0.5"/>
@@ -144,7 +161,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource DefFontColor}"/>
         <Setter Property="Margin" Value="0,5,0,0"/>
         <Setter Property="Grid.Column" Value="1"/>
     </Style>
@@ -187,30 +204,30 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DefContainer" TargetType="ListBoxItem">
-        <Setter Property="MinHeight" Value="30" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="BorderThickness" Value="6"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ListBoxItem">
-                    <Border SnapsToDevicePixels="true"
+	<Style x:Key="DefContainer" TargetType="ListBoxItem">
+		<Setter Property="MinHeight" Value="30" />
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+		<Setter Property="BorderThickness" Value="6"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListBoxItem">
+					<Border SnapsToDevicePixels="true"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="true">
-                            <Setter Property="Background" Value="#FFD814AE"/>
-                            <Setter Property="BorderBrush" Value="{StaticResource DefSecondBorderBrush}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+						<ContentPresenter />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsSelected" Value="true">
+							<Setter Property="Background" Value="#FFD814AE"/>
+							<Setter Property="BorderBrush" Value="{StaticResource DefSecondBorderBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
 	<Style x:Key="DefListBox" TargetType="ListBox">
 		<Setter Property="ItemContainerStyle" Value="{StaticResource DefContainer}"/>

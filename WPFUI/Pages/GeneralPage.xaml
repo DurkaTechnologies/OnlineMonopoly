@@ -42,7 +42,7 @@
 
             <Style x:Key="DefBorderStyle" TargetType="Border">
                 <Setter Property="Background" Value="#FF62CBAD"/>
-                <Setter Property="BorderBrush" Value="{StaticResource InversePageBackground}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource DefFontColor}"/>
                 <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="CornerRadius" Value="8"/>
                 <Setter Property="Effect" Value="{StaticResource DefShadow}"/>
@@ -53,16 +53,17 @@
 
 	<Grid Background="{StaticResource DefPageBackground}">
 		<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
 			<RowDefinition Height="86"/>
 			<RowDefinition Height="2*"/>
-			<RowDefinition Height="3*"/>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="2.5*"/>
 		</Grid.RowDefinitions>
 
 		<!--Burger Button-->
@@ -74,14 +75,14 @@
 				Style="{StaticResource ShopaStyle}" Height="86" Panel.ZIndex="1" VerticalAlignment="Top">
 			<Grid>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="1*"/>
 					<ColumnDefinition Width="2*"/>
 					<ColumnDefinition Width="2*"/>
 					<ColumnDefinition Width="1*"/>
 					<ColumnDefinition Width="1.5*"/>
 					<ColumnDefinition Width="1.5*"/>
-					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="0.4*"/>
 				</Grid.ColumnDefinitions>
 
 				<Grid.RowDefinitions>
@@ -97,7 +98,7 @@
 
                 <UniformGrid Rows="2" Grid.Column="2">
                     <TextBlock Style="{StaticResource InfoTextBlockStyle}" VerticalAlignment="Bottom" FontSize="22"
-                               Margin="0,8,0,2" FontWeight="Bold" Text="UserName" 
+                               Margin="0,8,0,2" FontWeight="Bold" Text="{Binding UserName}" 
                                Foreground="{StaticResource DefBackground}"/>
                     <TextBlock Style="{StaticResource InfoTextBlockStyle}" FontSize="20"
                                Text="1000 $" Margin="0,2,0,8"  Foreground="{StaticResource DefBackground}"/>
@@ -114,23 +115,23 @@
 
         <!--Chat Panel-->
         <Decorator Grid.Column="2" Grid.RowSpan="2" Margin="16"
-                   Effect="{StaticResource DefRoundShadow}">
+                   >
             <Border Style="{StaticResource DefBorderStyle}" > 
                 <Label Style="{StaticResource InfoLabelStyle}">Chat</Label>
             </Border>
         </Decorator>
 
         <!--Events Panel-->
-        <Decorator Grid.Column="1" Grid.RowSpan="2" Margin="16"
-                   Effect="{StaticResource DefRoundShadow}">
+		<Decorator Grid.Column="1" Grid.RowSpan="3" Margin="16"
+                   >
             <Border Style="{StaticResource DefBorderStyle}">
                 <Label Style="{StaticResource InfoLabelStyle}">Events</Label>
             </Border>
         </Decorator>
 		
 		<!--Game Panel-->
-        <Decorator Grid.Column="2" Grid.Row="2" Margin="16,16,16,32"
-                   Effect="{StaticResource DefRoundShadow}">
+        <Decorator Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Margin="16,16,16,32"
+                   >
             <Border Style="{StaticResource DefBorderStyle}">
                 <Grid Grid.Column="2" Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -142,7 +143,7 @@
                     <UniformGrid Columns="2">
                         <TextBlock Style="{StaticResource InfoTextBlockStyle}" Text="Waiting For Game" 
 		    				   TextAlignment="Left" VerticalAlignment="Center" Margin="16,8"/>
-                        <uc:RoundButton Style="{StaticResource roundBtnStyle}" Margin="16,8,16,8"
+                        <uc:RoundButton Style="{StaticResource roundBtnStyle}" Margin="16,8,16,16"
                                         Content="Create game" Padding="0"/>
                     </UniformGrid>
 
@@ -168,18 +169,22 @@
         </Decorator>
 
         <!--Friends Panel-->
-        <Decorator Grid.Column="1" Grid.Row="2" Margin="16,16,16,32"
-                   Effect="{StaticResource DefRoundShadow}">
+        <Decorator Grid.Column="1" Grid.Row="3" Margin="16,16,16,32"
+                   >
             <Border Style="{StaticResource DefBorderStyle}">
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.2*" />
+                        <RowDefinition Height="1.6*" />
                         <RowDefinition Height="0.05*" />
                         <RowDefinition Height="7*" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Style="{StaticResource InfoTextBlockStyle}" Margin="16,8"
-                               Text="Friends Online" VerticalAlignment="Center"/>
+					<UniformGrid Columns="2">
+						<TextBlock Style="{StaticResource InfoTextBlockStyle}" Text="Friends Online"
+		    				   TextAlignment="Left" VerticalAlignment="Center" Margin="16,8"/>
+						<uc:RoundButton Style="{StaticResource roundBtnStyle}" Margin="16,8,16,16"
+                                        Content="Add Friend" Padding="0"/>
+					</UniformGrid>
 
                     <Border Grid.Row="1" Background="{StaticResource DefLineGradient}"/>
 
@@ -188,13 +193,14 @@
                             <ItemsControl ItemsSource="{Binding Friends}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel HorizontalAlignment="Center">
-                                            <WrapPanel.Resources>
+                                        <UniformGrid HorizontalAlignment="Left" Columns="5">
+											<UniformGrid.Resources>
                                                 <Style TargetType="{x:Type luc:PlayerIcon}">
-                                                    <Setter Property="Margin" Value="8" />
+                                                    <Setter Property="Margin" Value="8,8,8,0" />
+                                                    <Setter Property="FontSize" Value="16" />
                                                 </Style>
-                                            </WrapPanel.Resources>
-                                        </WrapPanel>
+                                            </UniformGrid.Resources>
+                                        </UniformGrid>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>

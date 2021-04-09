@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 DataContext="{Binding RelativeSource={RelativeSource Self}}" 
-             x:Name="This" MinWidth="64" MinHeight="32">
+             x:Name="This" >
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -22,12 +22,13 @@
 	</UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition/>
+			<RowDefinition Height="{Binding ElementName=This, Path=ActualWidth}"/>
+			<RowDefinition Height="30"/>
 		</Grid.RowDefinitions>
 
-        <Ellipse Grid.Column="1" Width="{Binding ElementName=This, Path=ActualWidth}" MaxWidth="64" 
-                 Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
+        <Ellipse Grid.Column="1" Width="{Binding ElementName=This, Path=ActualWidth}" 
+                 Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"
+				 StrokeThickness="2" Stroke="{StaticResource DefFontColor}">
 			<Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding Image}"  Stretch="Uniform" />
             </Ellipse.Fill>

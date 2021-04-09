@@ -28,10 +28,11 @@
                     </Image.Effect>
                 </Image>
 
-                <TextBlock Grid.Column="1" Margin="0,5,20,10" TextAlignment="Left" Foreground="{StaticResource DefFontColor}"
+                <TextBlock Grid.Column="1" Margin="0,5,20,10" TextAlignment="Left" 
+						   Foreground="{StaticResource DefFontColor}"
                        Style="{StaticResource DefTextBlockStyle}" FontWeight="UltraBold">
                     <Run Text="On the auction "/>
-                    <Run Text="{Binding}"/> 
+                    <Run Text="{Binding TargetNullValue}"/> 
                     <Run Text="!"/>
                 </TextBlock>
             </StackPanel>
@@ -50,7 +51,7 @@
                     <TextBlock Style="{StaticResource DefTextBlockStyle}"
                            Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20">
                         <Run Text="Raise up to "/>
-                        <Run Text="{Binding }"/>
+                        <Run Text="{Binding TargetNullValue}"/>
                         <Run Text="K"/>
                     </TextBlock>
                 </uc:RoundButton>

@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+package SignIn;
+
+service Loginer {
+  rpc Login (LoginInfo) returns (User) {}
+}
+
+message LoginInfo {
+  string login = 1;
+  string password = 2;
+}
+
+message User {
+  int32 id = 1;
+  string login = 2;
+  string email = 3;
+  int32 rating = 4;
+  float money = 5;
+}

@@ -48,7 +48,8 @@
 
         <TextBlock Grid.Row="3" Text="{Binding Text}" Style="{StaticResource DefTextBlockStyle}"/>
 
-        <uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}">
+        <uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" 
+						  Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
                 <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
                     <Style.Triggers>
@@ -73,6 +74,9 @@
                 <DropShadowEffect Direction="270" ShadowDepth="6" BlurRadius="10" />
             </Decorator.Effect>
         </Decorator>
-        <uc:RoundButton Grid.Row="6" Content="Recover password" RenderTransform="{StaticResource RightTransform}" Command="{Binding CheckCommand}"/>
+		
+        <uc:RoundButton Grid.Row="6" Content="Recover password" 
+						RenderTransform="{StaticResource RightTransform}" 
+						Command="{Binding CheckCommand}"/>
     </Grid>
 </Page>
