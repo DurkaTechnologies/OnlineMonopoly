@@ -98,7 +98,7 @@
 
                 <UniformGrid Rows="2" Grid.Column="2">
                     <TextBlock Style="{StaticResource InfoTextBlockStyle}" VerticalAlignment="Bottom" FontSize="22"
-                               Margin="0,8,0,2" FontWeight="Bold" Text="UserName" 
+                               Margin="0,8,0,2" FontWeight="Bold" Text="{Binding UserName}" 
                                Foreground="{StaticResource DefBackground}"/>
                     <TextBlock Style="{StaticResource InfoTextBlockStyle}" FontSize="20"
                                Text="1000 $" Margin="0,2,0,8"  Foreground="{StaticResource DefBackground}"/>

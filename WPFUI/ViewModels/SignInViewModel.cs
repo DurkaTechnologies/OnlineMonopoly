@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Grpc.Net.Client;
+using System;
+using SignIn;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,10 +10,14 @@ using System.Windows.Threading;
 using UIWPF.Commands;
 using UIWPF.ViewModels;
 using WPFUI.Navigation;
+using System.Security.Cryptography;
+using System.Text;
+using BLL.DTO;
+using AutoMapper;
 
 namespace WPFUI.ViewModels
 {
-	class SignInViewModel : BaseTCPViewModel
+	class SignInViewModel : BaseViewModel
 	{
 		private string login;
 		private string password;
@@ -23,10 +29,14 @@ namespace WPFUI.ViewModels
 		private Command signInCommand;
 		private Command goMainMenuCommand;
 		private Command goRecoverCommand;
+
+		GrpcChannel channel;
+		Loginer.LoginerClient client;
+
 		public SignInViewModel()
 		{
-			ParseConfig();
-			//ConnectClient();
+			channel = GrpcChannel.ForAddress("https://localhost:5001");
+			client = new Loginer.LoginerClient(channel);
 
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;
@@ -36,7 +46,7 @@ namespace WPFUI.ViewModels
 
 		private void InitializeCommands()
 		{
-			signInCommand = new DelegateCommand(SignIn, SignInCanExecute);
+			signInCommand = new DelegateCommand(SignInAsync, SignInCanExecute);
 			goMainMenuCommand = new DelegateCommand(GoToMainPage, () => true);
 			goRecoverCommand = new DelegateCommand(GoToRecoverPage, () => true);
 
@@ -104,57 +114,66 @@ namespace WPFUI.ViewModels
 				errorText = value;
 				OnPropertyChanged();
 			}
-
 		}
 
-		private void SignIn()
+		private async void SignInAsync()
 		{
-			//BinaryFormatter formatter = new BinaryFormatter();
-			//formatter.Serialize(client.GetStream(), new ClientUserDataCommand(Login, UserServiceDapper.ComputeSha256Hash(Password)));
+			try
+			{
+				User user = await client.LoginAsync(new LoginInfo()
+				{
+					Login = Login,
+					Password = ComputeSha256Hash(Password),
+				});
 
-			cancelTokenSource = new CancellationTokenSource();
-			CancellationToken token = cancelTokenSource.Token;
-			Task.Run(() => Listen(token), token);
+				if (user == null)
+				{
+					ShowIncorrect();
+				}
+				else 
+				{
+					if (String.IsNullOrEmpty(user.Login))
+						ShowIncorrect();
+					else
+					{
+						await channel.ShutdownAsync();
+
+						Mapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>()));
+						UserDTO userDTO = mapper.Map<User, UserDTO>(user);
+
+						Navigation.Navigation.Navigate(
+							Navigation.Navigation.GeneralPageAlias, 
+							new GeneralPageViewModel(userDTO));
+					}
+				}
+			}
+			catch (Exception)
+			{
+				ShowIncorrect();
+			}
+		}
+
+		private string ComputeSha256Hash(string data)
+		{
+			using (SHA256 sha256Hash = SHA256.Create())
+			{
+				byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(data));
+				StringBuilder builder = new StringBuilder();
+
+				for (int i = 0; i < bytes.Length; i++)
+					builder.Append(bytes[i].ToString("x2"));
+				return builder.ToString();
+			}
 		}
 
 		public void GoToMainPage()
 		{
 			Navigation.Navigation.Navigate(Navigation.Navigation.MainMenuAlias, null);
 		}
+
 		public void GoToRecoverPage()
 		{
 			Navigation.Navigation.Navigate(Navigation.Navigation.RecoverPageAlies, null);
-		}
-
-		private void Listen(CancellationToken token)
-		{
-
-			while (true)
-			{
-				try
-				{
-					if (token.IsCancellationRequested)
-						return;
-
-					//BinaryFormatter formatter = new BinaryFormatter();
-					//ServerUserDataCommand command = (ServerUserDataCommand)formatter.Deserialize(client.GetStream());
-
-					//if (!String.IsNullOrWhiteSpace(command.Login))
-					//{
-					//	client.Close();
-					//	//Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background,
-					//	//		   new Action(() =>
-					//	//		   Navigation.Navigation.Navigate(Navigation.Navigation.MainPageAlias,
-					//	//		   new MainPageViewModel(command.Login))));
-					//}
-					//else
-					//	Password = "";
-					//return;
-				}
-				catch (Exception)
-				{
-				}
-			}
 		}
 
 		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
@@ -182,5 +201,10 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
+		private void ShowIncorrect()
+		{
+			ErrorText = "Password or Login incorrect";
+			Password = "";
+		}
 	}
 }

@@ -10,6 +10,11 @@ namespace DAL.Entities
 {
     public class BranchType
     {
+		public BranchType()
+		{
+            Branches = new HashSet<Branch>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -18,6 +23,11 @@ namespace DAL.Entities
         public string Name { get; set; }
 
         [Required]
+        public string Color { get; set; }
+
+        [Required]
         public int Quantity { get; set; }
+
+        public virtual ICollection<Branch> Branches { get; set; }
     }
 }

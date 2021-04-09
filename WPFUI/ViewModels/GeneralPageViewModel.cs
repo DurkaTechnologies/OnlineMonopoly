@@ -11,6 +11,7 @@ using System.Windows.Input;
 using UIWPF.Commands;
 using UIWPF.ViewModels;
 using WPFUI.UserControls;
+using BLL.DTO;
 
 namespace WPFUI.ViewModels
 {
@@ -18,15 +19,17 @@ namespace WPFUI.ViewModels
 	{
 		#region Fields
 
+		UserDTO currentUser;
+
 		private ObservableCollection<PlayerIcon> friends;
 		private ObservableCollection<LobbyInfo> lobbies;
 
 		#endregion
 
-		public GeneralPageViewModel()
+		public GeneralPageViewModel(UserDTO user)
 		{
 			InitializePropertyChanged();
-
+			currentUser = user;
 			friends = new ObservableCollection<PlayerIcon>();
 			lobbies = new ObservableCollection<LobbyInfo>();
 
@@ -44,6 +47,8 @@ namespace WPFUI.ViewModels
 
 		public IEnumerable<PlayerIcon> Friends => friends;
 		public IEnumerable<LobbyInfo> Lobbies => lobbies;
+
+		public string UserName => currentUser.Login;
 
 		#endregion
 

@@ -9,6 +9,11 @@ namespace DAL.Entities
 {
     public class RentSetting
     {
+        public RentSetting()
+        {
+            Branches = new HashSet<Branch>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -24,5 +29,6 @@ namespace DAL.Entities
         [Required]
         public bool ByBranchQuantity { get; set; }
 
+        public virtual ICollection<Branch> Branches { get; set; }
     }
 }

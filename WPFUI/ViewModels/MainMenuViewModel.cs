@@ -47,7 +47,7 @@ namespace WPFUI.ViewModels
 
 		public void GoToGeneralPage()
 		{
-			Navigation.Navigation.Navigate(Navigation.Navigation.GeneralPageAlias, new GeneralPageViewModel());
+			Navigation.Navigation.Navigate(Navigation.Navigation.GeneralPageAlias, null);
 		}
 	}
 }
