@@ -76,8 +76,8 @@ namespace WPFUI.UserControls
 
 				if (args.PropertyName.Equals(nameof(PlayerColor)))
 				{
-					UserBackground = ColorGradientGenerator.GenerateGradient(PlayerColor.Color, -45);
-					TimerBackground = ColorGradientGenerator.GenerateDarkerColor(PlayerColor.Color);
+					UserBackground = ColorManager.GenerateGradient(PlayerColor.Color, -45);
+					TimerBackground = ColorManager.GenerateDarkerColor(PlayerColor.Color);
 				}
 				if (args.PropertyName.Equals(nameof(ImageSource)))
 				{

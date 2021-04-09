@@ -32,7 +32,7 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 
 		#region Proporties
 
-		public bool UserType 
+		public bool UserType
 		{
 			get => userType;
 			set 

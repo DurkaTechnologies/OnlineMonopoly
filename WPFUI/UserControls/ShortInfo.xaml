@@ -28,12 +28,13 @@
         </Grid.ColumnDefinitions>
 
 		<Grid.RowDefinitions>
-			<RowDefinition Height="4*"/>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="6*"/>
 			<RowDefinition Height="32"/>
 			<RowDefinition Height="44"/>
 		</Grid.RowDefinitions>
 
-		<Border Grid.Column="1" Grid.Row="0" SizeChanged="imageBlock_SizeChanged" Margin="0,16,0,0">
+		<Border Grid.Column="1" Grid.Row="1" SizeChanged="imageBlock_SizeChanged">
 			<Ellipse Width="{Binding ImageSize}" Height="{Binding ImageSize}" 
 					 StrokeThickness="4" Stroke="{Binding PlayerColor}">
 				<Ellipse.Fill>
@@ -42,7 +43,8 @@
 			</Ellipse>
 		</Border>
 
-        <Border Background="{Binding TimerBackground}"
+        <Border Grid.Row="1"
+			    Background="{Binding TimerBackground}"
                 Height="40" Width="40"
                 CornerRadius="20" 
 				Margin="8,0" 
@@ -53,14 +55,14 @@
 
         <Label Grid.Column="0"
 			   Grid.ColumnSpan="3"
-			   Grid.Row="1" 
+			   Grid.Row="2" 
 			   Content="{Binding UserName}"
 			   FontSize="16"
 			   VerticalAlignment="Center"/>
 
         <StackPanel Grid.Column="0"
 					Grid.ColumnSpan="3"
-					Grid.Row="2"
+					Grid.Row="3"
 					HorizontalAlignment="Center"
 					Orientation="Horizontal"
 					VerticalAlignment="Center">
