@@ -46,16 +46,7 @@ namespace WPFUI.ViewModels
 			{
 				if (args.PropertyName.Equals(nameof(Login)))
 				{
-					//object result = null;
-					//Thread thread = new System.Threading.Thread(() =>
-					//{
-					//	result = !userDapper.GetLogins().Contains(Login);
-					//});
-					//thread.Start();
-					//thread.Join();
 
-					//IsLoginCorrect = (bool)result;
-					//signUpCommand.RaiseCanExecuteChanged();
 				}
 
 				if (args.PropertyName.Equals(nameof(Password)))
@@ -66,15 +57,6 @@ namespace WPFUI.ViewModels
 
 				if (args.PropertyName.Equals(nameof(PhoneNumber)))
 				{
-					//Thread thread = new System.Threading.Thread(() =>
-					//{
-					//	IsPhoneNumberCorrect = UserService.CheckUserNumber(PhoneNumber);
-					//	if (IsPhoneNumberCorrect)
-					//		IsPhoneNumberCorrect = !userDapper.GetPhoneNumbers().Contains(PhoneNumber);
-					//});
-					//thread.Start();
-					//thread.Join();
-
 					signUpCommand.RaiseCanExecuteChanged();
 				}
 			};
@@ -86,27 +68,6 @@ namespace WPFUI.ViewModels
 		private async void SignUpAsync()
 		{
 
-			//bool result = false;
-			//Thread thread = new System.Threading.Thread(() =>
-			//{
-			//	result = userDapper.RegisterUser( new User()
-			//	{
-			//		Login = Login,
-			//		Password = UserDapper.ComputeSha256Hash(Password),
-			//		PhoneNumber = PhoneNumber,
-			//		Balance = 0,
-			//		SpentSum = 0			
-			//	});
-			//});
-			//thread.Start();
-			//thread.Join();
-
-			//if (result)
-			//{
-			//	RegisterDone = true;
-			//	await Task.Delay(1500);
-			//	GoToMainMenu();
-			//}
 		}
 
 		public void GoToMainMenu()

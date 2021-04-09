@@ -11,7 +11,7 @@
 
 		</ResourceDictionary>
 	</UserControl.Resources>
-    <Grid Background="White">
+    <Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
@@ -21,7 +21,7 @@
 		<Image Source="../../Resources/UserControlsImg/UAHGRIVNA.png"
 			   Width="{Binding ActualHeight, ElementName=this}"
 			   Height="{Binding ActualHeight, ElementName=this}"
-			   HorizontalAlignment="Right"/>
+			   HorizontalAlignment="Right" />
 
 		<TextBlock Grid.Column="1" 
 				   Style="{StaticResource DefTextBlockStyle}" 
@@ -37,17 +37,13 @@
 			       MaxHeight="{Binding Path=FontSize, ElementName=this}" />
 		</uc:RoundButton>
 
-		<uc:CustomTextBox Grid.Column="1" Grid.ColumnSpan="2" 
-						  Background="White" 
-						  Visibility="{Binding Hidden}"
-						  VerticalAlignment="Center"
+		<uc:CustomTextBox Grid.Column="1" Grid.ColumnSpan="2" Background="White" 
+						  Visibility="{Binding Hidden}" VerticalAlignment="Center"
 						  FontSize="{Binding Path=FontSize, ElementName=this}"
 						  BorderBrush="{StaticResource DefFontColor}"
-						  BorderThickness="2"
-						  Margin="4,4,0,4"
+						  BorderThickness="2" Margin="4,4,0,4"
 						  MouseLeave="CustomTextBox_MouseLeave"
-						  Text="{Binding UserMoney, UpdateSourceTrigger=PropertyChanged}">
+						  Text="{Binding UserMoney, UpdateSourceTrigger=PropertyChanged}" />
 
-		</uc:CustomTextBox>
 	</Grid>
 </UserControl>

@@ -43,7 +43,7 @@
                 <TextBlock Style="{StaticResource DefTextBlockStyle}" 
                            Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20">
                     <Run Text="PAY "/>
-                    <Run Text="{Binding }"/>
+                    <Run Text="{Binding TargetNullValue}"/>
                     <Run Text="K"/>
                 </TextBlock>
             </uc:RoundButton>

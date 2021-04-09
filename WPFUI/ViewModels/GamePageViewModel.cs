@@ -290,25 +290,25 @@ namespace WPFUI.ViewModels
 			if (position <= 10)
 			{
 				coord.X = position;
-				coord.Rotate = "Top";
+				coord.Rotate = Dock.Top;
 			}
 			else if (position > 10 && position <= 20)
 			{
 				coord.X = 10;
 				coord.Y = position - 10;
-				coord.Rotate = "Right";
+				coord.Rotate = Dock.Right;
 			}
 			else if (position > 20 && position <= 30)
 			{
 				coord.X = 30 - position;
 				coord.Y = 10;
-				coord.Rotate = "Bottom";
+				coord.Rotate = Dock.Bottom;
 			}
 			else if (position > 30 && position < 40)
 			{
 				coord.X = 0;
 				coord.Y = 40 - position;
-				coord.Rotate = "Left";
+				coord.Rotate = Dock.Left;
 			}
 			else
 			{
@@ -324,6 +324,6 @@ namespace WPFUI.ViewModels
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
-		public string Rotate { get; set; }
+		public Dock Rotate { get; set; }
 	}
 }

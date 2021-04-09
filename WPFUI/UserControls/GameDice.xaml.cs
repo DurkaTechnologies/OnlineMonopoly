@@ -24,19 +24,11 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class GameDice : UserControl, INotifyPropertyChanged
 	{
-		public static DependencyProperty DiceValueProperty;
-
-		public int DiceValue
-		{
-			get => (int)GetValue(DiceValueProperty);
-			set
-			{
-				SetValue(DiceValueProperty, value);
-				OnPropertyChanged();
-			}
-		}
+		#region Fields
 
 		private List<ImageSource> images;
+
+		#endregion
 
 		static GameDice()
 		{
@@ -56,12 +48,30 @@ namespace WPFUI.UserControls
 			var items = resourceSet
 					   .Cast<DictionaryEntry>()
 					   .Where(x => x.Value.GetType() == typeof(Bitmap))
-					   .Select(x => new Kolhoz() { Name = x.Key.ToString(), Image = x.Value as Bitmap }).ToList().OrderBy(x => x.Name);
+					   .Select(x => new ImageContainer() { Name = x.Key.ToString(), Image = x.Value as Bitmap }).ToList().OrderBy(x => x.Name);
 
 			foreach (var item in items)
 				images.Add(GetImageSource(item.Image));
 
 		}
+
+		#region Proporties
+
+		public static DependencyProperty DiceValueProperty;
+
+		public int DiceValue
+		{
+			get => (int)GetValue(DiceValueProperty);
+			set
+			{
+				SetValue(DiceValueProperty, value);
+				OnPropertyChanged();
+			}
+		}
+
+		#endregion
+
+		#region Methods
 
 		public void Play()
 		{
@@ -124,15 +134,22 @@ namespace WPFUI.UserControls
 			}
 		}
 
+
+		#endregion
+
+		#region INotify
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected void OnPropertyChanged([CallerMemberName] string name = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
+
+		#endregion
 	}
 
-	public struct Kolhoz
+	public struct ImageContainer
 	{
 		public string Name { get; set; }
 		public Bitmap Image { get; set; }

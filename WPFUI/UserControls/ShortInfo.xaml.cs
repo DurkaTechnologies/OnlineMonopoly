@@ -226,7 +226,7 @@ namespace WPFUI.UserControls
 		#endregion
 
 		#region INotify
-		
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected void OnPropertyChanged([CallerMemberName] string name = null)
@@ -251,3 +251,4 @@ namespace WPFUI.UserControls
 		#endregion
 	}
 }
+

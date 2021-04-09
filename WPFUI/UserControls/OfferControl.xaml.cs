@@ -83,15 +83,6 @@ namespace WPFUI.UserControls
 		public IEnumerable<UserElement> LeftUserElements => leftUserElements;
 		public IEnumerable<UserElement> RightUserElements => rightUserElements;
 
-		//public int LeftUserMoney
-		//{
-		//	get => leftUserMoney;
-		//	set
-		//	{
-		//		LeftUserMoney = value;
-		//		OnPropertyChanged();
-		//	}
-		//}
 
 		public int RightUserMoney
 		{

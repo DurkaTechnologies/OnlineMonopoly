@@ -8,8 +8,6 @@
 	  MinHeight="720" MinWidth="1280"
       Title="GamePage" Loaded="Page_Loaded" MaxWidth="3940" MaxHeight="2160">
 
-	<!--Width="1920" Height="1080"-->
-	
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -102,7 +100,8 @@
 
 				<!--Random-->
 				<Border Background="White" Grid.Column="2" Margin="0,20,0,0">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
 						<Image.LayoutTransform>
 							<TransformGroup>
 								<RotateTransform Angle="90"/>
@@ -120,7 +119,8 @@
 				<!--Random-->
 				
 				<Border Background="White" Grid.Column="7" Margin="0,20,0,0" >
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5">
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5">
 						<Image.LayoutTransform>
 							<TransformGroup>
 								<RotateTransform Angle="90"/>
@@ -138,7 +138,8 @@
 				<!--Random-->
 				
 				<Border Background="White" Grid.Column="10" Grid.Row="7" Margin="0,0,20,0">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
 						<Image.RenderTransform>
 							<TransformGroup>
 								<RotateTransform Angle="180"/>
@@ -156,7 +157,8 @@
 				<!--Random-->
 				
 				<Border Background="White" Grid.Column="8" Grid.Row="10" Margin="0,0,0,20">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
 						<Image.LayoutTransform>
 							<TransformGroup>
 								<RotateTransform Angle="90"/>
@@ -174,7 +176,8 @@
 				<!--Random-->
 				
 				<Border Background="White" Grid.Row="7" Margin="20,0,0,0">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
 						<Image.RenderTransform>
 							<TransformGroup>
 								<RotateTransform Angle="360"/>
@@ -195,12 +198,12 @@
 				<!--Random-->
 				
 				<Border Background="White" Grid.Row="2" Margin="20,0,0,0">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
-						 
-					</Image>
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" />
 				</Border>
 
-				<Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Grid.RowSpan="9" Background="{StaticResource GamePageBackground}">
+				<Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Grid.RowSpan="9" 
+					  Background="{StaticResource GamePageBackground}">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="9*"/>
 						<RowDefinition Height="1*"/>
@@ -225,14 +228,14 @@
 		
 		<!--Users Info-->
 
-		<ItemsControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Users}" HorizontalAlignment="Right" Margin="0,0,16,0">
+		<ItemsControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Users}" 
+					  HorizontalAlignment="Right" Margin="0,0,16,0">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<UniformGrid Rows="{Binding UsersCount}">
 						<UniformGrid.Resources>
-							<Style TargetType="{x:Type uc:ShortInfo}" BasedOn="{StaticResource ShortInfoStyle}">
-
-							</Style>
+							<Style TargetType="{x:Type uc:ShortInfo}" 
+								   BasedOn="{StaticResource ShortInfoStyle}" />
 						</UniformGrid.Resources>
 					</UniformGrid>
 				</ItemsPanelTemplate>

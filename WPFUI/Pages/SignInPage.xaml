@@ -51,7 +51,8 @@
 
         <TextBlock Grid.Row="1" Text="Login" Style="{StaticResource DefTextBlockStyle}"/>
 
-        <uc:CustomTextBox Grid.Row="2" RenderTransform="{StaticResource RightTransform}" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}">
+        <uc:CustomTextBox Grid.Row="2" RenderTransform="{StaticResource RightTransform}" 
+						  Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
                 <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
                     <Style.Triggers>
@@ -66,7 +67,8 @@
 
         <TextBlock Grid.Row="3" Text="Password" Style="{StaticResource DefTextBlockStyle}"/>
 
-		<PasswordBox Grid.Column="1" Grid.Row="4" x:Name="passwordBox" PasswordChanged="passwordBox_PasswordChanged"></PasswordBox>
+		<PasswordBox Grid.Column="1" Grid.Row="4" x:Name="passwordBox" 
+					 PasswordChanged="passwordBox_PasswordChanged"></PasswordBox>
 		
         <!--<uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
@@ -81,24 +83,22 @@
             </TextBox.Style>
         </uc:CustomTextBox>-->
 
-        <Decorator Grid.Row="5" Grid.Column="1" >
-            <TextBlock Text="{Binding ErrorText}" 
+		<Decorator Grid.Row="5" Grid.Column="1" >
+			<TextBlock Text="{Binding ErrorText}" 
                    Style="{StaticResource DefTextBlockStyle}" 
                    Foreground="{StaticResource DefBackground}">
-                <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="60"/>
-                </TextBlock.Effect>
-            </TextBlock>
-            <Decorator.Effect>
-                <DropShadowEffect Direction="270" ShadowDepth="6" BlurRadius="10" />
-            </Decorator.Effect>
-        </Decorator>
+				<TextBlock.Effect>
+					<DropShadowEffect BlurRadius="60"/>
+				</TextBlock.Effect>
+			</TextBlock>
+			<Decorator.Effect>
+				<DropShadowEffect Direction="270" ShadowDepth="6" BlurRadius="10" />
+			</Decorator.Effect>
+		</Decorator>
 
-
-        <uc:RoundButton Grid.Row="6" Content="Sign In" RenderTransform="{StaticResource RightTransform}" Command="{Binding SignInCommand}"/>
+		<uc:RoundButton Grid.Row="6" Content="Sign In" RenderTransform="{StaticResource RightTransform}" Command="{Binding SignInCommand}"/>
         <uc:RoundButton Grid.Row="7" Content="To main menu" RenderTransform="{StaticResource LeftTransform}" Command="{Binding GoMainMenuCommand}"/>
         <uc:RoundButton Grid.Row="8" Content="I forgot my password" RenderTransform="{StaticResource RightTransform}" Command="{Binding GoRecoverCommand}"/> 
-
 
     </Grid>
 </Page>

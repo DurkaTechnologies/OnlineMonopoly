@@ -24,18 +24,29 @@ namespace WPFUI.UserControls
 
 		private Brush backColor;
 		private Brush priceColor;
-		private string rotate;
+		private Dock rotate;
 		private double controlRotate;
 		private double imageRotate;
 		private double textRotate;
 		private string imageSource;
 		private ImageSource image;
+		private int price;
 
 		#endregion
 
 		#region Proporties
 
-		public string Rotate
+		public int Price
+		{
+			get => price;
+			set
+			{
+				price = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public Dock Rotate
 		{
 			get => rotate;
 			set
@@ -125,7 +136,7 @@ namespace WPFUI.UserControls
 		{
 			InitializeComponent();
 			InitializePropertyChanged();
-			Rotate = "Left";
+			Rotate = Dock.Left;
 
 			BackColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 			PriceColor = new SolidColorBrush(Color.FromRgb(255,255,0));
@@ -141,17 +152,17 @@ namespace WPFUI.UserControls
 				{
 					switch (Rotate)
 					{
-						case "Top":
+						case Dock.Top:
 							ControlRotate = 90.0;
 							ImageRotate = -180.0;
 							TextRotate = -90.0;
 							break;
-						case "Right":
+						case Dock.Right:
 							ControlRotate = 180.0;
 							ImageRotate = -180;
 							TextRotate = -90.0;
 							break;
-						case "Bottom":
+						case Dock.Bottom:
 							ControlRotate = -90.0;
 							ImageRotate = 0.0;
 							TextRotate = 90.0;

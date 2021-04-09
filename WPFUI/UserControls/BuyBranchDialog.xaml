@@ -28,8 +28,9 @@
                     </Image.Effect>
                 </Image>
 
-                <TextBlock Grid.Column="1" Margin="0,5,20,10" TextAlignment="Left" Foreground="{StaticResource DefFontColor}"
-                       Style="{StaticResource DefTextBlockStyle}" Text="Buying?" FontWeight="UltraBold"/>
+                <TextBlock Grid.Column="1" Margin="0,5,20,10" TextAlignment="Left" 
+						   Foreground="{StaticResource DefFontColor}" Style="{StaticResource DefTextBlockStyle}" 
+						   Text="Buying?" FontWeight="UltraBold"/>
             </StackPanel>
 
 
@@ -47,7 +48,7 @@
                     <TextBlock Style="{StaticResource DefTextBlockStyle}"
                            Foreground="{StaticResource DefFontColor}" Margin="0" FontSize="20">
                         <Run Text="Buy for "/>
-                        <Run Text="{Binding }"/>
+                        <Run Text="{Binding TargetNullValue}"/>
                         <Run Text="K"/>
                     </TextBlock>
                 </uc:RoundButton>

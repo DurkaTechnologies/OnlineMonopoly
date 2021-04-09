@@ -95,13 +95,6 @@ namespace WPFUI.Views
 			{
 				byte[] newFileData = request.DownloadData(url);
 				file = System.Text.Encoding.UTF8.GetString(newFileData);
-
-				//string zalypa = "zalypa";
-				//newFileData = System.Text.Encoding.UTF8.GetBytes(zalypa);
-
-				//request.Credentials = new NetworkCredential(@"durkaftpserver\$durkaftpserver", "vl4EoeKt0np7yy3uLJXSlYk7QFGBdlilaeYt1Kh9czaJQCXDyjaikGfryNi1");
-				//request = FtpWebRequest.Create("http://durkaftpserver.cf/Resources/ColorsLib/dice.png");
-				//request.UploadFile("http://durkaftpserver.cf/Resources/ColorsLib/dice.png", "../../../../dice.png");
 			}
 			catch (Exception e)
 			{
