@@ -33,7 +33,7 @@ namespace GrpcService.Services
 		{
 			return Task.FromResult(new Correct()
 			{
-				Correct_ = userService.CheckLogin(request.Login_)
+				Correct_ = !userService.CheckLogin(request.Login_)
 			});
 		}
 	}
