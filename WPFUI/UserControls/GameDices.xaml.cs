@@ -22,10 +22,24 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class GameDices : UserControl, INotifyPropertyChanged
 	{
+		static GameDices()
+		{
+			FirstValueProperty = DependencyProperty.Register("FirstValue", typeof(int), typeof(GameDices),
+					new FrameworkPropertyMetadata(0));
+			SecondValueProperty = DependencyProperty.Register("SecondValue", typeof(int), typeof(GameDices),
+					new FrameworkPropertyMetadata(0));
+		}
+
+		public GameDices()
+		{
+			InitializeComponent();
+			InitializePropertyChanged();
+		}
+
+		#region Proporties
+
 		public static DependencyProperty FirstValueProperty;
 		public static DependencyProperty SecondValueProperty;
-		private int firstValue;
-		private int secondValue;
 
 		public int FirstValue
 		{
@@ -49,19 +63,9 @@ namespace WPFUI.UserControls
 			}
 		}
 
-		static GameDices()
-		{
-			FirstValueProperty = DependencyProperty.Register("FirstValue", typeof(int), typeof(GameDices),
-					new FrameworkPropertyMetadata(0));
-			SecondValueProperty = DependencyProperty.Register("SecondValue", typeof(int), typeof(GameDices),
-					new FrameworkPropertyMetadata(0));
-		}
+		#endregion
 
-		public GameDices()
-		{
-			InitializeComponent();
-			InitializePropertyChanged();
-		}
+		#region INotify
 
 		private void InitializePropertyChanged()
 		{
@@ -80,5 +84,7 @@ namespace WPFUI.UserControls
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
+
+		#endregion
 	}
 }

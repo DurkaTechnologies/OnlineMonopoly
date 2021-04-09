@@ -20,8 +20,12 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class GamePiece : UserControl
 	{
+		#region Fields
+
 		public static DependencyProperty PieceBackgroundProperty;
 		public static DependencyProperty PieceBorderBrushProperty;
+
+		#endregion
 
 		static GamePiece()
 		{
@@ -31,6 +35,8 @@ namespace WPFUI.UserControls
 			PieceBorderBrushProperty = DependencyProperty.Register("PieceBorderBrush", typeof(Brush), typeof(GamePiece),
 				new FrameworkPropertyMetadata(null));
 		}
+
+		#region Methods
 
 		public GamePiece()
 		{
@@ -48,5 +54,7 @@ namespace WPFUI.UserControls
 			get => (Brush)GetValue(PieceBorderBrushProperty);
 			set => SetValue(PieceBorderBrushProperty, value);
 		}
+
+		#endregion
 	}
 }

@@ -19,16 +19,25 @@ namespace WPFUI.ViewModels
 {
 	class SignInViewModel : BaseViewModel
 	{
+		#region Fields
+
+		private IPasswordSupplier suppliear;
 		private string login;
 		private string password;
 		private bool isLoginCorrect;
 		private bool isPasswordCorrect;
 		private string errorText;
-		CancellationTokenSource cancelTokenSource;
 
 		private Command signInCommand;
 		private Command goMainMenuCommand;
 		private Command goRecoverCommand;
+
+		#endregion
+
+		public SignInViewModel(IPasswordSupplier suppliear)
+		{
+			this.suppliear = suppliear;
+    }
 
 		GrpcChannel channel;
 		Loginer.LoginerClient client;
@@ -40,16 +49,18 @@ namespace WPFUI.ViewModels
 
 			IsLoginCorrect = false;
 			IsPasswordCorrect = false;
+
 			InitializeCommands();
 			InitializePropertyChanged();
 		}
+
+		#region Initialize
 
 		private void InitializeCommands()
 		{
 			signInCommand = new DelegateCommand(SignInAsync, SignInCanExecute);
 			goMainMenuCommand = new DelegateCommand(GoToMainPage, () => true);
 			goRecoverCommand = new DelegateCommand(GoToRecoverPage, () => true);
-
 		}
 
 		private void InitializePropertyChanged()
@@ -75,11 +86,15 @@ namespace WPFUI.ViewModels
 						ErrorText = "";
 					else if (IsLoginCorrect && !IsPasswordCorrect)
 						ErrorText = "Password lenght not correct";
-					else if (!IsLoginCorrect && !IsPasswordCorrect)
+					else if (!IsLoginCorrect && IsPasswordCorrect)
 						ErrorText = "Password and Login incorrect";
 				}
 			};
 		}
+
+		#endregion
+
+		#region Proporties
 
 		public ICommand SignInCommand => signInCommand;
 		public ICommand GoMainMenuCommand => goMainMenuCommand;
@@ -153,6 +168,21 @@ namespace WPFUI.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Methods
+
+		public void UpdatePassword()
+		{
+			Password = suppliear.GetPassword();
+		}
+
+		private void SignIn()
+		{
+			/*get password method from passwordbox*/
+			ErrorText = suppliear.GetPassword();
+    }
+    
 		private string ComputeSha256Hash(string data)
 		{
 			using (SHA256 sha256Hash = SHA256.Create())
@@ -176,6 +206,7 @@ namespace WPFUI.ViewModels
 			Navigation.Navigation.Navigate(Navigation.Navigation.RecoverPageAlies, null);
 		}
 
+		#endregion
 		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
 
 		#region IsCorrect
@@ -201,10 +232,18 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
+		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
+	}
+
+	public interface IPasswordSupplier
+	{
+		string GetPassword();
+
 		private void ShowIncorrect()
 		{
 			ErrorText = "Password or Login incorrect";
 			Password = "";
 		}
+
 	}
 }

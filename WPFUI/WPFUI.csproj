@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -36,6 +36,7 @@
     <Resource Include="Resources\IT\softgroup.png" />
     <Resource Include="Resources\IT\softserve.png" />
     <Resource Include="Resources\IT\step.png" />
+    <Resource Include="Resources\Materials\bank.png" />
     <Resource Include="Resources\Studios\shiza.png" />
     <Resource Include="Resources\Studios\zagrava.png" />
     <Resource Include="Resources\Study\gym.png" />
@@ -67,6 +68,7 @@
     <Resource Include="Resources\Materials\DiceTextures\dice4.png" />
     <Resource Include="Resources\Materials\DiceTextures\dice5.png" />
     <Resource Include="Resources\UserControlsImg\diceblue.png" />
+    <Resource Include="Resources\UserControlsImg\pen.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\UserControlsImg\UAH.png" />
@@ -90,6 +92,7 @@
     <Resource Include="Resources\Materials\police.png" />
     <Resource Include="Resources\Materials\relax.png" />
     <Resource Include="Resources\Materials\revolver.png" />
+    <Resource Include="Resources\UserControlsImg\UAHGRIVNA.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -111,6 +114,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <Import Project="..\packages\Grpc.Core.2.36.4\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.36.4\build\net45\Grpc.Core.targets')" />
   <Import Project="..\packages\Google.Protobuf.Tools.3.15.7\build\Google.Protobuf.Tools.targets" Condition="Exists('..\packages\Google.Protobuf.Tools.3.15.7\build\Google.Protobuf.Tools.targets')" />
@@ -119,5 +123,10 @@
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Views\*.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Materials\bank.png" />
+    <None Remove="Resources\UserControlsImg\pen.png" />
+    <None Remove="Resources\UserControlsImg\UAHGRIVNA.png" />
   </ItemGroup>
 </Project>

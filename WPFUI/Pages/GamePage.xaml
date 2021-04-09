@@ -5,8 +5,9 @@
       xmlns:local="clr-namespace:WPFUI.Pages"
       xmlns:uc="clr-namespace:WPFUI.UserControls" 
 	  xmlns:uc1="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
-	  MinHeight="550" MinWidth="900"
-      Title="GamePage" Loaded="Page_Loaded">
+	  MinHeight="720" MinWidth="1280"
+      Title="GamePage" Loaded="Page_Loaded" MaxWidth="3940" MaxHeight="2160">
+
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -28,18 +29,18 @@
 			<Thickness x:Key="MarginBottom" Bottom="0" Right="{StaticResource DefMargin}" 
                    Top="{StaticResource DefMargin}" Left="{StaticResource DefMargin}"/>
 
-			<Style x:Key="ShortInfoStyle" TargetType="uc:ShortInfo">
-				<Setter Property="Margin" Value="-8,0" />
+			<Style x:Key="ShortInfoStyle"  TargetType="uc:ShortInfo">
+				<Setter Property="Margin" Value="0, 8" />
 
 				<Style.Triggers>
-					<DataTrigger Binding="{Binding CurrentUser}" Value="False">
-						<Setter Property="Margin" Value="8" />
+					<DataTrigger Binding="{Binding CurrentUser}" Value="True">
+						<Setter Property="Margin" Value="-8, 0" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</ResourceDictionary>
 	</Page.Resources>
-	<Grid Background="DimGray">
+	<Grid Background="{StaticResource GamePageBackground}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*"/>
 			<ColumnDefinition Width="4*"/>
@@ -51,9 +52,10 @@
 			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
 
-		<Border Grid.Column="1" Grid.Row="1" 
-                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Mode=OneWay}">
-			<Grid>
+		<Border Grid.Column="1" Grid.Row="1"
+                Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Mode=OneWay}"
+				HorizontalAlignment="Left">
+			<Grid x:Name="GeneralGrid">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="2*"/>
 					<ColumnDefinition Width="1*"/>
@@ -91,268 +93,117 @@
 				</Grid.RowDefinitions>
 
 				<!--Push-->
-				<Border Margin="0,0,1,1">
+				
+				<Border Margin="20,20,1,1">
 					<Image Source="pack://application:,,,/Resources/Materials/relax.png"/>
 				</Border>
 
-				<!--Clothes-->
-				<Border Background="White" Grid.Column="1" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Study/water.png"/>
-				</Border>
-
 				<!--Random-->
-				<Border Background="White" Grid.Column="2" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
-						<Image.RenderTransform>
+				<Border Background="White" Grid.Column="2" Margin="0,20,0,0">
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
+						<Image.LayoutTransform>
 							<TransformGroup>
-								<RotateTransform Angle="-90"/>
+								<RotateTransform Angle="90"/>
 							</TransformGroup>
-						</Image.RenderTransform>
-					</Image>
-				</Border>
-
-				<!--Clothes-->
-				<Border Background="White" Grid.Column="3" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Study/gym.png" RenderTransformOrigin="0.5,0.5">
-						<Image.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
-							</TransformGroup>
-						</Image.RenderTransform>
+						</Image.LayoutTransform>
 					</Image>
 				</Border>
 
 				<!--Money-->
-				<Border Background="White" Grid.Column="4" Padding="3,2" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Materials/money.png"/>
-				</Border>
-
-				<!--Auto-->
-				<Border Background="White" Grid.Column="5" Padding="3,2" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Cars/bmw.png"/>
-				</Border>
-
-				<!--Clothes-->
-				<Border Background="White" Grid.Column="6" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Clothes/econom.png"/>
+				
+				<Border Background="White" Grid.Column="4" Padding="3,2" Margin="1,20,1,1">
+					<Image Source="pack://application:,,,/Resources/Materials/bank.png"/>
 				</Border>
                 
 				<!--Random-->
-				<Border Background="White" Grid.Column="7" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
-						<Image.RenderTransform>
+				
+				<Border Background="White" Grid.Column="7" Margin="0,20,0,0" >
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5">
+						<Image.LayoutTransform>
 							<TransformGroup>
-								<RotateTransform Angle="-90"/>
+								<RotateTransform Angle="90"/>
 							</TransformGroup>
-						</Image.RenderTransform>
+						</Image.LayoutTransform>
 					</Image>
-				</Border>
-
-				<!--Clothes-->
-				<Border Background="White" Grid.Column="8" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Clothes/abibas.png"/>
-				</Border>
-
-				<!--Clothes-->
-				<Border Background="White" Grid.Column="9" Margin="{StaticResource MarginTop}">
-					<Image Source="pack://application:,,,/Resources/Clothes/waikiki.png"/>
 				</Border>
 
 				<!--Police Stop-->
-				<Border Background="White" Grid.Column="10" Margin="1,0,0,1">
+				
+				<Border Background="White" Grid.Column="10" Margin="1,20,20,1">
 					<Image Source="pack://application:,,,/Resources/Materials/choose.png"/>
 				</Border>
 
-				<!--IT-->
-				<Border Background="White" Grid.Column="10" Grid.Row="1" Margin="{StaticResource MarginRight}">
-                    <Image Source="pack://application:,,,/Resources/IT/step.png"/>
-                </Border>
-
-				<!--Games-->
-				<Border Background="White" Grid.Column="10" Grid.Row="2" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Studios/Shiza.png"/>
-				</Border>
-
-				<!--IT-->
-				<Border Background="White" Grid.Column="10" Grid.Row="3" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/IT/Softserve.png"/>
-				</Border>
-                
-				<!--IT-->
-				<Border Background="White" Grid.Column="10" Grid.Row="4" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/IT/softgroup.png"/>
-				</Border>
-
-				<!--Auto-->
-				<Border Background="White" Grid.Column="10" Grid.Row="5" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Cars/bogdan.png"/>
-				</Border>
-
-				<!--Eat-->
-				<Border Background="White" Grid.Column="10" Grid.Row="6" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Drinks/pepsi.png"/>
-				</Border>
-
 				<!--Random-->
-				<Border Background="White" Grid.Column="10" Grid.Row="7" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
+				
+				<Border Background="White" Grid.Column="10" Grid.Row="7" Margin="0,0,20,0">
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
 						<Image.RenderTransform>
 							<TransformGroup>
-								<ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+								<RotateTransform Angle="180"/>
 							</TransformGroup>
 						</Image.RenderTransform>
 					</Image>
 				</Border>
-
-				<!--Eat-->
-				<Border Background="White" Grid.Column="10" Grid.Row="8" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Drinks/riven.png"/>
-				</Border>
-                
-				<!--Eat-->
-				<Border Background="White" Grid.Column="10" Grid.Row="9" Margin="{StaticResource MarginRight}">
-					<Image Source="pack://application:,,,/Resources/Drinks/kaluna.png"/>
-				</Border>
-
+               
 				<!--Start Position-->
-				<Border Grid.Column="10" Grid.Row="10" Margin="1,1,0,0">
+				
+				<Border Grid.Column="10" Grid.Row="10" Margin="1,1,20,20">
 					<Image Source="pack://application:,,,/Resources/Materials/revolver.png"/>
 				</Border>
 
-				<!--Builds-->
-				<Border Background="White" Grid.Column="9" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Builders/renome.png"/>
-				</Border>
-
 				<!--Random-->
-				<Border Background="White" Grid.Column="8" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
-						<Image.RenderTransform>
+				
+				<Border Background="White" Grid.Column="8" Grid.Row="10" Margin="0,0,0,20">
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
+						<Image.LayoutTransform>
 							<TransformGroup>
-								<RotateTransform Angle="-90"/>
+								<RotateTransform Angle="90"/>
 							</TransformGroup>
-						</Image.RenderTransform>
+						</Image.LayoutTransform>
 					</Image>
-				</Border>
-
-				<!--Builds-->
-				<Border Background="White" Grid.Column="7" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Builders/stograd.png"/>
-				</Border>
-                
-				<!--Builds-->
-				<Border Background="White" Grid.Column="6" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Builders/smartgroup.png"/>
-				</Border>
-
-				<!--Auto-->
-				<Border Background="White" Grid.Column="5" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Cars/skoda.png"/>
-				</Border>
-
-				<!--Eat2-->
-				<Border Background="White" Grid.Column="4" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Eat/mrcat.png" RenderTransformOrigin="0.5,0.5">
-						<Image.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-							</TransformGroup>
-						</Image.RenderTransform>
-					</Image>
-				</Border>
-
-				<!--Eat2-->
-				<Border Background="White" Grid.Column="3" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Eat/matsuri.png"/>
-				</Border>
-
-				<!--Games-->
-				<Border Background="White" Grid.Column="2" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Studios/zagrava.png"/>
-				</Border>
-
-				<!--Eat2-->
-				<Border Background="White" Grid.Column="1" Grid.Row="10" Margin="{StaticResource MarginBottom}">
-					<Image Source="pack://application:,,,/Resources/Eat/father.png"/>
 				</Border>
 
 				<!--Police-->
-				<Border Background="White" Grid.Row="10" >
+				
+				<Border Background="White" Grid.Row="10" Margin="20,1,1,20">
 					<Image Source="pack://application:,,,/Resources/Materials/police.png"/>
 				</Border>
 
-				<!--Builds 2-->
-				<Border Background="White" Grid.Row="9" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/ChainStores/silpo.png"/>
-				</Border>
-
-				<!--Builds 2-->
-				<Border Background="White" Grid.Row="8" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/ChainStores/atb.png"/>
-				</Border>
-
 				<!--Random-->
-				<Border Background="White" Grid.Row="7" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
+				
+				<Border Background="White" Grid.Row="7" Margin="20,0,0,0">
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" >
 						<Image.RenderTransform>
 							<TransformGroup>
-								<ScaleTransform ScaleY="0.8" ScaleX="0.8"/>
-								<RotateTransform Angle="180"/>
+								<RotateTransform Angle="360"/>
+								<TranslateTransform/>
 							</TransformGroup>
 						</Image.RenderTransform>
 					</Image>
-				</Border>
-
-				<!--Builds 2-->
-				<Border Background="White" Grid.Row="6" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/ChainStores/sim.png" RenderTransformOrigin="0.5,0.5">
-						<Image.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-							</TransformGroup>
-						</Image.RenderTransform>
-					</Image>
-				</Border>
-
-				<!--Auto-->
-				<Border Background="White" Grid.Row="5" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/Cars/tata.png"/>
 				</Border>
 
 				<!--Almaz-->
-				<Border Background="White" Grid.Row="4" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/Materials/diamond.png" RenderTransformOrigin="0.5,0.5">
-						<Image.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
-							</TransformGroup>
-						</Image.RenderTransform>
-					</Image>
+				
+				<Border Background="White" Grid.Row="4" Margin="20,0,0,0" >
+					<Image Source="pack://application:,,,/Resources/Materials/diamond.png" />
 				</Border>
 
 				<!--Technoligies-->
-				<Border Background="White" Grid.Row="3" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/Delivers/glovo.png"/>
-				</Border>
 
 				<!--Random-->
-				<Border Background="White" Grid.Row="2" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/Materials/chance.png" RenderTransformOrigin="0.5,0.5" >
-						<Image.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleY="0.8" ScaleX="0.8"/>
-								<RotateTransform Angle="180"/>
-							</TransformGroup>
-						</Image.RenderTransform>
-					</Image>
+				
+				<Border Background="White" Grid.Row="2" Margin="20,0,0,0">
+					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
+						   RenderTransformOrigin="0.5,0.5" />
 				</Border>
 
-				<!--Auto-->
-				<Border Background="White" Grid.Row="1" Margin="{StaticResource MarginLeft}">
-					<Image Source="pack://application:,,,/Resources/Delivers/oregano.png"/>
-				</Border>
-
-				<Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Grid.RowSpan="9"  Background="DarkBlue">
+				<Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Grid.RowSpan="9" 
+					  Background="{StaticResource GamePageBackground}">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="9*"/>
 						<RowDefinition Height="1*"/>
@@ -364,16 +215,32 @@
 
 					<ListBox Style="{StaticResource DefListBox}" Grid.ColumnSpan="2" Margin="20,20,20,10"
 							 ItemContainerStyle="{StaticResource DefContainer}" ItemsSource="{Binding Messages}">
-						
+
 					</ListBox>
 
 					<uc1:CustomTextBox Grid.Row="1" Style="{StaticResource DefCustomTextBox}" Margin="20,10,10,20" 
 									   Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged}"/>
-					
+
 					<uc1:RoundButton Grid.Row="1" Margin="10,10,20,20" Command="{Binding SendCommand}"/>
 				</Grid>
-				
 			</Grid>
 		</Border>
+		
+		<!--Users Info-->
+
+		<ItemsControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Users}" 
+					  HorizontalAlignment="Right" Margin="0,0,16,0">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Rows="{Binding UsersCount}">
+						<UniformGrid.Resources>
+							<Style TargetType="{x:Type uc:ShortInfo}" 
+								   BasedOn="{StaticResource ShortInfoStyle}" />
+						</UniformGrid.Resources>
+					</UniformGrid>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+
 	</Grid>
 </Page>

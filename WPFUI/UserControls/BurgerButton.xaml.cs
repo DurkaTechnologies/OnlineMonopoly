@@ -111,12 +111,11 @@ namespace WPFUI.UserControls
 			Activated = !activated;
 		}
 
-		#endregion
-
 		private void RoundButton_Click(object sender, RoutedEventArgs e)
 		{
 			Activated = !activated;
-
 		}
+
+		#endregion
 	}
 }

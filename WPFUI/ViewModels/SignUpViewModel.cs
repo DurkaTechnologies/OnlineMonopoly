@@ -55,7 +55,7 @@ namespace WPFUI.ViewModels
 			{
 				if (args.PropertyName.Equals(nameof(Login)))
 				{
-					IsLoginCorrect = (await client.CheckLoginAsync(new Login() { Login_ = login })).Correct_;
+        	IsLoginCorrect = (await client.CheckLoginAsync(new Login() { Login_ = login })).Correct_;
 					signUpCommand.RaiseCanExecuteChanged();
 				}
 
@@ -67,7 +67,6 @@ namespace WPFUI.ViewModels
 
 				if (args.PropertyName.Equals(nameof(Email)))
 				{
-
 					IsEmailCorrect = !String.IsNullOrWhiteSpace(Email);
 					signUpCommand.RaiseCanExecuteChanged();
 				}

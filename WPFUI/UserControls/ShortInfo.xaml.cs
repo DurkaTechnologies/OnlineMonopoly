@@ -27,10 +27,16 @@ namespace WPFUI.UserControls
 		// Color logic
 
 		private SolidColorBrush playerColor;
-		private LinearGradientBrush currentBackground;
+		private Brush currentBackground;
 		private LinearGradientBrush userBackground;
-		private LinearGradientBrush defBackground;
+		private SolidColorBrush defBackground;
 		private SolidColorBrush timerBackground;
+		private ImageSource image;
+		private string imageSource;
+
+		// Size logic
+
+		private double imageSize;
 
 		// User information
 
@@ -45,18 +51,17 @@ namespace WPFUI.UserControls
 		{
 			InitializeComponent();
 			InitializePropertyChanged();
-
-			defBackground = ColorGradientGenerator.GenerateGradient(Color.FromArgb(255, 15, 2, 25), -45);
 			CurrentUser = false;
 		}
 
 		#region Methods
+
 		private void UpdateCurrentUser()
 		{
 			if (CurrentUser)
 				CurrentBackground = UserBackground;
 			else
-				CurrentBackground = defBackground;
+				CurrentBackground = DefBackground;
 		}
 
 		private void InitializePropertyChanged()
@@ -71,11 +76,23 @@ namespace WPFUI.UserControls
 
 				if (args.PropertyName.Equals(nameof(PlayerColor)))
 				{
-					UserBackground = ColorGradientGenerator.GenerateGradient(PlayerColor.Color, -45);
-					TimerBackground = ColorGradientGenerator.GenerateDarkerColor(PlayerColor.Color);
+					UserBackground = ColorManager.GenerateGradient(PlayerColor.Color, -45);
+					TimerBackground = ColorManager.GenerateDarkerColor(PlayerColor.Color);
+				}
+				if (args.PropertyName.Equals(nameof(ImageSource)))
+				{
+					try
+					{
+						Image = new BitmapImage(new Uri(ImageSource));
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
 				}
 			};
 		}
+
 		#endregion
 
 		#region Properties
@@ -152,9 +169,8 @@ namespace WPFUI.UserControls
 			}
 		}
 
-		public LinearGradientBrush CurrentBackground
+		public Brush CurrentBackground
 		{
-
 			get => currentBackground;
 			set
 			{
@@ -163,17 +179,76 @@ namespace WPFUI.UserControls
 			}
 		}
 
+		public SolidColorBrush DefBackground
+		{
+			get => defBackground;
+			set
+			{
+				defBackground = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public ImageSource Image
+		{
+			get => image;
+			set
+			{
+				image = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string ImageSource
+		{
+			get => imageSource;
+			set
+			{
+				imageSource = value;
+				OnPropertyChanged();
+			}
+		}
+
 		public Visibility ShowTimer => CurrentUser ? Visibility.Visible : Visibility.Hidden;
+
+		// Size Properties
+
+		public double ImageSize
+		{
+			get => imageSize;
+			set
+			{
+				imageSize = value;
+				OnPropertyChanged();
+			}
+		}
 
 		#endregion
 
 		#region INotify
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected void OnPropertyChanged([CallerMemberName] string name = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
+
+		#endregion
+
+		#region Events
+
+		private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			CurrentUser = !CurrentUser;
+		}
+
+		private void imageBlock_SizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			ImageSize = (sender as Border).ActualHeight;
+		}
+
 		#endregion
 	}
 }
+

@@ -34,7 +34,8 @@
 
         <TextBlock Grid.Row="1" Text="Login" Style="{StaticResource DefTextBlockStyle}"/>
 
-        <uc:CustomTextBox Grid.Row="2"  RenderTransform="{StaticResource RightTransform}" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}">
+        <uc:CustomTextBox Grid.Row="2"  RenderTransform="{StaticResource RightTransform}" 
+						  Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}">
 
             <TextBox.Style>
                 <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
@@ -49,7 +50,8 @@
         </uc:CustomTextBox>
 
         <TextBlock Grid.Row="3" Text="Password" Style="{StaticResource DefTextBlockStyle}"/>
-        <uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}">
+        <uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" 
+						  Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
                 <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
                     <Style.Triggers>
@@ -78,8 +80,10 @@
         </uc:CustomTextBox>
 
         <UniformGrid Grid.Column="1" Grid.Row="7" Columns="2">
-            <uc:RoundButton Content="Sign Up" RenderTransform="{StaticResource LeftTransform}" Command="{Binding SignUpCommand}"/>
-            <uc:RoundButton Content="To main menu" RenderTransform="{StaticResource RightTransform}" Command="{Binding GoMainMenuCommand}"/>
+            <uc:RoundButton Content="Sign Up" RenderTransform="{StaticResource LeftTransform}"
+							Command="{Binding SignUpCommand}"/>
+            <uc:RoundButton Content="To main menu" RenderTransform="{StaticResource RightTransform}" 
+							Command="{Binding GoMainMenuCommand}"/>
         </UniformGrid>
 
         <!--<uc:RegisteredPage Grid.ColumnSpan="3" Grid.RowSpan="9">
