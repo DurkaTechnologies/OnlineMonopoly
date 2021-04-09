@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,6 +8,11 @@ namespace DAL
 {
 	public class User
     {
+		public User()
+		{
+            Friends = new HashSet<User>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -27,5 +33,7 @@ namespace DAL
 
         [DefaultValue(0)]
         public int Money { get; set; }
+
+        public virtual ICollection<User> Friends { get; set; }
     }
 }
