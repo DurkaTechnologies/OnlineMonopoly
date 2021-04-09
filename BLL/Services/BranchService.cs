@@ -26,10 +26,14 @@ namespace BLL.Services
             IConfigurationProvider configuration = new MapperConfiguration(
                 cfg =>
                 {
-                    cfg.CreateMap<RentSetting, RentSettingsDTO>();
+                    cfg.CreateMap<RentSetting, RentSettingDTO>();
+                    cfg.CreateMap<BranchType, BranchTypeDTO>();
+                    cfg.CreateMap<User, UserDTO>();
                     cfg.CreateMap<Branch, BranchDTO>();
 
-                    cfg.CreateMap<RentSettingsDTO, RentSetting>();
+                    cfg.CreateMap<RentSettingDTO, RentSetting>();
+                    cfg.CreateMap<BranchTypeDTO, BranchType>();
+                    cfg.CreateMap<UserDTO, User>();
                     cfg.CreateMap<BranchDTO, Branch>();
                 });
 

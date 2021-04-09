@@ -37,7 +37,7 @@ namespace WPFUI.ViewModels
 		public SignInViewModel(IPasswordSupplier suppliear)
 		{
 			this.suppliear = suppliear;
-    }
+		}
 
 		GrpcChannel channel;
 		Loginer.LoginerClient client;
@@ -171,6 +171,11 @@ namespace WPFUI.ViewModels
 		#endregion
 
 		#region Methods
+		private void ShowIncorrect()
+		{
+			ErrorText = "Password or Login incorrect";
+			Password = "";
+		}
 
 		public void UpdatePassword()
 		{
@@ -181,7 +186,7 @@ namespace WPFUI.ViewModels
 		{
 			/*get password method from passwordbox*/
 			ErrorText = suppliear.GetPassword();
-    }
+		}
     
 		private string ComputeSha256Hash(string data)
 		{
@@ -207,7 +212,6 @@ namespace WPFUI.ViewModels
 		}
 
 		#endregion
-		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
 
 		#region IsCorrect
 		public bool IsLoginCorrect
@@ -229,21 +233,13 @@ namespace WPFUI.ViewModels
 				OnPropertyChanged();
 			}
 		}
-
+		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
 		#endregion
 
-		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
 	}
 
 	public interface IPasswordSupplier
 	{
 		string GetPassword();
-
-		private void ShowIncorrect()
-		{
-			ErrorText = "Password or Login incorrect";
-			Password = "";
-		}
-
 	}
 }

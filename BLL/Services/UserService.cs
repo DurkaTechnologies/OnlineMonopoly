@@ -44,7 +44,6 @@ namespace BLL.Services
 			{
                 return false;
             }
-
         }
 
         public UserDTO Find(int id)
