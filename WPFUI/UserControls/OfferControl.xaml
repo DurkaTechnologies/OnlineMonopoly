@@ -1,11 +1,8 @@
 ﻿<UserControl x:Class="WPFUI.UserControls.OfferControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:uc="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary" xmlns:luc="clr-namespace:WPFUI.UserControls.OfferControlAdditionals"
-			 DataContext="{Binding RelativeSource={RelativeSource Self}}"
 			 MaxWidth="2048" MaxHeight="2048"
 			 FontSize="20" x:Name="this">
-
-	<!--Width="512" Height="512"-->
 
 	<UserControl.Resources>
 		<ResourceDictionary>
@@ -95,7 +92,7 @@
 
 		</ResourceDictionary>
 	</UserControl.Resources>
-	<Grid>
+	<Grid x:Name="LayoutRoot">
 		<Border Background="White" Padding="16" CornerRadius="16">
 			<Grid>
 				<Grid.ColumnDefinitions>
@@ -166,7 +163,7 @@
 
 				<luc:OfferUsersMoney Grid.Row="2" Grid.ColumnSpan="2" 
 									 Margin="32,4" FontSize="{Binding Path=FontSize, ElementName=this}"
-									 HorizontalAlignment="Left" UserMoney="{Binding LeftUserMoney}"/>
+									 HorizontalAlignment="Left" UserMoney="{Binding LeftUserMoney, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
 				<luc:OfferUsersMoney Grid.Column="2" Grid.Row="2" 
 									 Grid.ColumnSpan="2" Margin="32,4"
@@ -185,6 +182,7 @@
 				<uc:RoundButton Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" 
 						Style="{StaticResource roundBtnStyle}"
 						Background="{StaticResource GreenBackground}" 
+						BorderBrush="{StaticResource DefGreenBrush}" 
 						Content="Confirm"
 					    FontSize="{Binding Path=FontSize, ElementName=this}"/>
 

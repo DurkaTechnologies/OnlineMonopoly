@@ -280,7 +280,7 @@ namespace WPFUI.ViewModels
 					{
 						p = false;
 
-						await Start();
+						//await Start();
 					}
 
 					sendCommand.RaiseCanExecuteChanged();

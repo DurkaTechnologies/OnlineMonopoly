@@ -22,8 +22,8 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 	{
 		#region Fields
 
-		public static DependencyProperty UserMoneyProperty;
-		//private int userMoney;
+		public static readonly DependencyProperty UserMoneyProperty ;
+		private int userMoney;
 		private bool vis;
 
 		#endregion
@@ -43,13 +43,16 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 
 		public string Hidden => (Vis) ? "Visible" : "Hidden";
 
-		public int UserMoney
+		public string UserMoney
 		{
-			get => (int)GetValue(UserMoneyProperty);
+			get => (string)GetValue(UserMoneyProperty);
 			set
 			{
-				SetValue(UserMoneyProperty, value);
-				OnPropertyChanged();
+				if (CheckInt(value))
+				{
+					SetValue(UserMoneyProperty, value);
+					OnPropertyChanged();
+				}
 			}
 		}
 
@@ -57,13 +60,16 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 
 		static OfferUsersMoney()
 		{
-			UserMoneyProperty = DependencyProperty.Register("UserMoney", typeof(int), typeof(OfferUsersMoney),
-					new FrameworkPropertyMetadata(0));
+			UserMoneyProperty = DependencyProperty.Register("UserMoney", typeof(string), typeof(OfferUsersMoney),
+					new FrameworkPropertyMetadata("0"));
 		}
 
 		public OfferUsersMoney()
 		{
 			InitializeComponent();
+			InitializePropertyChanged();
+
+			LayoutRoot.DataContext = this;
 			Vis = false;
 		}
 
@@ -90,8 +96,22 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
 
-		#endregion
+		private void InitializePropertyChanged()
+		{
+			PropertyChanged += (sender, args) =>
+			{
+			};
+		}
 
-		
+		bool CheckInt(string value)
+		{
+			if (value.Length > 5)
+				return false;
+
+				int temp;
+			return int.TryParse(value, out temp);
+		}
+
+		#endregion
 	}
 }

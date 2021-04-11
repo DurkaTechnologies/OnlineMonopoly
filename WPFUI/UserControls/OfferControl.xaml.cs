@@ -21,14 +21,13 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class OfferControl : UserControl, INotifyPropertyChanged
 	{
-		public static DependencyProperty LeftUserMoneyProperty;
 
 		public int LeftUserMoney
 		{
-			get => (int)GetValue(LeftUserMoneyProperty);
+			get => leftUserMoney;
 			set
 			{
-				SetValue(LeftUserMoneyProperty, value);
+				leftUserMoney = value;
 				OnPropertyChanged();
 			}
 		}
@@ -37,8 +36,8 @@ namespace WPFUI.UserControls
 
 		private ICollection<UserElement> leftUserElements = new ObservableCollection<UserElement>();
 		private ICollection<UserElement> rightUserElements = new ObservableCollection<UserElement>();
-		
-		//private int leftUserMoney;
+
+		private int leftUserMoney;
 		private int rightUserMoney;
 
 		private int allRightMoney;
@@ -46,16 +45,13 @@ namespace WPFUI.UserControls
 
 		#endregion
 
-		static OfferControl() 
-		{
-			LeftUserMoneyProperty = DependencyProperty.Register("LeftUserMoney", typeof(int), typeof(OfferControl),
-						new FrameworkPropertyMetadata(0));
-		}
 
 		public OfferControl()
 		{
 			InitializeComponent();
+			InitializePropertyChanged();
 
+			LayoutRoot.DataContext = this;
 			AddLeftUserElement(new UserElement("SoftServe", 666, "pack://application:,,,/Resources/IT/softserve.png"));
 			AddLeftUserElement(new UserElement("Step", 666, "pack://application:,,,/Resources/IT/step.png"));
 
@@ -223,6 +219,8 @@ namespace WPFUI.UserControls
 		public UserElement(string title, int price, string image)
 		{
 			InitializePropertyChanged();
+
+
 			Title = title;
 			Price = price;
 			ImageSource = image;
