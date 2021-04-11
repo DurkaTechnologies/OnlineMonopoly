@@ -23,7 +23,6 @@
 				<Setter Property="MinHeight" Value="30" />
 				<Setter Property="VerticalContentAlignment" Value="Stretch" />
 				<Setter Property="FocusVisualStyle" Value="{x:Null}" />
-				<Setter Property="BorderThickness" Value="0,0,8,0" />
 				<Setter Property="Template">
 					<Setter.Value>
 						<ControlTemplate TargetType="ListBoxItem">
@@ -33,11 +32,6 @@
                                 BorderThickness="{TemplateBinding BorderThickness}">
 								<ContentPresenter />
 							</Border>
-							<ControlTemplate.Triggers>
-								<Trigger Property="IsSelected" Value="true">
-									<Setter Property="BorderBrush" Value="{StaticResource BlueBackground}"/>
-								</Trigger>
-							</ControlTemplate.Triggers>
 						</ControlTemplate>
 					</Setter.Value>
 				</Setter>
@@ -55,11 +49,11 @@
 						<RowDefinition/>
 					</Grid.RowDefinitions>
 
-					<Image Grid.RowSpan="2" Height="{Binding Path=ActualHeight, ElementName=LeftUser}"
+					<Image Grid.RowSpan="2" Height="{Binding Path=ActualHeight, ElementName=LeftOfferUser}"
 						   HorizontalAlignment="Left" Source="{Binding Image}"/>
 
 					<TextBlock Grid.Column="1" Style="{StaticResource DefTextBlockStyle}"
-							   HorizontalAlignment="Left" Text="{Binding Title}" FontSize="14" Margin="8,0,0,0"/>
+							   HorizontalAlignment="Left" Text="{Binding Name}" FontSize="14" Margin="8,0,0,0"/>
 
 					<TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource DefTextBlockStyle}"
 							   HorizontalAlignment="Left" Text="{Binding Price}" FontSize="12" Margin="8,0,0,0"/>
@@ -160,21 +154,20 @@
 
 				<luc:OfferUser Grid.ColumnSpan="2" 
 							   Style="{StaticResource DefOfferUser}" 
-							   UserType="True" UserName="Vlad"
-							   ImageSource="https://cdn.discordapp.com/attachments/821379755743903764/827188443335098398/unknown.png"
-							   x:Name="LeftUser"/>
+							   UserType="True"
+							   x:Name="LeftOfferUser" User="{Binding LeftUser}"/>
 
 				<luc:OfferUser Grid.Column="2"
 							   Style="{StaticResource DefOfferUser}" Grid.ColumnSpan="2"
-							   UserName="Sobaka Vlada"
-							   ImageSource="https://cdn.discordapp.com/attachments/821379755743903764/827188612172218388/unknown.png"/>
+							   User="{Binding RightUser}"/>
 
 				<!--Users Money-->
 
 				<luc:OfferUsersMoney Style="{StaticResource DefOfferUserMoney}"
 									 UserMoney="{Binding LeftUserMoney, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
-				<luc:OfferUsersMoney Grid.Column="2" Style="{StaticResource DefOfferUserMoney}"/>
+				<luc:OfferUsersMoney Grid.Column="2" Style="{StaticResource DefOfferUserMoney}"
+									 UserMoney="{Binding RightUserMoney, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
 				<!--Vertical Line-->
 
@@ -187,19 +180,22 @@
 
 				<uc:RoundButton Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" 
 						Style="{StaticResource roundBtnStyle}" Margin="0,8,0,0"
-						Background="{StaticResource GreenBackground}" 
-						BorderBrush="{StaticResource DefGreenBrush}" 
+						Background="{StaticResource GreenBackground}"
+						SecondBackground="{StaticResource DefSecondBackground}"
+						BorderBrush="{StaticResource DefGreenBrush}"
+						SecondBorderBrush="{StaticResource DefSecondBorderBrush}"
 						Content="Confirm"
-					    FontSize="{Binding Path=FontSize, ElementName=this}"/>
+					    FontSize="{Binding Path=FontSize, ElementName=this}"
+						Command="{Binding ConfirmOfferCommand}"/>
 
 				<!--Users Cards-->
 
 				<ScrollViewer Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
-					<ListBox ItemsSource="{Binding LeftUserElements}" />
+					<ListBox ItemsSource="{Binding LeftUserBranches}" />
 				</ScrollViewer>
 
 				<ScrollViewer Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
-					<ListBox ItemsSource="{Binding RightUserElements}"/>
+					<ListBox ItemsSource="{Binding RightUserBranches}"/>
 				</ScrollViewer>
 
 				<!--All Money-->

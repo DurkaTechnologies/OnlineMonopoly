@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UIWPF.Commands;
 
 namespace WPFUI.UserControls
 {
@@ -21,6 +23,50 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class OfferControl : UserControl, INotifyPropertyChanged
 	{
+		#region Fields
+
+		private UserDTO leftUser;
+		private UserDTO rightUser;
+
+		private ICollection<BranchDTO> leftUserBranches = new ObservableCollection<BranchDTO>();
+		private ICollection<BranchDTO> rightUserBranches = new ObservableCollection<BranchDTO>();
+
+		private int leftUserMoney;
+		private int rightUserMoney;
+
+		private int allRightMoney;
+		private int allLeftMoney;
+
+		private Command confirmOfferCommand;
+
+		#endregion
+
+		#region Proporties
+
+		public ICommand ConfirmOfferCommand => confirmOfferCommand;
+
+		public UserDTO LeftUser
+		{
+			get => leftUser;
+			set
+			{
+				leftUser = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public UserDTO RightUser
+		{
+			get => rightUser;
+			set
+			{
+				rightUser = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public IEnumerable<BranchDTO> LeftUserBranches => leftUserBranches;
+		public IEnumerable<BranchDTO> RightUserBranches => rightUserBranches;
 
 		public int LeftUserMoney
 		{
@@ -31,54 +77,6 @@ namespace WPFUI.UserControls
 				OnPropertyChanged();
 			}
 		}
-
-		#region Fields
-
-		private ICollection<UserElement> leftUserElements = new ObservableCollection<UserElement>();
-		private ICollection<UserElement> rightUserElements = new ObservableCollection<UserElement>();
-
-		private int leftUserMoney;
-		private int rightUserMoney;
-
-		private int allRightMoney;
-		private int allLeftMoney;
-
-		#endregion
-
-
-		public OfferControl()
-		{
-			InitializeComponent();
-			InitializePropertyChanged();
-
-			LayoutRoot.DataContext = this;
-			AddLeftUserElement(new UserElement("SoftServe", 666, "pack://application:,,,/Resources/IT/softserve.png"));
-			AddLeftUserElement(new UserElement("Step", 666, "pack://application:,,,/Resources/IT/step.png"));
-
-			AddRightUserElement(new UserElement("Riven", 666, "pack://application:,,,/Resources/Drinks/riven.png"));
-		}
-
-		#region Methods
-
-		public void AddLeftUserElement(UserElement element)
-		{
-			leftUserElements.Add(element);
-			UpdateAllLeftMoney();
-		}
-
-		public void AddRightUserElement(UserElement element)
-		{
-			rightUserElements.Add(element);
-			UpdateAllRightMoney();
-		}
-
-		#endregion
-
-		#region Proporties
-
-		public IEnumerable<UserElement> LeftUserElements => leftUserElements;
-		public IEnumerable<UserElement> RightUserElements => rightUserElements;
-
 
 		public int RightUserMoney
 		{
@@ -113,6 +111,57 @@ namespace WPFUI.UserControls
 
 		#endregion
 
+		public OfferControl()
+		{
+			InitializeComponent();
+			InitializePropertyChanged();
+			LayoutRoot.DataContext = this;
+			confirmOfferCommand = new DelegateCommand(ConfirmOffer, ConfirmCanExectute);
+
+			LeftUser = new UserDTO() { Login = "Shiza", Image = "https://cdn.discordapp.com/attachments/821379755743903764/830777911350394890/unknown.png" };
+			RightUser = new UserDTO() { Login = "Onizuka", Image = "https://cdn.discordapp.com/attachments/821379755743903764/830045208569839616/GTO.png" };
+
+			AddLeftUserElement(new BranchDTO() { Name = "SoftServe", Price = 666, Image = "pack://application:,,,/Resources/IT/softserve.png" });
+			AddLeftUserElement(new BranchDTO() { Name = "Step", Price = 666, Image = "pack://application:,,,/Resources/IT/step.png" });
+
+			AddRightUserElement(new BranchDTO() { Name = "Riven", Price = 666, Image = "pack://application:,,,/Resources/Drinks/riven.png" });
+
+		}
+
+		#region Methods
+
+		private bool ConfirmCanExectute()
+		{
+			if (AllLeftMoney == AllRightMoney)
+				return true;
+
+			return false;
+		}
+
+		public void ConfirmOffer()
+		{
+			Offer offer = new Offer();
+
+			offer.LeftUserMoney = this.LeftUserMoney;
+			offer.RightUserMoney = this.RightUserMoney;
+			offer.LeftUserBranhces = this.LeftUserBranches;
+			offer.RightUserBranhces = this.RightUserBranches;
+		}
+
+		public void AddLeftUserElement(BranchDTO branch)
+		{
+			leftUserBranches.Add(branch);
+			UpdateAllLeftMoney();
+		}
+
+		public void AddRightUserElement(BranchDTO branch)
+		{
+			rightUserBranches.Add(branch);
+			UpdateAllRightMoney();
+		}
+
+		#endregion
+
 		#region INotify
 
 		private void InitializePropertyChanged()
@@ -124,6 +173,10 @@ namespace WPFUI.UserControls
 
 				if (args.PropertyName.Equals(nameof(RightUserMoney)))
 					UpdateAllRightMoney();
+
+				if (args.PropertyName.Equals(nameof(AllLeftMoney)) ||
+					args.PropertyName.Equals(nameof(AllRightMoney)))
+					confirmOfferCommand.RaiseCanExecuteChanged();
 			};
 		}
 
@@ -131,7 +184,7 @@ namespace WPFUI.UserControls
 		{
 			AllLeftMoney = LeftUserMoney;
 
-			foreach (var item in leftUserElements)
+			foreach (var item in leftUserBranches)
 				AllLeftMoney += item.Price;
 		}
 
@@ -139,7 +192,7 @@ namespace WPFUI.UserControls
 		{
 			AllRightMoney = RightUserMoney;
 
-			foreach (var item in rightUserElements)
+			foreach (var item in rightUserBranches)
 				AllRightMoney += item.Price;
 		}
 
@@ -153,106 +206,12 @@ namespace WPFUI.UserControls
 		#endregion
 	}
 
-	public class UserElement : INotifyPropertyChanged
+	public struct Offer
 	{
-		#region Fields
+		public int LeftUserMoney { get; set; }
+		public int RightUserMoney { get; set; }
 
-		private string title;
-		private int price;
-		private ImageSource image;
-		private string imageSource;
-
-		#endregion
-
-		#region Proporties
-
-
-		public string Title
-		{
-			get => title;
-			set
-			{
-				title = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public int Price
-		{
-			get => price;
-			set
-			{
-				price = value;
-				OnPropertyChanged();
-			}
-		}
-
-
-		public ImageSource Image
-		{
-			get => image;
-			set
-			{
-				image = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public string ImageSource
-		{
-			get => imageSource;
-			set
-			{
-				imageSource = value;
-				OnPropertyChanged();
-				OnPropertyChanged(nameof(Image));
-			}
-		}
-
-		#endregion
-
-		public UserElement()
-		{
-			InitializePropertyChanged();
-		}
-
-		public UserElement(string title, int price, string image)
-		{
-			InitializePropertyChanged();
-
-
-			Title = title;
-			Price = price;
-			ImageSource = image;
-		}
-
-		#region INotify
-
-		private void InitializePropertyChanged()
-		{
-			PropertyChanged += (sender, args) =>
-			{
-				if (args.PropertyName.Equals(nameof(ImageSource)))
-				{
-					try
-					{
-						Image = new BitmapImage(new Uri(ImageSource));
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e.Message);
-					}
-				}
-			};
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged([CallerMemberName] string name = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-		}
-
-		#endregion
+		public IEnumerable<BranchDTO> LeftUserBranhces { get; set; }
+		public IEnumerable<BranchDTO> RightUserBranhces { get; set; }
 	}
 }

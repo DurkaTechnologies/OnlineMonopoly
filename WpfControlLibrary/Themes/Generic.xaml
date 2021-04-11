@@ -66,7 +66,8 @@
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             BorderBrush="{TemplateBinding BorderBrush}">
-                        <ScrollViewer Margin="0"
+                        <ScrollViewer Margin="0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        x:Name="PART_ContentHost"/>
                     </Border>
                     <ControlTemplate.Triggers>

@@ -16,6 +16,8 @@ namespace DAL
         [Key]
         public int Id { get; set; }
 
+        public string Image { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Login { get; set; }

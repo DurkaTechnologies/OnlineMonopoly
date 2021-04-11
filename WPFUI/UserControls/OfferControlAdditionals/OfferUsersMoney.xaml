@@ -25,7 +25,7 @@
 		<TextBlock Grid.Column="1" 
 				   Style="{StaticResource DefTextBlockStyle}" 
 				   FontSize="{Binding Path=FontSize, ElementName=this}"
-				   Margin="8,0"
+				   Margin="8,4,8,4"
 				   Text="{Binding UserMoney}" />
 
 		<uc:RoundButton Grid.Column="2" VerticalAlignment="Center" 
@@ -39,10 +39,11 @@
 		<uc:CustomTextBox Grid.Column="1" Grid.ColumnSpan="2" 
 						  BorderBrush="{StaticResource DefBorderBrush}"
 						  BorderThickness="2" Background="{StaticResource DefBackground}"
-						  Visibility="{Binding TextBoxVisibility}" Margin="8,4,0,4" Padding="2,0"
+						  Visibility="{Binding TextBoxVisibility}" Margin="4,4,0,4" Padding="2,0"
 						  FontSize="{Binding Path=FontSize, ElementName=this}" 
 						  MouseLeave="CustomTextBox_MouseLeave" VerticalAlignment="Center"
-						  Text="{Binding UserMoneyStr, UpdateSourceTrigger=PropertyChanged}" />
+						  VerticalContentAlignment="Center"
+						  Text="{Binding UserMoneyStr, UpdateSourceTrigger=PropertyChanged}"/>
 
 	</Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -23,12 +24,22 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 	{
 		#region Fields
 
+		public static readonly DependencyProperty UserProperty;
 		private bool userType;
-		private string userName;
-		private string imageSource;
-		private ImageSource image;
 
 		#endregion
+
+		static OfferUser()
+		{
+			UserProperty = DependencyProperty.Register("User", typeof(UserDTO),
+				typeof(OfferUser), new PropertyMetadata(null));
+		}
+
+		public OfferUser()
+		{
+			InitializeComponent();
+			LayoutRoot.DataContext = this;
+		}
 
 		#region Proporties
 
@@ -43,65 +54,17 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 			}
 		}
 
-		public string UserName
+		public int User
 		{
-			get => userName;
-			set
-			{
-				userName = value;
-				OnPropertyChanged();
-			}
+			get { return (int)GetValue(UserProperty); }
+			set { SetValue(UserProperty, value); }
 		}
 
 		public string UserTypeText => (UserType)? "Proposes" : "Gives";
 
-		public ImageSource Image 
-		{
-			get => image;
-			set 
-			{
-				image = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public string ImageSource
-		{
-			get => imageSource;
-			set
-			{
-				imageSource = value;
-				OnPropertyChanged();
-			}
-		}
-
 		#endregion
 
-		public OfferUser()
-		{
-			InitializeComponent();
-			InitializePropertyChanged();
-		}
-
 		#region INotify
-
-		private void InitializePropertyChanged()
-		{
-			PropertyChanged += (sender, args) =>
-			{
-				if (args.PropertyName.Equals(nameof(ImageSource)))
-				{
-					try
-					{
-						Image = new BitmapImage(new Uri(ImageSource));
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e.Message);
-					}
-				}
-			};
-		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
