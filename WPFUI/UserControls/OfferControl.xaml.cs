@@ -60,7 +60,7 @@ namespace WPFUI.UserControls
 
 		#region Methods
 
-		public void AddLeftUserElement(UserElement element) 
+		public void AddLeftUserElement(UserElement element)
 		{
 			leftUserElements.Add(element);
 			UpdateAllLeftMoney();
@@ -121,7 +121,7 @@ namespace WPFUI.UserControls
 			{
 				if (args.PropertyName.Equals(nameof(LeftUserMoney)))
 					UpdateAllLeftMoney();
-				
+
 				if (args.PropertyName.Equals(nameof(RightUserMoney)))
 					UpdateAllRightMoney();
 			};
@@ -135,7 +135,7 @@ namespace WPFUI.UserControls
 				AllLeftMoney += item.Price;
 		}
 
-		private void UpdateAllRightMoney() 
+		private void UpdateAllRightMoney()
 		{
 			AllRightMoney = RightUserMoney;
 
@@ -256,4 +256,3 @@ namespace WPFUI.UserControls
 		#endregion
 	}
 }
-

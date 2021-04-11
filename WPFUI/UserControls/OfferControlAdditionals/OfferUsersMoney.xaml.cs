@@ -22,46 +22,16 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 	{
 		#region Fields
 
-		public static readonly DependencyProperty UserMoneyProperty ;
-		private int userMoney;
-		private bool vis;
-
-		#endregion
-
-		#region Proporties
-
-		public bool Vis
-		{
-			get => vis;
-			set
-			{
-				vis = value;
-				OnPropertyChanged();
-				OnPropertyChanged(nameof(Hidden));
-			}
-		}
-
-		public string Hidden => (Vis) ? "Visible" : "Hidden";
-
-		public string UserMoney
-		{
-			get => (string)GetValue(UserMoneyProperty);
-			set
-			{
-				if (CheckInt(value))
-				{
-					SetValue(UserMoneyProperty, value);
-					OnPropertyChanged();
-				}
-			}
-		}
+		public static readonly DependencyProperty UserMoneyProperty;
+		private string userMoneyStr;
+		private Visibility visibility;
 
 		#endregion
 
 		static OfferUsersMoney()
 		{
-			UserMoneyProperty = DependencyProperty.Register("UserMoney", typeof(string), typeof(OfferUsersMoney),
-					new FrameworkPropertyMetadata("0"));
+			UserMoneyProperty = DependencyProperty.Register("UserMoney", typeof(int), typeof(OfferUsersMoney),
+					new FrameworkPropertyMetadata(0));
 		}
 
 		public OfferUsersMoney()
@@ -70,19 +40,56 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 			InitializePropertyChanged();
 
 			LayoutRoot.DataContext = this;
-			Vis = false;
+			UserMoneyStr = "0";
+
+			TextBoxVisibility = Visibility.Hidden;
 		}
+
+		#region Proporties
+		public Visibility TextBoxVisibility
+		{
+			get => visibility;
+			set
+			{
+				visibility = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string UserMoneyStr
+		{
+			get => userMoneyStr;
+			set
+			{
+				if (CheckInt(value))
+				{
+					userMoneyStr = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public int UserMoney
+		{
+			get => (int)GetValue(UserMoneyProperty);
+			set
+			{
+				SetValue(UserMoneyProperty, value);
+				OnPropertyChanged();
+			}
+		}
+		#endregion
 
 		#region Methods
 
 		private void RoundButton_Click(object sender, RoutedEventArgs e)
 		{
-			Vis = true;
+			TextBoxVisibility = Visibility.Visible;
 		}
 
 		private void CustomTextBox_MouseLeave(object sender, MouseEventArgs e)
 		{
-			Vis = false;
+			TextBoxVisibility = Visibility.Hidden;
 		}
 
 		#endregion
@@ -100,6 +107,8 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 		{
 			PropertyChanged += (sender, args) =>
 			{
+				if (args.PropertyName.Equals(nameof(UserMoneyStr)))
+					UserMoney = int.Parse(UserMoneyStr);
 			};
 		}
 
@@ -108,7 +117,7 @@ namespace WPFUI.UserControls.OfferControlAdditionals
 			if (value.Length > 5)
 				return false;
 
-				int temp;
+			int temp;
 			return int.TryParse(value, out temp);
 		}
 
