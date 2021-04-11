@@ -16,6 +16,9 @@ namespace WPFUI.ViewModels
 {
 	public class SignUpViewModel : BaseViewModel
 	{
+		#region Fields
+		private IPasswordSupplier suppliear;
+
 		private string login;
 		private string password;
 		private string email;
@@ -23,13 +26,16 @@ namespace WPFUI.ViewModels
 		private bool isLoginCorrect;
 		private bool isPasswordCorrect;
 		private bool isEmailCorrect;
+		private bool registerDone;
 
 		private Command signUpCommand;
 		private Command goMainMenuCommand;
-		private bool registerDone;
+
 		GrpcChannel channel;
 		Register.RegisterClient client;
+		#endregion
 
+		#region Ctors
 		public SignUpViewModel()
 		{
 			channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -43,6 +49,13 @@ namespace WPFUI.ViewModels
 			RegisterDone = false;
 		}
 
+		public SignUpViewModel(IPasswordSupplier suppliear) : this()
+		{
+			this.suppliear = suppliear;
+		}
+		#endregion
+
+		#region Initialize
 		private void InitializeCommands()
 		{
 			signUpCommand = new DelegateCommand(SignUpAsync, SignUpCanExecute);
@@ -55,7 +68,7 @@ namespace WPFUI.ViewModels
 			{
 				if (args.PropertyName.Equals(nameof(Login)))
 				{
-        	IsLoginCorrect = (await client.CheckLoginAsync(new Login() { Login_ = login })).Correct_;
+					IsLoginCorrect = (await client.CheckLoginAsync(new Login() { Login_ = login })).Correct_;
 					signUpCommand.RaiseCanExecuteChanged();
 				}
 
@@ -72,33 +85,12 @@ namespace WPFUI.ViewModels
 				}
 			};
 		}
+		#endregion
 
+		#region ICommands
 		public ICommand SignUpCommand => signUpCommand;
 		public ICommand GoMainMenuCommand => goMainMenuCommand;
-
-		private async void SignUpAsync()
-		{
-			bool result = (await client.SendDataAsync(new RegInfo()
-			{
-				Login = Login,
-				Password = ComputeSha256Hash(Password),
-				Email = Email,
-			})).Correct_;
-
-			if (result)
-			{
-				RegisterDone = true;
-				await Task.Delay(1500);
-				GoToMainMenu();
-			}
-		}
-
-		public void GoToMainMenu()
-		{
-			Navigation.Navigation.Navigate(Navigation.Navigation.MainMenuAlias, null);
-		}
-
-		private bool SignUpCanExecute() => IsLoginCorrect && IsPasswordCorrect && IsEmailCorrect;
+		#endregion
 
 		#region Properties
 		public string Login
@@ -130,6 +122,38 @@ namespace WPFUI.ViewModels
 				OnPropertyChanged();
 			}
 		}
+
+		#endregion
+
+		#region Methods
+		private async void SignUpAsync()
+		{
+			bool result = (await client.SendDataAsync(new RegInfo()
+			{
+				Login = Login,
+				Password = ComputeSha256Hash(Password),
+				Email = Email,
+			})).Correct_;
+
+			if (result)
+			{
+				RegisterDone = true;
+				await Task.Delay(1500);
+				GoToMainMenu();
+			}
+		}
+
+		public void UpdatePassword()
+		{
+			Password = suppliear.GetPassword();
+		}
+
+		public void GoToMainMenu()
+		{
+			Navigation.Navigation.Navigate(Navigation.Navigation.MainMenuAlias, null);
+		}
+
+		private bool SignUpCanExecute() => IsLoginCorrect && IsPasswordCorrect && IsEmailCorrect;
 
 		#endregion
 
@@ -175,6 +199,7 @@ namespace WPFUI.ViewModels
 		}
 		#endregion
 
+		#region Other
 		public static string ComputeSha256Hash(string data)
 		{
 			using (SHA256 sha256Hash = SHA256.Create())
@@ -187,5 +212,6 @@ namespace WPFUI.ViewModels
 				return builder.ToString();
 			}
 		}
+		#endregion
 	}
 }

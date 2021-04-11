@@ -19,7 +19,7 @@ namespace WPFUI.Pages
 	/// <summary>
 	/// Interaction logic for SignUpPage.xaml
 	/// </summary>
-	public partial class SignUpPage : Page
+	public partial class SignUpPage : Page, IPasswordSupplier
 	{
 		public SignUpPage()
 		{
@@ -29,7 +29,17 @@ namespace WPFUI.Pages
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			Navigation.Navigation.Service = NavigationService.GetNavigationService(this);
-			this.DataContext = new SignUpViewModel();
+			this.DataContext = new SignUpViewModel(this);
+		}
+
+		public string GetPassword()
+		{
+			return PasswordBox.Password;
+		}
+
+		private void PasswordChanged(object sender, RoutedEventArgs e)
+		{
+			(this.DataContext as SignUpViewModel).UpdatePassword();
 		}
 	}
 }

@@ -174,6 +174,7 @@
         </Style.Triggers>
     </Style>
 
+	
     <Style TargetType="TextBlock" x:Key="DefTextBlockStyle">
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
@@ -208,4 +209,84 @@
         </Style.Triggers>
     </Style>
 
+	<Style x:Key="PasswordBoxStyle"
+       TargetType="{x:Type PasswordBox}">
+		<Setter Property="SnapsToDevicePixels"
+          Value="true" />
+		<Setter Property="OverridesDefaultStyle"
+          Value="true" />
+		<Setter Property="KeyboardNavigation.TabNavigation"
+          Value="None" />
+		<Setter Property="FocusVisualStyle"
+          Value="{x:Null}" />
+		<Setter Property="FontFamily"
+          Value="Verdana" />
+		<Setter Property="PasswordChar"
+          Value="*" />
+		<Setter Property="MinWidth"
+          Value="120" />
+		<Setter Property="MinHeight"
+          Value="20" />
+		<Setter Property="AllowDrop"
+          Value="true" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type PasswordBox}">
+					<Border x:Name="Border"
+							Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							CornerRadius="8"
+							Padding="{TemplateBinding Padding}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+						
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="Disabled" />
+								<VisualState x:Name="MouseOver" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<ScrollViewer x:Name="PART_ContentHost" FontSize="{TemplateBinding FontSize}"
+									  FontWeight="{TemplateBinding FontWeight}" FontFamily="{TemplateBinding FontFamily}"
+									  FontStyle="{TemplateBinding FontStyle}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="DefPasswordBox" TargetType="{x:Type PasswordBox}" 
+		   BasedOn="{StaticResource  PasswordBoxStyle}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+		<Setter Property="Background" Value="{StaticResource DefBackground}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource DefBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="2,2,2,4"/>
+		<Setter Property="Grid.Column" Value="1"/>
+		<Setter Property="Margin" Value="10,8"/>
+		<Setter Property="Grid.Column" Value="1"/>
+		<Setter Property="Foreground" Value="Black"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Padding" Value="10,0"/>
+		<Setter Property="FontSize" Value="22"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Direction="270" BlurRadius="10" />
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<EventTrigger RoutedEvent="Page.Loaded">
+				<EventTrigger.Actions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation 
+                                    Storyboard.TargetProperty="(PasswordBox.RenderTransform).(TranslateTransform.X)" 
+                                    To="0" 
+                                    BeginTime="0:0:0.1"
+                                    Duration="0:0:0.4"  />
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger.Actions>
+			</EventTrigger>
+		</Style.Triggers>
+	</Style>
+	
 </ResourceDictionary>

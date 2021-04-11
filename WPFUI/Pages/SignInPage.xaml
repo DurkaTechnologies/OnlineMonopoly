@@ -67,22 +67,19 @@
 
         <TextBlock Grid.Row="3" Text="Password" Style="{StaticResource DefTextBlockStyle}"/>
 
-		<PasswordBox Grid.Column="1" Grid.Row="4" x:Name="passwordBox" 
-					 PasswordChanged="passwordBox_PasswordChanged"></PasswordBox>
+		<PasswordBox Grid.Row="4" RenderTransform="{StaticResource LeftTransform}"
+					 x:Name="passwordBox" PasswordChanged="passwordBox_PasswordChanged">
+			<PasswordBox.Style>
+				<Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource DefPasswordBox}">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding IsPasswordCorrect}" Value="False">
+							<Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</PasswordBox.Style>
+		</PasswordBox>
 		
-        <!--<uc:CustomTextBox Grid.Row="4"  RenderTransform="{StaticResource LeftTransform}" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}">
-            <TextBox.Style>
-                <Style TargetType="{x:Type uc:CustomTextBox}" BasedOn="{StaticResource DefTextBoxStyle}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsPasswordCorrect}" Value="False">
-                            <Setter Property="SecondBorderBrush" Value="{StaticResource MainDarkRed}"/>
-                            <Setter Property="BorderBrush" Value="{StaticResource MainDarkRed}"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </uc:CustomTextBox>-->
-
 		<Decorator Grid.Row="5" Grid.Column="1" >
 			<TextBlock Text="{Binding ErrorText}" 
                    Style="{StaticResource DefTextBlockStyle}" 

@@ -1,15 +1,9 @@
 ﻿using Grpc.Net.Client;
 using System;
 using SignIn;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using UIWPF.Commands;
 using UIWPF.ViewModels;
-using WPFUI.Navigation;
 using System.Security.Cryptography;
 using System.Text;
 using BLL.DTO;
@@ -20,10 +14,11 @@ namespace WPFUI.ViewModels
 	class SignInViewModel : BaseViewModel
 	{
 		#region Fields
-
 		private IPasswordSupplier suppliear;
+
 		private string login;
 		private string password;
+
 		private bool isLoginCorrect;
 		private bool isPasswordCorrect;
 		private string errorText;
@@ -32,15 +27,11 @@ namespace WPFUI.ViewModels
 		private Command goMainMenuCommand;
 		private Command goRecoverCommand;
 
-		#endregion
-
-		public SignInViewModel(IPasswordSupplier suppliear)
-		{
-			this.suppliear = suppliear;
-		}
-
 		GrpcChannel channel;
 		Loginer.LoginerClient client;
+		#endregion
+
+		#region Ctors
 
 		public SignInViewModel()
 		{
@@ -53,6 +44,12 @@ namespace WPFUI.ViewModels
 			InitializeCommands();
 			InitializePropertyChanged();
 		}
+
+		public SignInViewModel(IPasswordSupplier suppliear) : this()
+		{
+			this.suppliear = suppliear;
+		}
+		#endregion
 
 		#region Initialize
 
@@ -94,13 +91,13 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
-		#region Proporties
-
+		#region ICommands 
 		public ICommand SignInCommand => signInCommand;
 		public ICommand GoMainMenuCommand => goMainMenuCommand;
 		public ICommand GoRecoverCommand => goRecoverCommand;
+		#endregion
 
-
+		#region Proporties
 		public string Login
 		{
 			get => login;
@@ -182,12 +179,6 @@ namespace WPFUI.ViewModels
 			Password = suppliear.GetPassword();
 		}
 
-		private void SignIn()
-		{
-			/*get password method from passwordbox*/
-			ErrorText = suppliear.GetPassword();
-		}
-    
 		private string ComputeSha256Hash(string data)
 		{
 			using (SHA256 sha256Hash = SHA256.Create())
@@ -235,7 +226,6 @@ namespace WPFUI.ViewModels
 		}
 		private bool SignInCanExecute() => IsLoginCorrect && IsPasswordCorrect;
 		#endregion
-
 	}
 
 	public interface IPasswordSupplier

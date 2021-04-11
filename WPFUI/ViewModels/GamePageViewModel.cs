@@ -126,7 +126,18 @@ namespace WPFUI.ViewModels
 			this.grid = grid.GetGrid();
 
 			users = new ObservableCollection<ShortInfo>();
+			InitializeCommands();
+			InitializePropertyChanged();
 
+			InitializeCommands();
+			InitializePropertyChanged();
+
+			channel = GrpcChannel.ForAddress("https://localhost:5001");
+			client = new ChatRoom.ChatRoomClient(channel);
+			chat = client.join();
+
+			MessageText = "";
+			Messages = new ObservableCollection<string>();
 			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(0), ImageSource = "http://durkaftpserver.cf/Resources/Study/water.png"}, 1);
 			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(0), ImageSource = "http://durkaftpserver.cf/Resources/Study/gym.png" }, 3);
 			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(1), ImageSource = "http://durkaftpserver.cf/Resources/Cars/bmw.png" }, 5);
@@ -269,7 +280,7 @@ namespace WPFUI.ViewModels
 					{
 						p = false;
 
-						//await Start();
+						await Start();
 					}
 
 					sendCommand.RaiseCanExecuteChanged();
