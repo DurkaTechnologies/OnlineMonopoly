@@ -1,4 +1,6 @@
-﻿namespace BLL.DTO
+﻿using System.Collections.Generic;
+
+namespace BLL.DTO
 {
 	public class RentSettingDTO
     {

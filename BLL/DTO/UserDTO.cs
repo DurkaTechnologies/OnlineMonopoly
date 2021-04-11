@@ -16,6 +16,6 @@ namespace BLL.DTO
 
         public int Money { get; set; }
 
-        public virtual ICollection<UserВЕЩ> Friends { get; set; }
+        public virtual ICollection<UserDTO> Friends { get; set; }
     }
 }
