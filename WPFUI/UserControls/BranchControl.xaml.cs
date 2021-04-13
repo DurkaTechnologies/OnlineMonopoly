@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -22,19 +23,38 @@ namespace WPFUI.UserControls
 	{
 		#region Fields
 
+		private BranchDTO branch;
+		private int price;
+
+		/*Color Fields*/
+
 		private Brush backColor;
-		private Brush priceColor;
-		private Dock rotate;
+
+		/*Rotate Fields*/
+
 		private double controlRotate;
 		private double imageRotate;
 		private double textRotate;
+		private Dock rotate;
+
+		/*Image Fields*/
+
 		private string imageSource;
 		private ImageSource image;
-		private int price;
 
 		#endregion
 
 		#region Proporties
+
+		public BranchDTO Branch 
+		{
+			get => branch;
+			set 
+			{
+				branch = value;
+				OnPropertyChanged();
+			}
+		}
 
 		public int Price
 		{
@@ -45,6 +65,8 @@ namespace WPFUI.UserControls
 				OnPropertyChanged();
 			}
 		}
+
+		/*Rotate Properties*/
 
 		public Dock Rotate
 		{
@@ -86,6 +108,8 @@ namespace WPFUI.UserControls
 			}
 		}
 
+		/*Color Properties*/
+
 		public Brush BackColor
 		{
 			get => backColor;
@@ -96,15 +120,7 @@ namespace WPFUI.UserControls
 			}
 		}
 
-		public Brush PriceColor
-		{
-			get => priceColor;
-			set
-			{
-				priceColor = value;
-				OnPropertyChanged();
-			}
-		}
+		/*Image Propeties*/
 
 		public ImageSource Image
 		{
@@ -136,10 +152,19 @@ namespace WPFUI.UserControls
 		{
 			InitializeComponent();
 			InitializePropertyChanged();
-			Rotate = Dock.Left;
 
 			BackColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-			PriceColor = new SolidColorBrush(Color.FromRgb(255,255,0));
+			Rotate = Dock.Left;
+		}
+		public BranchControl(BranchDTO branch)
+		{
+			InitializeComponent();
+			InitializePropertyChanged();
+			
+			BackColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+			Rotate = Dock.Left;
+
+			Branch = branch;
 		}
 
 		#region INotify
@@ -185,6 +210,12 @@ namespace WPFUI.UserControls
 					{
 						Console.WriteLine(e.Message);
 					}
+				}
+
+				if (args.PropertyName.Equals(nameof(Branch))) 
+				{
+					ImageSource = Branch.Image;
+					Price = Branch.Price;
 				}
 			};
 		}

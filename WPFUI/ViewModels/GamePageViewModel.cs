@@ -138,37 +138,37 @@ namespace WPFUI.ViewModels
 
 			MessageText = "";
 			Messages = new ObservableCollection<string>();
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(0), ImageSource = "http://durkaftpserver.cf/Resources/Study/water.png"}, 1);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(0), ImageSource = "http://durkaftpserver.cf/Resources/Study/gym.png" }, 3);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(1), ImageSource = "http://durkaftpserver.cf/Resources/Cars/bmw.png" }, 5);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(2), ImageSource = "http://durkaftpserver.cf/Resources/Clothes/econom.png" }, 6);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(2), ImageSource = "http://durkaftpserver.cf/Resources/Clothes/abibas.png" }, 8);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(2), ImageSource = "http://durkaftpserver.cf/Resources/Clothes/waikiki.png" }, 9);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Study/water.png"}, 1);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Study/gym.png" }, 3);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/bmw.png" }, 5);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Clothes/econom.png" }, 6);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Clothes/abibas.png" }, 8);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Clothes/waikiki.png" }, 9);
 
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(3), ImageSource = "http://durkaftpserver.cf/Resources/IT/step.png" }, 11);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(4), ImageSource = "http://durkaftpserver.cf/Resources/Studios/shiza.png" }, 12);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(3), ImageSource = "http://durkaftpserver.cf/Resources/IT/softserve.png" }, 13);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(3), ImageSource = "http://durkaftpserver.cf/Resources/IT/softgroup.png" }, 14);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(1), ImageSource = "http://durkaftpserver.cf/Resources/Cars/bogdan.png" }, 15);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(5), ImageSource = "http://durkaftpserver.cf/Resources/Drinks/pepsi.png" }, 16);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(5), ImageSource = "http://durkaftpserver.cf/Resources/Drinks/riven.png" }, 18);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(5), ImageSource = "http://durkaftpserver.cf/Resources/Drinks/kaluna.png" }, 19);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/IT/step.png" }, 11);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Studios/shiza.png" }, 12);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/IT/softserve.png" }, 13);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/IT/softgroup.png" }, 14);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/bogdan.png" }, 15);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Drinks/pepsi.png" }, 16);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Drinks/riven.png" }, 18);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Drinks/kaluna.png" }, 19);
 
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(6), ImageSource = "http://durkaftpserver.cf/Resources/Builders/renome.png" }, 21);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(6), ImageSource = "http://durkaftpserver.cf/Resources/Builders/stograd.png" }, 23);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(6), ImageSource = "http://durkaftpserver.cf/Resources/Builders/smartgroup.png" }, 24);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(1), ImageSource = "http://durkaftpserver.cf/Resources/Cars/Skoda.png" }, 25);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(7), ImageSource = "http://durkaftpserver.cf/Resources/Eat/mrcat.png" }, 26);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(7), ImageSource = "http://durkaftpserver.cf/Resources/Eat/matsuri.png" }, 27);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(4), ImageSource = "http://durkaftpserver.cf/Resources/Studios/zagrava.png" }, 28);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(7), ImageSource = "http://durkaftpserver.cf/Resources/Eat/father.png" }, 29);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Builders/renome.png" }, 21);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Builders/stograd.png" }, 23);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Builders/smartgroup.png" }, 24);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/Skoda.png" }, 25);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Eat/mrcat.png" }, 26);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Eat/matsuri.png" }, 27);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Studios/zagrava.png" }, 28);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Eat/father.png" }, 29);
 
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(8), ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/silpo.png" }, 31);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(8), ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/atb.png" }, 32);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(8), ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/sim.png" }, 34);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(1), ImageSource = "http://durkaftpserver.cf/Resources/Cars/tata.png" }, 35);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(9), ImageSource = "http://durkaftpserver.cf/Resources/Delivers/glovo.png" }, 37);
-			AddBranch(new BranchControl() { PriceColor = ColorManager.GetSecondBrushFromLib(9), ImageSource = "http://durkaftpserver.cf/Resources/Delivers/oregano.png" }, 39);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/silpo.png" }, 31);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/atb.png" }, 32);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/sim.png" }, 34);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/tata.png" }, 35);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Delivers/glovo.png" }, 37);
+			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Delivers/oregano.png" }, 39);
 
 			AddUser(new ShortInfo() { UserName = "Pozhilou", UserMoney = 666, ImageSource = "https://pdacdn.com/photo/1570603604764.jpg" });
 			AddUser(new ShortInfo() { UserName = "KazzModan", UserMoney = 999, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829448089928597516/38bb8d4c3816590e.png" });

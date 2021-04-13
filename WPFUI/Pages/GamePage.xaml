@@ -202,8 +202,6 @@
 						   RenderTransformOrigin="0.5,0.5" />
 				</Border>
 
-				
-				
 				<!--<Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Grid.RowSpan="9" 
 					  Background="{StaticResource GamePageBackground}">
 					<Grid.RowDefinitions>
@@ -227,9 +225,16 @@
 				</Grid>-->
 
 				<uc:OfferControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" 
-                                 Grid.RowSpan="9" Panel.ZIndex="1" Margin="16" />
+                                 Grid.RowSpan="9" Panel.ZIndex="1" Margin="10" />
 
-
+				<Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="9" Grid.ColumnSpan="9" Margin="10" Panel.ZIndex="2" VerticalAlignment="Top">
+					<StackPanel Orientation="Vertical">
+						<uc:DropGameDiceDialog></uc:DropGameDiceDialog>
+						<uc:AuctionDialog></uc:AuctionDialog>
+						<uc:PayRentDialog></uc:PayRentDialog>
+						<uc:BuyBranchDialog></uc:BuyBranchDialog>
+					</StackPanel>
+				</Grid>
 			</Grid>
 			
 		</Border>
