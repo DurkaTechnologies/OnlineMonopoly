@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace WPFUI.UserControls
 
 		// User information
 
+		private UserDTO user;
 		private bool currentUser;
 		private string userName;
 		private int userMoney;
@@ -54,48 +56,25 @@ namespace WPFUI.UserControls
 			CurrentUser = false;
 		}
 
-		#region Methods
-
-		private void UpdateCurrentUser()
+		public ShortInfo(UserDTO user)
 		{
-			if (CurrentUser)
-				CurrentBackground = UserBackground;
-			else
-				CurrentBackground = DefBackground;
+			InitializeComponent();
+			InitializePropertyChanged();
+			CurrentUser = false;
+			User = user;
 		}
-
-		private void InitializePropertyChanged()
-		{
-			PropertyChanged += (sender, args) =>
-			{
-				if (args.PropertyName.Equals(nameof(CurrentUser)))
-				{
-					UpdateCurrentUser();
-					OnPropertyChanged(nameof(ShowTimer));
-				}
-
-				if (args.PropertyName.Equals(nameof(PlayerColor)))
-				{
-					UserBackground = ColorManager.GenerateGradient(PlayerColor.Color, -45);
-					TimerBackground = ColorManager.GenerateDarkerColor(PlayerColor.Color);
-				}
-				if (args.PropertyName.Equals(nameof(ImageSource)))
-				{
-					try
-					{
-						Image = new BitmapImage(new Uri(ImageSource));
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e.Message);
-					}
-				}
-			};
-		}
-
-		#endregion
 
 		#region Properties
+
+		public UserDTO User
+		{
+			get => user;
+			set
+			{
+				user = value;
+				OnPropertyChanged();
+			}
+		}
 
 		public bool CurrentUser
 		{
@@ -221,6 +200,51 @@ namespace WPFUI.UserControls
 				imageSize = value;
 				OnPropertyChanged();
 			}
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void UpdateCurrentUser()
+		{
+			if (CurrentUser)
+				CurrentBackground = UserBackground;
+			else
+				CurrentBackground = DefBackground;
+		}
+
+		private void InitializePropertyChanged()
+		{
+			PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName.Equals(nameof(CurrentUser)))
+				{
+					UpdateCurrentUser();
+					OnPropertyChanged(nameof(ShowTimer));
+				}
+				if (args.PropertyName.Equals(nameof(PlayerColor)))
+				{
+					UserBackground = ColorManager.GenerateGradient(PlayerColor.Color, -45);
+					TimerBackground = ColorManager.GenerateDarkerColor(PlayerColor.Color);
+				}
+				if (args.PropertyName.Equals(nameof(ImageSource)))
+				{
+					try
+					{
+						Image = new BitmapImage(new Uri(ImageSource));
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+				if (args.PropertyName.Equals(nameof(User))) 
+				{
+					UserName = User.Login;
+					ImageSource = User.Image;
+				}
+			};
 		}
 
 		#endregion

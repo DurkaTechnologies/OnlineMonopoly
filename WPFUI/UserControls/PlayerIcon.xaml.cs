@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace WPFUI.UserControls
 	{
 		#region Fields
 
+		private UserDTO user;
 		private string userName;
 		private ImageSource image;
 		private string imageSource;
@@ -31,6 +33,16 @@ namespace WPFUI.UserControls
 		#endregion
 
 		#region Proporties
+
+		public UserDTO User
+		{
+			get => user;
+			set
+			{
+				user = value;
+				OnPropertyChanged();
+			}
+		}
 
 		public string UserName 
 		{
@@ -73,6 +85,12 @@ namespace WPFUI.UserControls
 			UserName = "Unknown";
 		}
 
+		public PlayerIcon(UserDTO user)
+		{
+			InitializeComponent();
+			InitializePropertyChanged();
+		}
+
 		public PlayerIcon(string UserName, string ImageSource) 
 		{
 			InitializeComponent();
@@ -98,6 +116,12 @@ namespace WPFUI.UserControls
 					{
 						Console.WriteLine(e.Message);
 					}
+				}
+
+				if (args.PropertyName.Equals(nameof(User))) 
+				{
+					UserName = User.Login;
+					ImageSource = User.Image;
 				}
 			};
 		}

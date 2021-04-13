@@ -227,7 +227,8 @@
 				<uc:OfferControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" 
                                  Grid.RowSpan="9" Panel.ZIndex="1" Margin="10" />
 
-				<Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="9" Grid.ColumnSpan="9" Margin="10" Panel.ZIndex="2" VerticalAlignment="Top">
+				<Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="9" Grid.ColumnSpan="9" 
+					  Margin="10" Panel.ZIndex="2" VerticalAlignment="Top">
 					<StackPanel Orientation="Vertical">
 						<uc:DropGameDiceDialog></uc:DropGameDiceDialog>
 						<uc:AuctionDialog></uc:AuctionDialog>
@@ -235,6 +236,13 @@
 						<uc:BuyBranchDialog></uc:BuyBranchDialog>
 					</StackPanel>
 				</Grid>
+
+				<uc:GameDices Grid.Column="3" Grid.Row="3" Grid.RowSpan="5" 
+							  Grid.ColumnSpan="5" Panel.ZIndex="3" 
+							  FirstValue="{Binding FirstDiceValue, Mode=TwoWay, 
+								UpdateSourceTrigger=PropertyChanged}" 
+							  SecondValue="{Binding FirstDiceValue, Mode=TwoWay, 
+								UpdateSourceTrigger=PropertyChanged}"/>
 			</Grid>
 			
 		</Border>

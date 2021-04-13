@@ -90,6 +90,8 @@ namespace WPFUI.ViewModels
 				users[CurrentUser].CurrentUser = true;
 			}
 			users[CurrentUser].UserTime = TIME - time++;
+
+			FirstDiceValue = 3;
 		}
 
 		private void StartTimer()
@@ -106,7 +108,13 @@ namespace WPFUI.ViewModels
 
 		#region GameBoardLogid
 
+		#region Fields
+
+		private int firstDiceValue;
+		private Random rand = new Random();
 		Grid grid;
+
+		#endregion
 
 		public void AddBranch(BranchControl control, int position)
 		{
@@ -118,6 +126,20 @@ namespace WPFUI.ViewModels
 
 			control.Rotate = coord.Rotate;
 		}
+
+		#region Properties
+
+		public int FirstDiceValue
+		{
+			get => firstDiceValue;
+			set
+			{
+				firstDiceValue = value;
+				OnPropertyChanged();
+			}
+		}
+
+		#endregion
 
 		#endregion
 
