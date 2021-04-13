@@ -103,7 +103,6 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
-
 		#endregion
 
 		#region GameBoardLogid

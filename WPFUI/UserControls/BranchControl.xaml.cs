@@ -160,7 +160,7 @@ namespace WPFUI.UserControls
 		{
 			InitializeComponent();
 			InitializePropertyChanged();
-			
+
 			BackColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 			Rotate = Dock.Left;
 
@@ -181,21 +181,25 @@ namespace WPFUI.UserControls
 							ControlRotate = 90.0;
 							ImageRotate = -180.0;
 							TextRotate = -90.0;
+							Margin = new Thickness(1,0,1,1);
 							break;
 						case Dock.Right:
 							ControlRotate = 180.0;
 							ImageRotate = -180;
 							TextRotate = -90.0;
+							Margin = new Thickness(1, 1, 0, 1);
 							break;
 						case Dock.Bottom:
 							ControlRotate = -90.0;
 							ImageRotate = 0.0;
 							TextRotate = 90.0;
+							Margin = new Thickness(1, 1, 1, 0);
 							break;
 						default:
 							ControlRotate = 0.0;
 							ImageRotate = 0.0;
 							TextRotate = -90.0;
+							Margin = new Thickness(0, 1, 1, 1);
 							break;
 					}
 				}

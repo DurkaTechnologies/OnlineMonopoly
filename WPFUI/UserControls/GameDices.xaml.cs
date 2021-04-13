@@ -22,6 +22,9 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class GameDices : UserControl, INotifyPropertyChanged
 	{
+		public static DependencyProperty FirstValueProperty;
+		public static DependencyProperty SecondValueProperty;
+
 		static GameDices()
 		{
 			FirstValueProperty = DependencyProperty.Register("FirstValue", typeof(int), typeof(GameDices),
@@ -34,12 +37,11 @@ namespace WPFUI.UserControls
 		{
 			InitializeComponent();
 			InitializePropertyChanged();
+			
+			LayoutRoot.DataContext = this;
 		}
 
 		#region Proporties
-
-		public static DependencyProperty FirstValueProperty;
-		public static DependencyProperty SecondValueProperty;
 
 		public int FirstValue
 		{
@@ -47,7 +49,6 @@ namespace WPFUI.UserControls
 			set
 			{
 				SetValue(FirstValueProperty, value);
-				first.DiceValue = value;
 				OnPropertyChanged();
 			}
 		}
@@ -58,7 +59,6 @@ namespace WPFUI.UserControls
 			set
 			{
 				SetValue(SecondValueProperty, value);
-				second.DiceValue = value;
 				OnPropertyChanged();
 			}
 		}
@@ -73,7 +73,12 @@ namespace WPFUI.UserControls
 			{
 				if (args.PropertyName.Equals(nameof(FirstValue)))
 				{
+					firstDice.DiceValue = FirstValue;
+				}
 
+				if (args.PropertyName.Equals(nameof(FirstValue)))
+				{
+					secondDice.DiceValue = SecondValue;
 				}
 			};
 		}

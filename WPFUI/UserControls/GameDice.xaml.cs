@@ -27,21 +27,15 @@ namespace WPFUI.UserControls
 		#region Fields
 
 		private List<ImageSource> images;
+		private int diceValue;
 
 		#endregion
-
-		static GameDice()
-		{
-			DiceValueProperty = DependencyProperty.Register("DiceValue", typeof(int), typeof(GameDice),
-					new FrameworkPropertyMetadata(0));
-		}
 
 		public GameDice()
 		{
 			InitializeComponent();
 			InitializePropertyChanged();
 
-			DiceValue = 0;
 			images = new List<ImageSource>();
 			ResourceSet resourceSet = DiceResources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
 
@@ -53,18 +47,17 @@ namespace WPFUI.UserControls
 			foreach (var item in items)
 				images.Add(GetImageSource(item.Image));
 
+			DiceValue = 0;
 		}
 
 		#region Proporties
 
-		public static DependencyProperty DiceValueProperty;
-
 		public int DiceValue
 		{
-			get => (int)GetValue(DiceValueProperty);
+			get => diceValue;
 			set
 			{
-				SetValue(DiceValueProperty, value);
+				diceValue = value;
 				OnPropertyChanged();
 			}
 		}

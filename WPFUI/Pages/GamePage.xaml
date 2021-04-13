@@ -99,7 +99,7 @@
 				</Border>
 
 				<!--Random-->
-				<Border Background="White" Grid.Column="2" Margin="0,20,0,0">
+				<Border Background="White" Grid.Column="2" Margin="1,20,1,1">
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
 						   RenderTransformOrigin="0.5,0.5" >
 						<Image.LayoutTransform>
@@ -118,7 +118,7 @@
                 
 				<!--Random-->
 				
-				<Border Background="White" Grid.Column="7" Margin="0,20,0,0" >
+				<Border Background="White" Grid.Column="7" Margin="1,20,1,1" >
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
 						   RenderTransformOrigin="0.5,0.5">
 						<Image.LayoutTransform>
@@ -137,7 +137,7 @@
 
 				<!--Random-->
 				
-				<Border Background="White" Grid.Column="10" Grid.Row="7" Margin="0,0,20,0">
+				<Border Background="White" Grid.Column="10" Grid.Row="7" Margin="1,1,20,1">
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
 						   RenderTransformOrigin="0.5,0.5" >
 						<Image.RenderTransform>
@@ -156,7 +156,7 @@
 
 				<!--Random-->
 				
-				<Border Background="White" Grid.Column="8" Grid.Row="10" Margin="0,0,0,20">
+				<Border Background="White" Grid.Column="8" Grid.Row="10" Margin="1,1,1,20">
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
 						   RenderTransformOrigin="0.5,0.5" >
 						<Image.LayoutTransform>
@@ -175,7 +175,7 @@
 
 				<!--Random-->
 				
-				<Border Background="White" Grid.Row="7" Margin="20,0,0,0">
+				<Border Background="White" Grid.Row="7" Margin="20,1,1,1">
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
 						   RenderTransformOrigin="0.5,0.5" >
 						<Image.RenderTransform>
@@ -189,7 +189,7 @@
 
 				<!--Almaz-->
 				
-				<Border Background="White" Grid.Row="4" Margin="20,0,0,0" >
+				<Border Background="White" Grid.Row="4" Margin="20,1,1,1" >
 					<Image Source="pack://application:,,,/Resources/Materials/diamond.png" />
 				</Border>
 
@@ -197,7 +197,7 @@
 
 				<!--Random-->
 				
-				<Border Background="White" Grid.Row="2" Margin="20,0,0,0">
+				<Border Background="White" Grid.Row="2" Margin="20,1,1,1">
 					<Image Source="pack://application:,,,/Resources/Materials/chance.png" 
 						   RenderTransformOrigin="0.5,0.5" />
 				</Border>
