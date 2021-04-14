@@ -33,6 +33,7 @@ namespace GrpcService
 				endpoints.MapGrpcService<ChatService>();
 				endpoints.MapGrpcService<RegisterService>();
 				endpoints.MapGrpcService<LoginService>();
+				endpoints.MapGrpcService<LoaderService>();
 
 				endpoints.MapGet("/", async context =>
 				{

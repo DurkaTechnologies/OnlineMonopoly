@@ -15,6 +15,11 @@ namespace DAL
         private GenericRepository<RentSetting> rentRepository;
         private GenericRepository<User> userRepository;
 
+		public UnitOfWork()
+		{
+            
+		}
+
         public GenericRepository<Branch> BranchRepository
         {
             get

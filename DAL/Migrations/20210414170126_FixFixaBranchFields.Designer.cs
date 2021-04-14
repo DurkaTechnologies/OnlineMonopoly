@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(MonopolyDbContext))]
-    partial class MonopolyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210414170126_FixFixaBranchFields")]
+    partial class FixFixaBranchFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,10 @@ namespace DAL.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("RentSettingId")
+                    b.Property<int?>("RentSettingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RentSettingsId")
                         .HasColumnType("int");
 
                     b.Property<int>("Upgrade")
@@ -178,9 +183,7 @@ namespace DAL.Migrations
 
                     b.HasOne("DAL.Entities.RentSetting", "RentSetting")
                         .WithMany()
-                        .HasForeignKey("RentSettingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RentSettingId");
 
                     b.Navigation("BranchType");
 

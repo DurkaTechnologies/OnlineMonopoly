@@ -28,12 +28,10 @@ namespace BLL.Services
                 {
                     cfg.CreateMap<RentSetting, RentSettingDTO>();
                     cfg.CreateMap<BranchType, BranchTypeDTO>();
-                    cfg.CreateMap<User, UserDTO>();
                     cfg.CreateMap<Branch, BranchDTO>();
 
                     cfg.CreateMap<RentSettingDTO, RentSetting>();
                     cfg.CreateMap<BranchTypeDTO, BranchType>();
-                    cfg.CreateMap<UserDTO, User>();
                     cfg.CreateMap<BranchDTO, Branch>();
                 });
 
@@ -64,7 +62,7 @@ namespace BLL.Services
 
         public IEnumerable<BranchDTO> GetAllBranches()
         {
-            var result = repositories.BranchRepository.Get();
+            var result = repositories.BranchRepository.Get(null, null, "BranchType,RentSetting");
             return mapper.Map<IEnumerable<BranchDTO>>(result);
         }
     }

@@ -15,9 +15,75 @@ using System.Collections.Generic;
 using WPFUI.Views;
 using WPFUI.Pages;
 using System.Windows.Controls;
+using GameLoader;
+using Google.Protobuf.WellKnownTypes;
+using AutoMapper;
+using BLL.DTO;
+using System.Net.Http;
+using static GameLoader.Branch.Types;
 
 namespace WPFUI.ViewModels
 {
+	static class GameLoader 
+	{
+		static HttpClientHandler httpHandler;
+		static GrpcChannel channel = GrpcChannel.ForAddress("https://localhost:5001");
+		static Loader.LoaderClient client;
+		static Mapper mapper;
+
+		static GameLoader()
+		{
+			httpHandler = new HttpClientHandler();
+
+			httpHandler.ServerCertificateCustomValidationCallback =
+					HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+			IConfigurationProvider configuration = new MapperConfiguration(
+			
+			cfg =>
+			{
+				cfg.CreateMap<RentSetting, RentSettingDTO>();
+				cfg.CreateMap<BranchType, BranchTypeDTO>();
+				cfg.CreateMap<Branch, BranchDTO>();
+
+				cfg.CreateMap<RentSettingDTO, RentSetting>();
+				cfg.CreateMap<BranchTypeDTO, BranchType>();
+				cfg.CreateMap<BranchDTO, Branch>();
+			});
+
+			mapper = new Mapper(configuration);
+		}
+
+		public static ICollection<BranchDTO> GetBranches() 
+		{
+			Connect();
+
+			Branches branches = client.LoadBranches(new Empty());
+			ICollection<BranchDTO> collection = new Collection<BranchDTO>();
+
+			foreach (var item in branches.Collection)
+				collection.Add(mapper.Map<Branch, BranchDTO>(item));
+
+			Close();
+
+			return collection;
+		}
+
+		private static void Connect() 
+		{
+			channel = GrpcChannel.ForAddress("https://localhost:5001",
+					new GrpcChannelOptions { HttpHandler = httpHandler });
+
+			client = new Loader.LoaderClient(channel);
+		}
+
+		private static void Close()
+		{
+			channel.ShutdownAsync();
+			client = null;
+		}
+	}
+
 	class GamePageViewModel : BaseViewModel
 	{
 		#region UsersLogic
@@ -109,21 +175,30 @@ namespace WPFUI.ViewModels
 
 		#region Fields
 
+		GrpcChannel boardChannel;
+		Loader.LoaderClient loaderClient;
 		private int firstDiceValue;
 		private Random rand = new Random();
 		Grid grid;
 
 		#endregion
 
-		public void AddBranch(BranchControl control, int position)
+		public void AddBranch(BranchDTO branch)
 		{
-			TransferCoord coord = GamePageTransfer.GetGameCoord(position);
+			TransferCoord coord = GamePageTransfer.GetGameCoord(branch.Position);
+			BranchControl control = new BranchControl(branch);
 
 			grid.Children.Add(control);
 			Grid.SetColumn(control, coord.X);
 			Grid.SetRow(control, coord.Y);
 
 			control.Rotate = coord.Rotate;
+		}
+
+		public void SetBranches(ICollection<BranchDTO> branches) 
+		{
+			foreach (var item in branches)
+				AddBranch(item);
 		}
 
 		#region Properties
@@ -153,43 +228,20 @@ namespace WPFUI.ViewModels
 			InitializeCommands();
 			InitializePropertyChanged();
 
-			channel = GrpcChannel.ForAddress("https://localhost:5001");
-			client = new ChatRoom.ChatRoomClient(channel);
-			chat = client.join();
+			try
+			{
+				client = new ChatRoom.ChatRoomClient(channel);
+				chat = client.join();
 
-			MessageText = "";
-			Messages = new ObservableCollection<string>();
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Study/water.png"}, 1);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Study/gym.png" }, 3);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/bmw.png" }, 5);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Clothes/econom.png" }, 6);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Clothes/abibas.png" }, 8);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Clothes/waikiki.png" }, 9);
+				MessageText = "";
+				Messages = new ObservableCollection<string>();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message); ;
+			}
 
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/IT/step.png" }, 11);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Studios/shiza.png" }, 12);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/IT/softserve.png" }, 13);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/IT/softgroup.png" }, 14);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/bogdan.png" }, 15);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Drinks/pepsi.png" }, 16);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Drinks/riven.png" }, 18);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Drinks/kaluna.png" }, 19);
-
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Builders/renome.png" }, 21);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Builders/stograd.png" }, 23);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Builders/smartgroup.png" }, 24);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/Skoda.png" }, 25);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Eat/mrcat.png" }, 26);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Eat/matsuri.png" }, 27);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Studios/zagrava.png" }, 28);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Eat/father.png" }, 29);
-
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/silpo.png" }, 31);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/atb.png" }, 32);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/ChainStores/sim.png" }, 34);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Cars/tata.png" }, 35);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Delivers/glovo.png" }, 37);
-			AddBranch(new BranchControl() { ImageSource = "http://durkaftpserver.cf/Resources/Delivers/oregano.png" }, 39);
+			SetBranches(GameLoader.GetBranches());
 
 			AddUser(new ShortInfo() { UserName = "Pozhilou", UserMoney = 666, ImageSource = "https://pdacdn.com/photo/1570603604764.jpg" });
 			AddUser(new ShortInfo() { UserName = "KazzModan", UserMoney = 999, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829448089928597516/38bb8d4c3816590e.png" });

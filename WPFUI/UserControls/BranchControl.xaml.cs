@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFUI.Views;
 
 namespace WPFUI.UserControls
 {
@@ -29,6 +30,7 @@ namespace WPFUI.UserControls
 		/*Color Fields*/
 
 		private Brush backColor;
+		private Brush priceColor;
 
 		/*Rotate Fields*/
 
@@ -116,6 +118,16 @@ namespace WPFUI.UserControls
 			set
 			{
 				backColor = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public Brush PriceColor 
+		{
+			get => priceColor;
+			set 
+			{
+				priceColor = value;
 				OnPropertyChanged();
 			}
 		}
@@ -220,6 +232,7 @@ namespace WPFUI.UserControls
 				{
 					ImageSource = Branch.Image;
 					Price = Branch.Price;
+					PriceColor = ColorManager.GetSolidBrushFromHtml(Branch.BranchType.Color);
 				}
 			};
 		}

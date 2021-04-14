@@ -5,16 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="login.proto" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.36.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="chat.proto" />
+    <Protobuf Include="loader.proto" />
     <Protobuf Include="login.proto" />
     <Protobuf Include="register.proto" />
   </ItemGroup>

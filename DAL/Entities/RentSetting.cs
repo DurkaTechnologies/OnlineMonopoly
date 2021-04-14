@@ -9,26 +9,19 @@ namespace DAL.Entities
 {
     public class RentSetting
     {
-        public RentSetting()
-        {
-            Branches = new HashSet<Branch>();
-        }
-
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public int StartCost { get; set; }
+        public int StartRent { get; set; }
 
-        [Required]
-        public float FirstCoef { get; set; }
-
-        [Required]
-        public int SecondCoef { get; set; }
+        public int FirstLevel { get; set; }
+        public int SecondLevel { get; set; }
+        public int ThirdLevel { get; set; }
+        public int FourthLevel { get; set; }
+        public int FifthLevel { get; set; }
 
         [Required]
         public bool ByBranchQuantity { get; set; }
-
-        public virtual ICollection<Branch> Branches { get; set; }
     }
 }

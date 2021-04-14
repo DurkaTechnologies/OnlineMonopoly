@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(MonopolyDbContext))]
-    partial class MonopolyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210414103032_BranchAndUserImage")]
+    partial class BranchAndUserImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,7 @@ namespace DAL.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("RentSettingId")
+                    b.Property<int?>("RentSettingId")
                         .HasColumnType("int");
 
                     b.Property<int>("Upgrade")
@@ -98,22 +100,13 @@ namespace DAL.Migrations
                     b.Property<bool>("ByBranchQuantity")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FifthLevel")
+                    b.Property<float>("FirstCoef")
+                        .HasColumnType("real");
+
+                    b.Property<int>("SecondCoef")
                         .HasColumnType("int");
 
-                    b.Property<int>("FirstLevel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FourthLevel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SecondLevel")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StartRent")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ThirdLevel")
+                    b.Property<int>("StartCost")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -177,10 +170,8 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.RentSetting", "RentSetting")
-                        .WithMany()
-                        .HasForeignKey("RentSettingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Branches")
+                        .HasForeignKey("RentSettingId");
 
                     b.Navigation("BranchType");
 
@@ -195,6 +186,11 @@ namespace DAL.Migrations
                 });
 
             modelBuilder.Entity("DAL.Entities.BranchType", b =>
+                {
+                    b.Navigation("Branches");
+                });
+
+            modelBuilder.Entity("DAL.Entities.RentSetting", b =>
                 {
                     b.Navigation("Branches");
                 });

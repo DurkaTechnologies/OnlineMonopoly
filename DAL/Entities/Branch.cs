@@ -22,7 +22,10 @@ namespace DAL.Entities
         public int Position { get; set; }
 
         [Required]
-        public BranchType BranchType { get; set; }
+        public int RentSettingId { get; set; }
+
+        [Required]
+        public int BranchTypeId { get; set; }
 
         public string Image { get; set; }
 
@@ -39,5 +42,7 @@ namespace DAL.Entities
         public int Upgrade { get; set; }
 
         public virtual RentSetting RentSetting { get; set; }
+    
+        public virtual BranchType BranchType { get; set; }
     }
 }

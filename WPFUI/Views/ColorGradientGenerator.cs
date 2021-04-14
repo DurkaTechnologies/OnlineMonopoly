@@ -45,43 +45,7 @@ namespace WPFUI.Views
 			//secondColors.Add(GetColorFromHtml("#4fc1e9"));
 			//secondColors.Add(GetColorFromHtml("#7f1f0f"));
 			//secondColors.Add(GetColorFromHtml("#656d78"));
-
-			//UploadFTPFile("dice.png");
 		}
-
-		//public static void UploadFTPFile(string fname)
-		//{
-		//	FileInfo fileInf = new FileInfo(fname);
-		//	string uri = "http://durkaftpserver.cf/Resources/ColorsLib/" + fileInf.Name;
-		//	FtpWebRequest reqFTP;
-
-		//	// Create FtpWebRequest object from the Uri provided
-		//	reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(
-		//		 "ftp://" + "ipaddress//Data//" + fileInf.Name));
-
-		//	// Provide the WebPermission Credintials
-		//	reqFTP.Credentials = new NetworkCredential("username",
-		//										  "password");
-
-		//	// By default KeepAlive is true, where the control connection is 
-		//	// not closed after a command is executed.
-		//	reqFTP.KeepAlive = false;
-
-		//	// Specify the command to be executed.
-		//	reqFTP.Method = WebRequestMethods.Ftp.UploadFile;
-
-		//	// Specify the data transfer type.
-		//	reqFTP.UseBinary = true;
-
-		//	Image img 
-
-		//	// Notify the server about the size of the uploaded file
-		//	//reqFTP.ContentLength = fileInf.Length; ???
-		//	using (var img = Image.FromStream(image))
-		//	{
-		//		img.Save(adduser.User_Id + ".jpg", ImageFormat.Jpeg);
-		//	}
-		//}
 
 		public static List<Color> GetColorsFromServer(string filePass)
 		{
@@ -178,6 +142,11 @@ namespace WPFUI.Views
 						   new GradientStopCollection(
 						   new List<GradientStop>()
 						   { first, second }), angle);
+		}
+
+		public static Brush GetSolidBrushFromHtml(string color) 
+		{
+			return new SolidColorBrush(GetColorFromHtml(color));
 		}
 
 		#endregion

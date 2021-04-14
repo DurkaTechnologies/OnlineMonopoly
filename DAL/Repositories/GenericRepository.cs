@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace DAL
 			string includeProperties = "")
 		{
 			IQueryable<TEntity> query = dbSet;
+
+			//if (typeof(TEntity) == typeof(Branch))
+			//{
+			//	foreach (var item in query)
+			//	{
+			//		(item as Branch).BranchType = context.BranchTypes.FirstOrDefault(p => p.Id == (item as Branch).BranchTypeId);
+			//	}
+			//}
 
 			if (filter != null)
 			{

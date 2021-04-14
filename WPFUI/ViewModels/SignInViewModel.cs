@@ -128,6 +128,10 @@ namespace WPFUI.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Methods
+
 		private async void SignInAsync()
 		{
 			try
@@ -142,7 +146,7 @@ namespace WPFUI.ViewModels
 				{
 					ShowIncorrect();
 				}
-				else 
+				else
 				{
 					if (String.IsNullOrEmpty(user.Login))
 						ShowIncorrect();
@@ -154,7 +158,7 @@ namespace WPFUI.ViewModels
 						UserDTO userDTO = mapper.Map<User, UserDTO>(user);
 
 						Navigation.Navigation.Navigate(
-							Navigation.Navigation.GeneralPageAlias, 
+							Navigation.Navigation.GeneralPageAlias,
 							new GeneralPageViewModel(userDTO));
 					}
 				}
@@ -165,9 +169,6 @@ namespace WPFUI.ViewModels
 			}
 		}
 
-		#endregion
-
-		#region Methods
 		private void ShowIncorrect()
 		{
 			ErrorText = "Password or Login incorrect";

@@ -11,7 +11,7 @@ namespace DAL
 
 		public MonopolyDbContext() : base()
         {
-
+            
 		}
 
         public MonopolyDbContext(DbContextOptions<MonopolyDbContext> options) : base(options)
@@ -38,15 +38,15 @@ namespace DAL
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.HasIndex(e => e.Login).IsUnique();
             });
-        }
 
+            //builder.Entity<Branch>().HasOne(b => b.BranchType).WithMany().HasForeignKey(p => p.BranchTypeId);
+        }
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<BranchType> BranchTypes { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<RentSetting> RentSettings { get; set; }
     }
-
 
 	class ConnectionGetter
 	{

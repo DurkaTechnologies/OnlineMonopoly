@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+package GameLoader;
+
+service Loader {
+  rpc LoadBranches (google.protobuf.Empty) returns (Branches) {}
+}
+
+message Branch {
+
+message RentSetting {
+	int32 id = 1;
+	int32 startRent = 2;
+	int32 firstLevel =3;
+	int32 secondLevel = 4;
+	int32 thirdLevel = 5;
+	int32 fourthLevel = 6;
+	int32 fifthLevel = 7;
+	bool byBranchQuantity = 8;
+}
+
+message BranchType {
+	int32 id = 1;
+	string name = 2;
+	string color = 3;
+	string quantity = 4;
+}	
+
+	int32 id = 1;
+	string name = 2;
+	int32 position = 3;
+	string image = 4;
+	int32 pledge = 5;
+	int32 buyout = 6;
+	int32 price = 7;
+	int32 upgrade = 8;
+	BranchType branchType = 9;
+	RentSetting rentSetting = 10;
+}
+
+message Branches {
+  repeated Branch collection = 1;
+}
