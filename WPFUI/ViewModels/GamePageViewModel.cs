@@ -24,66 +24,6 @@ using static GameLoader.Branch.Types;
 
 namespace WPFUI.ViewModels
 {
-	static class GameLoader 
-	{
-		static HttpClientHandler httpHandler;
-		static GrpcChannel channel = GrpcChannel.ForAddress("https://localhost:5001");
-		static Loader.LoaderClient client;
-		static Mapper mapper;
-
-		static GameLoader()
-		{
-			httpHandler = new HttpClientHandler();
-
-			httpHandler.ServerCertificateCustomValidationCallback =
-					HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-
-			IConfigurationProvider configuration = new MapperConfiguration(
-			
-			cfg =>
-			{
-				cfg.CreateMap<RentSetting, RentSettingDTO>();
-				cfg.CreateMap<BranchType, BranchTypeDTO>();
-				cfg.CreateMap<Branch, BranchDTO>();
-
-				cfg.CreateMap<RentSettingDTO, RentSetting>();
-				cfg.CreateMap<BranchTypeDTO, BranchType>();
-				cfg.CreateMap<BranchDTO, Branch>();
-			});
-
-			mapper = new Mapper(configuration);
-		}
-
-		public static ICollection<BranchDTO> GetBranches() 
-		{
-			Connect();
-
-			Branches branches = client.LoadBranches(new Empty());
-			ICollection<BranchDTO> collection = new Collection<BranchDTO>();
-
-			foreach (var item in branches.Collection)
-				collection.Add(mapper.Map<Branch, BranchDTO>(item));
-
-			Close();
-
-			return collection;
-		}
-
-		private static void Connect() 
-		{
-			channel = GrpcChannel.ForAddress("https://localhost:5001",
-					new GrpcChannelOptions { HttpHandler = httpHandler });
-
-			client = new Loader.LoaderClient(channel);
-		}
-
-		private static void Close()
-		{
-			channel.ShutdownAsync();
-			client = null;
-		}
-	}
-
 	class GamePageViewModel : BaseViewModel
 	{
 		#region UsersLogic
@@ -98,7 +38,7 @@ namespace WPFUI.ViewModels
 
 		/*def rotate time for test*/
 
-		private const int TIME = 1;
+		private const int TIME = 3;
 
 		#endregion
 
@@ -145,6 +85,9 @@ namespace WPFUI.ViewModels
 		{
 			if (time == TIME)
 			{
+				dices.FirstValue = 0;
+				dices.FirstValue = 5;
+
 				time = 0;
 
 				users[CurrentUser].CurrentUser = false;
@@ -156,8 +99,6 @@ namespace WPFUI.ViewModels
 				users[CurrentUser].CurrentUser = true;
 			}
 			users[CurrentUser].UserTime = TIME - time++;
-
-			FirstDiceValue = 3;
 		}
 
 		private void StartTimer()
@@ -171,17 +112,21 @@ namespace WPFUI.ViewModels
 
 		#endregion
 
-		#region GameBoardLogid
+		#region GameBoardLogic
 
 		#region Fields
 
-		GrpcChannel boardChannel;
-		Loader.LoaderClient loaderClient;
-		private int firstDiceValue;
+		private GameDices dices;
 		private Random rand = new Random();
 		Grid grid;
 
 		#endregion
+
+		#region Properties
+
+		#endregion
+
+		#region Methods
 
 		public void AddBranch(BranchDTO branch)
 		{
@@ -195,22 +140,10 @@ namespace WPFUI.ViewModels
 			control.Rotate = coord.Rotate;
 		}
 
-		public void SetBranches(ICollection<BranchDTO> branches) 
+		public void SetBranches(ICollection<BranchDTO> branches)
 		{
 			foreach (var item in branches)
 				AddBranch(item);
-		}
-
-		#region Properties
-
-		public int FirstDiceValue
-		{
-			get => firstDiceValue;
-			set
-			{
-				firstDiceValue = value;
-				OnPropertyChanged();
-			}
 		}
 
 		#endregion
@@ -219,29 +152,9 @@ namespace WPFUI.ViewModels
 
 		public GamePageViewModel(IGridSuppliear grid)
 		{
-			this.grid = grid.GetGrid();
+			Initialize(grid);
 
-			users = new ObservableCollection<ShortInfo>();
-			InitializeCommands();
-			InitializePropertyChanged();
-
-			InitializeCommands();
-			InitializePropertyChanged();
-
-			try
-			{
-				client = new ChatRoom.ChatRoomClient(channel);
-				chat = client.join();
-
-				MessageText = "";
-				Messages = new ObservableCollection<string>();
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.Message); ;
-			}
-
-			SetBranches(GameLoader.GetBranches());
+			SetBranches(GamePageLoader.GetBranches());
 
 			AddUser(new ShortInfo() { UserName = "Pozhilou", UserMoney = 666, ImageSource = "https://pdacdn.com/photo/1570603604764.jpg" });
 			AddUser(new ShortInfo() { UserName = "KazzModan", UserMoney = 999, ImageSource = "https://cdn.discordapp.com/attachments/821379755743903764/829448089928597516/38bb8d4c3816590e.png" });
@@ -338,6 +251,29 @@ namespace WPFUI.ViewModels
 
 		#region Initialize
 
+		private void Initialize(IGridSuppliear grid) 
+		{
+			this.grid = grid.GetGrid();
+
+			InitializeCommands();
+			InitializePropertyChanged();
+			InitializeDices();
+
+			users = new ObservableCollection<ShortInfo>();
+		}
+
+		private void InitializeDices() 
+		{
+			dices = new GameDices();
+
+			this.grid.Children.Add(dices);
+			Grid.SetColumn(dices, 3);
+			Grid.SetRow(dices, 3);
+			Grid.SetColumnSpan(dices, 5);
+			Grid.SetRowSpan(dices, 5);
+			Grid.SetZIndex(dices, 10);
+		}
+
 		private void InitializeCommands()
 		{
 			sendCommand = new DelegateCommand(SendMessage, () => !String.IsNullOrWhiteSpace(MessageText));
@@ -362,54 +298,5 @@ namespace WPFUI.ViewModels
 		}
 
 		#endregion
-	}
-
-	public static class GamePageTransfer
-	{
-		public static TransferCoord GetGameCoord(int position)
-		{
-			TransferCoord coord = new TransferCoord();
-
-			if (position < 0 || position > 40)
-				return coord;
-
-			if (position <= 10)
-			{
-				coord.X = position;
-				coord.Rotate = Dock.Top;
-			}
-			else if (position > 10 && position <= 20)
-			{
-				coord.X = 10;
-				coord.Y = position - 10;
-				coord.Rotate = Dock.Right;
-			}
-			else if (position > 20 && position <= 30)
-			{
-				coord.X = 30 - position;
-				coord.Y = 10;
-				coord.Rotate = Dock.Bottom;
-			}
-			else if (position > 30 && position < 40)
-			{
-				coord.X = 0;
-				coord.Y = 40 - position;
-				coord.Rotate = Dock.Left;
-			}
-			else
-			{
-				coord.X = 10;
-				coord.Y = 0;
-			}
-
-			return coord;
-		}
-	}
-
-	public struct TransferCoord
-	{
-		public int X { get; set; }
-		public int Y { get; set; }
-		public Dock Rotate { get; set; }
 	}
 }

@@ -236,13 +236,6 @@
 						<uc:BuyBranchDialog></uc:BuyBranchDialog>
 					</StackPanel>
 				</Grid>
-
-				<uc:GameDices Grid.Column="3" Grid.Row="3" Grid.RowSpan="5" 
-							  Grid.ColumnSpan="5" Panel.ZIndex="3" 
-							  FirstValue="{Binding FirstDiceValue, Mode=TwoWay, 
-								UpdateSourceTrigger=PropertyChanged}" 
-							  SecondValue="{Binding FirstDiceValue, Mode=TwoWay, 
-								UpdateSourceTrigger=PropertyChanged}"/>
 			</Grid>
 			
 		</Border>

@@ -22,16 +22,12 @@ namespace WPFUI.UserControls
 	/// </summary>
 	public partial class GameDices : UserControl, INotifyPropertyChanged
 	{
-		public static DependencyProperty FirstValueProperty;
-		public static DependencyProperty SecondValueProperty;
+		#region Fields
 
-		static GameDices()
-		{
-			FirstValueProperty = DependencyProperty.Register("FirstValue", typeof(int), typeof(GameDices),
-					new FrameworkPropertyMetadata(0));
-			SecondValueProperty = DependencyProperty.Register("SecondValue", typeof(int), typeof(GameDices),
-					new FrameworkPropertyMetadata(0));
-		}
+		private int firstValue;
+		private int secondValue;
+
+		#endregion
 
 		public GameDices()
 		{
@@ -45,20 +41,20 @@ namespace WPFUI.UserControls
 
 		public int FirstValue
 		{
-			get => (int)GetValue(FirstValueProperty);
+			get => firstValue;
 			set
 			{
-				SetValue(FirstValueProperty, value);
+				firstValue = value;
 				OnPropertyChanged();
 			}
 		}
 
 		public int SecondValue
 		{
-			get => (int)GetValue(SecondValueProperty);
+			get => secondValue;
 			set
 			{
-				SetValue(SecondValueProperty, value);
+				secondValue = value;
 				OnPropertyChanged();
 			}
 		}
