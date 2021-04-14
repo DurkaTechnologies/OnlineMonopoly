@@ -18,27 +18,28 @@ namespace WPFUI.UserControls
     /// <summary>
     /// Логика взаимодействия для SettingsControl.xaml
     /// </summary>
-    public partial class ElementShortInfoDialog : UserControl , INotifyPropertyChanged
+    public partial class ElementShortInfoDialog : UserControl, INotifyPropertyChanged
     {
-       
+
         public ElementShortInfoDialog()
         {
-            
             InitializeComponent();
             BranchDTO branch = new BranchDTO();
-
             branch.Name = "Sobaka";
             branch.Price = 300;
             branch.Pledge = 100;
             branch.Upgrade = 250;
+            branch.Buyout = 200;
             FName = branch.Name;
             Price = branch.Price;
             Pledge = branch.Pledge;
             Upgrade = branch.Upgrade;
+            Buyout = branch.Buyout;
+            FillBox();
 
         }
         private string name;
-
+        private Data data = new Data();
         public string FName
         {
             get { return name; }
@@ -48,6 +49,7 @@ namespace WPFUI.UserControls
                 OnPropertyChanged();
             }
         }
+
         private int price;
         public int Price
         {
@@ -58,6 +60,18 @@ namespace WPFUI.UserControls
                 OnPropertyChanged();
             }
         }
+
+        private int buyout;
+        public int Buyout
+        {
+            get { return buyout; }
+            set
+            {
+                buyout = value;
+                OnPropertyChanged();
+            }
+        }
+     
         private int pledge;
         public int Pledge
         {
@@ -68,6 +82,17 @@ namespace WPFUI.UserControls
                 OnPropertyChanged();
             }
         }
+        private int firstValue;
+        public int FirstValue
+        {
+            get { return firstValue; }
+            set
+            {
+                firstValue = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int upgrade;
         public int Upgrade
         {
@@ -79,11 +104,84 @@ namespace WPFUI.UserControls
             }
         }
 
+        private void FillBox()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                data.Quantity = i;
+                if (i == 5)
+                    data.Brush = new SolidColorBrush(Color.FromRgb(244, 252, 21));
+                else
+                    data.Brush = new SolidColorBrush(Color.FromRgb(204, 204, 204));
+                lBox.Items.Add(data);
+                data = new Data();
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
+    public class Data
+    {
+        public Data()
+        {
+            quantity = 0;
+            Symb = arr[0];
+            FontSize = 10;         
+        }
+
+        public string[] arr = { "Base price:", "✯", "✯✯", "✯✯✯", "✯✯✯✯", "✯" };
+        public int[] numbs = new int[] { 1, 2, 3, 4, 5, 6 };
+        public int Money { get; set; }
+        private string symb;
+        private int numb;
+
+        private int fontSize;
+        private int quantity;
+        private SolidColorBrush brush;
+
+        public SolidColorBrush Brush
+        {
+            get { return brush; }
+            set
+            {
+                brush = value;
+            }
+        }
+        public int Quantity
+        {
+            get { return quantity; }
+            set
+            {
+                quantity = value;
+                if (quantity == 5)
+                    FontSize = 15;
+                Symb = arr[quantity];
+                Numb = numbs[quantity];
+            }
+        }
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+            }
+        }
+  
+        public string Symb
+        {
+            get { return symb; }
+            set { symb = value; }
+        }
+
+        public int Numb
+        {
+            get { return numb; }
+            set { numb = value; }
+        }
+    }
 }
+

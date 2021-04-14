@@ -42,6 +42,7 @@
     <Resource Include="Resources\Study\water.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
     <ProjectReference Include="..\Protos\Protos.csproj" />
     <ProjectReference Include="..\WpfControlLibrary\WpfControlLibrary.csproj" />
   </ItemGroup>

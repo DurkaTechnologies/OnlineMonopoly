@@ -6,7 +6,9 @@
       xmlns:uc="clr-namespace:WPFUI.UserControls" 
 	  xmlns:uc1="clr-namespace:UIWPF.UserControls;assembly=WpfControlLibrary"
 	  MinHeight="550" MinWidth="900"
-      Title="GamePage" Loaded="Page_Loaded">
+      Title="GamePage" Loaded="Page_Loaded"
+      >
+		
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -372,7 +374,7 @@
 					
 					<uc1:RoundButton Grid.Row="1" Margin="10,10,20,20" Command="{Binding SendCommand}"/>
 				</Grid>
-				
+                <uc:ElementShortInfoDialog Grid.Row="1" Grid.Column="1" Grid.RowSpan="7" Grid.ColumnSpan="4" Panel.ZIndex="1" ></uc:ElementShortInfoDialog>
 			</Grid>
 		</Border>
 	</Grid>
